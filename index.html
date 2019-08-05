@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" href="images/icon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="images/icon.ico" type="image/x-icon">
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src="index.js" type="text/javascript"></script>
+    <title>MAS - Mihane Anime Studio - 管理中心</title>
+</head>
+<body>
+
+<div class="index" id="index">
+    <div class="main-Template">
+        <br>
+        <h1>欢迎使用MAS在线查询系统！</h1>
+        <h3>当前时间：
+            <text id="time"></text>
+        </h3>
+
+        <div id="tab">
+            <ul>
+                <li class="on">主页面</li>
+                <li class="off">搜索序号</li>
+                <li class="off">搜索番组</li>
+            </ul>
+
+            <hr>
+            <div id="main-Div" class="show">
+                <iframe src="https://spreadsheets.google.com/tq?tqx=out:html&tq=select H, I limit 10 offset 6&key=1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70&gid=1890606978"
+                        here></iframe>
+            </div>
+            <div id="search-Div" class="hide">
+                <form name="searchForm">
+                    <br>
+                    <p>请输入要查找的番组序号：
+                        <br>
+                        <br>
+                        <input id="searchID" oninput="if(value.length>4)value=value.slice(0,4)" type="number"
+                               name="searchInput" value="">
+                    </p>
+                </form>
+                <br>
+                <button id="searchIDButton" name="search" onclick="queryName(searchForm.searchInput.value, 'A')">查找</button>
+                <br>
+                <button class="clearButton" name="clear" onclick="clearInput()">清空</button>
+                <br>
+                <div id="test" class="result">
+
+                </div>
+            </div>
+            <div id="search-name-Div" class="hide">
+                <form name="searchFormName">
+                    <br>
+                    <p>请输入要查找的番组名称 - 中文：
+                        <br>
+                        <br>
+                        <input id="searchName" maxlength="20" type="text" name="searchInput" value="">
+                    </p>
+                </form>
+                <br>
+                <button id="searchNameButton" name="search" onclick="queryName(searchFormName.searchInput.value, 'B')">查找</button>
+                <br>
+                <button class="clearButton" name="clear" onclick="clearInput()">清空</button>
+                <br>
+                <div id="testName" class="result"></div>
+            </div>
+        </div>
+    </div>
+    <div class="util">
+        <img src="images/back_to_top.png" id="top" onclick="backToTop()" title="回顶部">
+    </div>
+    <div class="bottom-Template">
+        <br>
+        <p class="end">Copyright JST Auto 2019.</p>
+        <a id="srcPage"
+           href="https://docs.google.com/spreadsheets/d/1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70/edit?usp=sharing"
+           target="_blank">Mihane Anime Studio - MAS</a>
+        <p class="end">Version Beta 1.0</p>
+    </div>
+</div>
+<div class="toggle">
+    <img src="images/hide.png" id="hide" onclick="hidePage()" title="隐藏页面">
+    <img src="images/show.png" id="show" onclick="hidePage()" title="显示页面" style="display: none;">
+</div>
+<script>
+
+    // Get the input field
+    var inputID = document.getElementById("searchID");
+    var inputName = document.getElementById("searchName");
+
+    // JS实现选项卡切换
+    function clearInput(){
+        document.getElementById("searchID").value = "";
+        document.getElementById("searchName").value = "";
+        $("#test").html("");
+        $("#testName").html("");
+    }
+
+    window.onload = function () {
+        // // Execute a function when the user releases a key on the keyboard
+        // inputID.addEventListener("keyup", function(event) {
+        //     // Number 13 is the "Enter" key on the keyboard
+        //     if (event.keyCode === 13) {
+        //         // Cancel the default action, if needed
+        //         event.preventDefault();
+        //         // Trigger the button element with a click
+        //         document.getElementById("searchIDButton").click();
+        //     }
+        // });
+        //
+        // inputName.addEventListener("keyup", function(event) {
+        //     // Number 13 is the "Enter" key on the keyboard
+        //     if (event.keyCode === 13) {
+        //         // Cancel the default action, if needed
+        //         event.preventDefault();
+        //         // Trigger the button element with a click
+        //         document.getElementById("searchNameButton").click();
+        //     }
+        // });
+        // Bug needs to fix.
+
+        startTime();
+        var myTab = document.getElementById("tab");    //整个div
+        var myUl = myTab.getElementsByTagName("ul")[0];//一个节点
+        var myLi = myUl.getElementsByTagName("li");    //数组
+        var myDiv = myTab.getElementsByTagName("div"); //数组
+
+        for (var i = 0; i < myLi.length; i++) {
+            myLi[i].index = i;
+            myLi[i].onclick = function () {
+                $("#test").html("");
+                $("#testName").html("");
+                document.getElementById("searchID").value = "";
+                document.getElementById("searchName").value = "";
+                for (var j = 0; j < myLi.length; j++) {
+                    myLi[j].className = "off";
+                    //特殊情况：搜索中带有嵌套的div。
+                    if (j === 2) {
+                        j += 1;
+                    }
+                    myDiv[j].className = "hide";
+                }
+                this.className = "on";
+                if (this.index === 2) {
+                    this.index += 1;
+                }
+                myDiv[this.index].className = "show";
+            }
+        }
+    };
+
+    window.onscroll = function () {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            $("#top").fadeIn(1000);
+        } else {
+            $("#top").fadeOut(400);
+        }
+    }
+
+    function hidePage() {
+        $(".index").fadeToggle(1000);
+        $(".toggle").find('img').toggle();
+    }
+
+    function queryName(input, column) {
+        (function query(window, $) {
+            if (input === "") {
+                alert("查找内容为空！请重新输入！");
+            } else {
+                var sheetID = "1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70", // 表格代号
+                    gid = "0", // 工作表代号
+                    // * = %2A
+                    // = = %3D
+                    sql, // SQL 语法
+                    callback = "callback", // 回呼函数名称
+                    list = ["序号：", "番组名称 - 中文：", "番组名称 - 原版：", "状态：", "星标", "年份："];
+
+                //Query字符串要加引号
+                if (column === 'A') {
+                    sql = "select+%2A+where+" + column + "+%3D+" + encodeURIComponent(input)
+                } else if (column === 'B') {
+                    sql = "select+%2A+where+" + column + "+%3D+'" + encodeURIComponent(input) + "'"
+                }
+
+                $.getScript("https://spreadsheets.google.com/tq?tqx=responseHandler:" + callback + "&tq=" + sql + "&key=" + sheetID + "&gid=" + gid);
+
+                window[callback] = function (json) {
+                    var rowArray = json.table.rows,
+                        rowLength = rowArray.length,
+                        html = "",
+                        i, j, dataGroup, dataLength;
+                    for (i = 0; i < rowLength; i++) {
+                        dataGroup = rowArray[i].c;
+                        dataLength = dataGroup.length;
+                        if (dataLength > 5) {
+                            dataLength = 5;
+                        }
+                        for (j = 0; j < dataLength; j++) {
+                            // 跳过一个项目，星标
+                            if (j === 4 && dataGroup[5] != null) {
+                                html += list[5];
+                                html += (dataGroup[5].f || dataGroup[5].v || "") + " ";
+                            }
+                            if (!dataGroup[j] || j === 4) {
+                                continue;
+                            }
+                            html += list[j];
+                            html += (dataGroup[j].f || dataGroup[j].v || "") + " ";
+                            html += "<br/>";
+                        }
+                        html += "<br/>";
+
+                    }
+
+                    if (html === "") {
+                        alert("未搜索到结果！请重新输入！");
+                    }
+                    $("#test").html(html);
+                    $("#testName").html(html);
+                };
+            }
+        })(window, jQuery);
+    }
+</script>
+</body>
+</html>
