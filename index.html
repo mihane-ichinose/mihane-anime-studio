@@ -6,6 +6,8 @@
     <link rel="icon" href="images/icon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="images/icon.ico" type="image/x-icon">
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <!--New feature sweetalert has been imported!-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="index.js" type="text/javascript"></script>
     <title>MAS - Mihane Anime Studio - 管理中心</title>
 </head>
@@ -77,7 +79,7 @@
         <a id="srcPage"
            href="https://docs.google.com/spreadsheets/d/1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70/edit?usp=sharing"
            target="_blank">Mihane Anime Studio - MAS</a>
-        <p class="end">Version Beta 1.0</p>
+        <p class="end">Version Beta 1.0.1</p>
     </div>
 </div>
 <div class="toggle">
@@ -185,7 +187,7 @@
                 if (column === 'A') {
                     sql = "select+%2A+where+" + column + "+%3D+" + encodeURIComponent(input)
                 } else if (column === 'B') {
-                    sql = "select+%2A+where+" + column + "+%3D+'" + encodeURIComponent(input) + "'"
+                    sql = "select+%2A+where+" + column + "+like+'%25" + encodeURIComponent(input) + "%25'"
                 }
 
                 $.getScript("https://spreadsheets.google.com/tq?tqx=responseHandler:" + callback + "&tq=" + sql + "&key=" + sheetID + "&gid=" + gid);

@@ -37,7 +37,7 @@ h1, p, button, .result {
     background: rgba(127, 255, 212, 0.6);
     opacity: 0.6;
     border-radius: 16px;
-    width: 800px;
+    width: 700px;
 }
 
 p, .result{
@@ -105,7 +105,7 @@ button.clearButton:active{
 
 .main-Template {
     width: 800px;
-    height: 95%;
+    min-height: 95%;
     margin: 0 auto;
     background: rgba(0, 255, 255, 0.6);
 }
