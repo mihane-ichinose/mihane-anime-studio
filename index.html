@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="owlcarousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="owlcarousel/owl.theme.default.min.css">
     <link rel="icon" href="images/icon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="images/icon.ico" type="image/x-icon">
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src="owlcarousel/owl.carousel.min.js"></script>
     <!--New feature sweetalert has been imported!-->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="index.js" type="text/javascript"></script>
     <title>MAS - Mihane Anime Studio - 管理中心</title>
 </head>
@@ -22,10 +26,10 @@
         </h3>
 
         <div id="tab">
-            <ul>
-                <li class="on">主页面</li>
-                <li class="off">搜索序号</li>
-                <li class="off">搜索番组</li>
+            <ul class="menu">
+                <li class="menu on">主页面</li>
+                <li class="menu off">搜索序号</li>
+                <li class="menu off">搜索番组</li>
             </ul>
 
             <hr>
@@ -44,7 +48,9 @@
                     </p>
                 </form>
                 <br>
-                <button id="searchIDButton" name="search" onclick="queryName(searchForm.searchInput.value, 'A')">查找</button>
+                <button class="search" id="searchIDButton" name="search"
+                        onclick="queryName(searchForm.searchInput.value, 'A')">查找
+                </button>
                 <br>
                 <button class="clearButton" name="clear" onclick="clearInput()">清空</button>
                 <br>
@@ -62,11 +68,31 @@
                     </p>
                 </form>
                 <br>
-                <button id="searchNameButton" name="search" onclick="queryName(searchFormName.searchInput.value, 'B')">查找</button>
+                <button class="search" id="searchNameButton" name="search"
+                        onclick="queryName(searchFormName.searchInput.value, 'B')">
+                    查找
+                </button>
                 <br>
                 <button class="clearButton" name="clear" onclick="clearInput()">清空</button>
                 <br>
-                <div id="testName" class="result"></div>
+                <!--<div id="testName" class="result"></div>-->
+
+                <div class="owl-carousel owl-theme" id="owl-box" style="display: none;">
+                    <div class="item" id="o0"></div>
+                    <div class="item" id="o1"></div>
+                    <div class="item" id="o2"></div>
+                    <div class="item" id="o3"></div>
+                    <div class="item" id="o4"></div>
+                    <div class="item" id="o5"></div>
+                    <div class="item" id="o6"></div>
+                    <div class="item" id="o7"></div>
+                    <div class="item" id="o8"></div>
+                    <div class="item" id="o9"></div>
+                    <!--支持到十个结果-->
+                    <!--<div class="item" id="o10"></div>-->
+                    <!--<div class="item" id="o11"></div>-->
+                    <!--<div class="item" id="o12"></div>-->
+                </div>
             </div>
         </div>
     </div>
@@ -79,7 +105,7 @@
         <a id="srcPage"
            href="https://docs.google.com/spreadsheets/d/1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70/edit?usp=sharing"
            target="_blank">Mihane Anime Studio - MAS</a>
-        <p class="end">Version Beta 1.0.1</p>
+        <p class="end">Version Beta 1.0.3</p>
     </div>
 </div>
 <div class="toggle">
@@ -93,11 +119,15 @@
     var inputName = document.getElementById("searchName");
 
     // JS实现选项卡切换
-    function clearInput(){
+    function clearInput() {
         document.getElementById("searchID").value = "";
         document.getElementById("searchName").value = "";
         $("#test").html("");
-        $("#testName").html("");
+        //c$("#testName").html("");
+        for(k = 0; k < 10; k++) {
+            $("#o" + k).html("");
+        }
+        $("#owl-box").fadeOut(1000);
     }
 
     window.onload = function () {
@@ -124,6 +154,28 @@
         // Bug needs to fix.
 
         startTime();
+
+        $(document).ready(function () {
+            $(".owl-carousel").owlCarousel({
+                loop: false,
+                center: true,
+                margin: 50,
+                nav: true,
+                autoWidth: true,
+                singleItem: true
+            });
+        });
+
+        var owl = $('.owl-carousel');
+        owl.on('mousewheel', '.owl-stage', function (e) {
+            if (e.deltaY > 0) {
+                owl.trigger('next.owl');
+            } else {
+                owl.trigger('prev.owl');
+            }
+            e.preventDefault();
+        });
+
         var myTab = document.getElementById("tab");    //整个div
         var myUl = myTab.getElementsByTagName("ul")[0];//一个节点
         var myLi = myUl.getElementsByTagName("li");    //数组
@@ -133,18 +185,22 @@
             myLi[i].index = i;
             myLi[i].onclick = function () {
                 $("#test").html("");
-                $("#testName").html("");
+                //$("#testName").html("");
+                for(k = 0; k < 10; k++) {
+                    $("#o" + k).html("");
+                }
+                $("#owl-box").hide();
                 document.getElementById("searchID").value = "";
                 document.getElementById("searchName").value = "";
                 for (var j = 0; j < myLi.length; j++) {
-                    myLi[j].className = "off";
+                    myLi[j].className = "menu off";
                     //特殊情况：搜索中带有嵌套的div。
                     if (j === 2) {
                         j += 1;
                     }
                     myDiv[j].className = "hide";
                 }
-                this.className = "on";
+                this.className = "menu on";
                 if (this.index === 2) {
                     this.index += 1;
                 }
@@ -171,9 +227,15 @@
     }
 
     function queryName(input, column) {
+        $("#owl-box").hide();
         (function query(window, $) {
             if (input === "") {
-                alert("查找内容为空！请重新输入！");
+                swal({
+                    title: "???",
+                    text: "查找内容为空！请重新输入！",
+                    icon: "warning",
+                    button: "了解了"
+                });
             } else {
                 var sheetID = "1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70", // 表格代号
                     gid = "0", // 工作表代号
@@ -193,6 +255,41 @@
                 $.getScript("https://spreadsheets.google.com/tq?tqx=responseHandler:" + callback + "&tq=" + sql + "&key=" + sheetID + "&gid=" + gid);
 
                 window[callback] = function (json) {
+                    //$("#owl-box").empty();
+                    // jQuery('<div/>', {
+                    //     "class": 'owl-stage-outer'
+                    // }).appendTo('#owl-box');
+                    // jQuery('<div/>', {
+                    //     "class": 'owl-nav'
+                    // }).appendTo('#owl-box');
+                    // jQuery('<button/>', {
+                    //     "type": 'button',
+                    //     "class": 'owl-prev',
+                    //     "role": 'presentation'
+                    // }).appendTo('.owl-nav');
+                    // jQuery('<button/>', {
+                    //     "type": 'button',
+                    //     "class": 'owl-next',
+                    //     "role": 'presentation'
+                    // }).appendTo('.owl-nav');
+                    // jQuery('<span/>', {
+                    //     "aria-label": 'Previous'
+                    // }).appendTo('.owl-prev');
+                    // jQuery('<span/>', {
+                    //     "aria-label": 'Next'
+                    // }).appendTo('.owl-next');
+                    // jQuery('<div/>', {
+                    //     "class": 'owl-dots'
+                    // }).appendTo('#owl-box');
+                    // jQuery('<div/>', {
+                    //     "class": 'owl-stage',
+                    //     "style": 'transition: all 1.5s ease 0s; width: 7566px; transform: translate3d(134px, 0px, 0px);'
+                    // }).appendTo('.owl-stage-outer');
+
+                    for(k = 0; k < 10; k++) {
+                        $("#o" + k).html("");
+                        $("#o" + k).show();
+                    }
                     var rowArray = json.table.rows,
                         rowLength = rowArray.length,
                         html = "",
@@ -208,6 +305,7 @@
                             if (j === 4 && dataGroup[5] != null) {
                                 html += list[5];
                                 html += (dataGroup[5].f || dataGroup[5].v || "") + " ";
+                                html += "<br/>";
                             }
                             if (!dataGroup[j] || j === 4) {
                                 continue;
@@ -216,15 +314,44 @@
                             html += (dataGroup[j].f || dataGroup[j].v || "") + " ";
                             html += "<br/>";
                         }
-                        html += "<br/>";
 
+                        html += "<br/>";
+                        // jQuery('<div/>', {
+                        //     id: 'oi' + i,
+                        //     "class": 'owl-item'
+                        // }).appendTo('.owl-stage');
+                        // jQuery('<div/>', {
+                        //     id: 'o' + i,
+                        //     "class": 'item'
+                        // }).appendTo('#oi' + i);
+                        // jQuery('<button/>', {
+                        //     id: 'od' + i,
+                        //     "role": 'button',
+                        //     "class": 'owl-dot'
+                        // }).appendTo('.owl-dots');
+                        // jQuery('<span/>', {}).appendTo('#od' + i);
+                        $("#o" + i).html(html);
+                        $("#owl-box").fadeIn(1000);
+                        if(rowLength < 10){
+                            for(k = rowLength; k < 10; k++){
+                                $("#o" + k).hide();
+                            }
+                        }
+                        if (column === 'B' && i !== rowLength - 1) {
+                            html = "";
+                        }
                     }
 
                     if (html === "") {
-                        alert("未搜索到结果！请重新输入！");
+                        swal({
+                            title: "emmm...",
+                            text: "未搜索到结果！请重新输入！",
+                            icon: "warning",
+                            button: "了解了"
+                        });
                     }
                     $("#test").html(html);
-                    $("#testName").html(html);
+                    //$("#testName").html(html);
                 };
             }
         })(window, jQuery);

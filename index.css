@@ -1,6 +1,7 @@
 html, body {
     height: 1000px;
     background: #898989 url("images/MAS_Logo2.png") center center no-repeat fixed;
+!important;
 }
 
 #main-Div.show, iframe {
@@ -22,7 +23,7 @@ html, body {
     border: none;
 }
 
-h1, p, button, .result {
+h1, p, button.search, button.clearButton, .result {
     display: block;
     align-content: center;
     text-align: center;
@@ -31,7 +32,7 @@ h1, p, button, .result {
     font-weight: bold;
 }
 
-#test, #testName{
+#test, #testName {
     display: block;
     margin: 0 auto;
     background: rgba(127, 255, 212, 0.6);
@@ -40,7 +41,7 @@ h1, p, button, .result {
     width: 700px;
 }
 
-p, .result{
+p, .result {
     font-size: 20px;
 }
 
@@ -49,7 +50,7 @@ h3 {
     margin-left: 10px;
 }
 
-button {
+button.search, button.clearButton {
     text-decoration: none;
     width: 100px;
     height: 50px;
@@ -66,7 +67,7 @@ button {
 
 }
 
-button:hover{
+button.search:hover, button.clearButton:hover {
     position: relative;
     top: 1px;
     text-decoration: none;
@@ -76,19 +77,19 @@ button:hover{
     text-shadow: 1px 1px 2px rgba(0, 0, 0, .3);
 }
 
-button:active{
+button.search:active {
     background: linear-gradient(to bottom, turquoise 0%, cyan 100%);
 }
 
-button.clearButton{
+button.clearButton {
     background: linear-gradient(to bottom, gold 0%, orange 100%);
 }
 
-button.clearButton:active{
+button.clearButton:active {
     background: linear-gradient(to bottom, orange 0%, gold 100%);
 }
 
-#searchID, #searchName{
+#searchID, #searchName {
     border-radius: 8px;
     text-align: center;
     width: 200px;
@@ -99,7 +100,14 @@ button.clearButton:active{
     line-height: 8px;
 }
 
-#searchName{
+#owl-box {
+    text-align: center;
+    font-size: 24px;
+    color: #898989;
+    font-weight: bold;
+}
+
+#searchName {
     width: 400px;
 }
 
@@ -191,7 +199,7 @@ button.clearButton:active{
     margin: 0 auto;
 }
 
-#tab ul {
+#tab ul.menu {
     margin: 0 auto;
     list-style: none;
     display: block;
@@ -199,7 +207,7 @@ button.clearButton:active{
     border: none;
 }
 
-#tab ul li {
+#tab ul.menu li.menu {
     display: block;
     color: #898989;
     font-weight: bold;
@@ -213,30 +221,38 @@ button.clearButton:active{
     border: none;
 }
 
-li.off{
+li.menu.off {
     cursor: pointer;
 }
 
-li.on{
+li.menu.on {
     cursor: default;
 }
 
-li {
+li.menu {
     margin: 0 80px;
 }
 
-#tab ul li.on {
+#tab ul.menu li.menu.on {
     color: white;
     background: linear-gradient(to bottom right, blue 0%, purple 51%, #898989 100%);
     transition: 0.5s;
     border: none;
 }
 
-#tab ul li:hover li.on:hover {
+#tab ul.menu li.menu:hover li.menu.on:hover {
     background-position: left center;
     border: none;
 }
 
 .hide {
     display: none;
+}
+
+.owl-carousel .item {
+    border-radius: 10px;
+    height: 10rem;
+    width: 500px;
+    background: rgba(127, 255, 212, 0.6);
+    padding: 1rem;
 }
