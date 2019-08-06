@@ -2,8 +2,10 @@
 > 欢迎使用！本系统——MAS是根据原JST Comic Studio书面系统及JST原版手抄第一、二版汇集改编而成的电子番组在线信息系统。
 ## Introduction
 **Mihane Anime Studio** (*abbrev. **MAS***) is a website based on a database file written in the form of Google Sheet. The website could check all contents in the database and give back the data from it.
-To visit the webpage: [Mihane Anime Studio - MAS](http://mihane.cc/)
-## Version features
+To visit the webpage:
+
+[Mihane Anime Studio - MAS](http://mihane.cc/)
+## Version Features
 ### Beta 1.0.3
 #### 2019.08.06
 - New prompt interface: 'Sweet Alert' has been added to the webpage.
