@@ -179,7 +179,7 @@
         var myTab = document.getElementById("tab");    //整个div
         var myUl = myTab.getElementsByTagName("ul")[0];//一个节点
         var myLi = myUl.getElementsByTagName("li");    //数组
-        var myDiv = myTab.getElementsByTagName("div"); //数组
+        var myDiv = $(myTab).children('div').get(); //数组
 
         for (var i = 0; i < myLi.length; i++) {
             myLi[i].index = i;
@@ -193,17 +193,10 @@
                 document.getElementById("searchID").value = "";
                 document.getElementById("searchName").value = "";
                 for (var j = 0; j < myLi.length; j++) {
-                    myLi[j].className = "menu off";
-                    //特殊情况：搜索中带有嵌套的div。
-                    if (j === 2) {
-                        j += 1;
-                    }
+                    myLi[j].className = "menu off";   
                     myDiv[j].className = "hide";
                 }
                 this.className = "menu on";
-                if (this.index === 2) {
-                    this.index += 1;
-                }
                 myDiv[this.index].className = "show";
             }
         }
