@@ -12,11 +12,72 @@
     <!--New feature sweetalert has been imported!-->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="index.js" type="text/javascript"></script>
-    <title>MAS - Mihane Anime Studio - 管理中心</title>
+    <title>MAS - Mihane Anime Studio</title>
 </head>
 <body>
 
-<div class="index" id="index">
+
+
+<div class="header">
+   
+         <div class="header_in">
+               <div class="header_center">
+                  <h1 class="logo"><img src="images/icon.ico" alt="Mihane Anime Studio" id="headerLogo" style="width:auto;height:78px;"></h1>             
+                   <div id="header_pic_nav" class="hide_icon">
+
+                        <div id="header_pic_menu tab" class="header_menu_ul ">
+               <ul>
+            <li class="menu-item menu on">
+            
+        
+           <span> <div style="top: 0px;">开始页面</div><p>Home Page</p></span>
+           
+            </li>
+            
+             <li class="menu-item menu off">
+            
+    
+           <span> <div style="top: 0px;">序号搜索</div><p>Search by Order</p></span>
+            
+            
+            </li>
+   
+             <li class="menu-item menu off">
+            
+            
+            <span><div style="top: 0px;">名称搜索</div><p>Search by Name</p></span>
+            
+            </li>
+            
+               <li class="menu-item menu off">
+            
+            
+           <span> <div style="top: 0px;">番组大全</div><p>All Bangumi</p></span>
+            
+            </li>
+            
+              <li class="menu-item menu off">
+           
+         
+         <span>   <div style="top: 0px;">更新日志</div><p>Update Log</p></span>
+            </li>
+            
+          <li class="menu-item menu off">
+            
+    
+           <span> <div style="top: 0px;">关于作者</div><p>About Author</p></span>
+            
+            </li>
+            </ul>
+               
+                </div>
+            </div>               
+        </div>    
+        </div>
+       </div>
+
+    <div class="index" id="index">
+    <div class="header-Empty"></div>
     <div class="main-Template">
         <br>
         <h1>欢迎使用MAS在线查询系统！</h1>
@@ -24,14 +85,14 @@
             <text id="time"></text>
         </h3>
 
-        <div id="tab">
-            <ul class="menu">
+        <div id="main-tab">
+            <!--<ul class="menu">
                 <li class="menu on">开始页面</li>
                 <li class="menu off">搜索序号</li>
                 <li class="menu off">搜索名称</li>
                 <li class="menu off">番组大全</li>
                 <li class="menu off">更新日志</li>
-            </ul>
+            </ul> Depreciated menu-->
 
             <hr>
             <div id="main-Div" class="show">
@@ -95,20 +156,28 @@
                     <!--<div class="item" id="o12"></div>-->
                 </div>
             </div>
-            <div id="search-ajax" class="hide">
-                <p>AJAX搜索功能：页面开发中...</p>
+            <div id="all-bangumi-Div" class="hide">
+                <p>筛选番组功能：页面开发中...</p>
                 <br>
                 <button class="search" onclick="ajaxSearch()">搜索</button>
             </div>
             <!--更新日志-->
             <div id="update-log-Div" class="hide">
                 <p class="update-title">更新日志</p>
+                <h4 class="version">V1.0.5</h4>
+                <h4 class="version">更改原菜单至新导航栏。</h4>
+                <h4 class="version">优化了界面颜色。</h4>
+                <br/>
                 <h4 class="version">V1.0.4</h4>
                 <h4 class="version">改善了搜索结果的显示格式。</h4>
                 <h4 class="version">创建了更新日志页面。</h4>
                 <br/>
                 <h4 class="version">V1.0.3及以下</h4>
                 <h4 class="version">--</h4>
+            </div>
+            <div id="author-Div" class="hide">
+            <p class="update-title">Mihane Ichinose</p>
+            <p class="update-title"><a href="https://space.bilibili.com/5049780" target="_blank">Bilibili个人主页>>></a></p>
             </div>
         </div>
     </div>
@@ -121,7 +190,7 @@
         <a id="srcPage"
            href="https://docs.google.com/spreadsheets/d/1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70/edit?usp=sharing"
            target="_blank">Mihane Anime Studio - MAS</a>
-        <p class="end">Version 1.0.4</p>
+        <p class="end">Version 1.0.5</p>
     </div>
 </div>
 <div class="toggle">
@@ -173,7 +242,6 @@
             });
     }
 
-    // JS实现选项卡切换
     function clearInput() {
         document.getElementById("searchID").value = "";
         document.getElementById("searchName").value = "";
@@ -231,9 +299,11 @@
             e.preventDefault();
         });
 
-        var myTab = document.getElementById("tab");    //整个div
+        // JS实现选项卡切换
+        var myTab = document.getElementById("header_pic_menu tab");    //整个div
         var myUl = myTab.getElementsByTagName("ul")[0];//一个节点
         var myLi = myUl.getElementsByTagName("li");    //数组
+        var myTab = document.getElementById("main-tab");
         var myDiv = $(myTab).children('div').get(); //.getElementsByTagName("div"); //数组
 
         for (var i = 0; i < myLi.length; i++) {
@@ -248,10 +318,10 @@
                 document.getElementById("searchID").value = "";
                 document.getElementById("searchName").value = "";
                 for (var j = 0; j < myLi.length; j++) {
-                    myLi[j].className = "menu off";
+                    myLi[j].className = "menu-item menu off";
                     myDiv[j].className = "hide";
                 }
-                this.className = "menu on";
+                this.className = "menu-item menu on";
                 myDiv[this.index].className = "show";
             }
         }
@@ -270,6 +340,7 @@
     }
 
     function hidePage() {
+        $(".header").fadeToggle(1000);
         $(".index").fadeToggle(1000);
         $(".toggle").find('img').toggle();
     }

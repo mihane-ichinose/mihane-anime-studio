@@ -1,6 +1,7 @@
 html, body {
     height: 1000px;
     background: #898989 url("images/MAS_Logo2.png") center center no-repeat fixed;
+    margin: 0;
 !important;
 }
 
@@ -22,19 +23,28 @@ html, body {
     border: none;
 }
 
-h1, p, button.search, button.clearButton, .result {
+h1, p {
     display: block;
     align-content: center;
     text-align: center;
     margin: 0 auto;
-    color: #898989;
+    color: #BBE1FA;
+    font-weight: bold;
+}
+
+button.search, button.clearButton, .result {
+    display: block;
+    align-content: center;
+    text-align: center;
+    margin: 0 auto;
+    color: #1B262C;
     font-weight: bold;
 }
 
 #test {
     display: block;
-    background: rgb(127, 255, 212);
-    opacity: 0.6;
+    background: #3282B8;
+    opacity: 0.8;
     border-radius: 16px;
     width: 700px;
 }
@@ -44,7 +54,7 @@ p {
 }
 
 h3 {
-    color: #898989;
+    color: #BBE1FA;
     margin-left: 10px;
 }
 
@@ -53,7 +63,7 @@ button.search, button.clearButton {
     width: 100px;
     height: 50px;
     background: linear-gradient(to bottom, cyan 0%, turquoise 100%);
-    border: solid #898989 1px;
+    border: solid #BBE1FA 1px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
@@ -93,14 +103,14 @@ button.clearButton:active {
     width: 200px;
     height: 40px;
     font-size: 26px;
-    color: #898989;
+    color: #1B262C;
     position: center;
     line-height: 8px;
 }
 
 #owl-box, #test {
     font-size: 24px;
-    color: #898989;
+    color: #1B262C;
     font-weight: bold;
 }
 
@@ -108,15 +118,8 @@ button.clearButton:active {
     width: 400px;
 }
 
-.main-Template {
-    width: 800px;
-    min-height: 95%;
-    margin: 0 auto;
-    background: rgba(0, 255, 255, 0.6);
-}
-
 #srcPage, .end {
-    color: aqua;
+    color: #BBE1FA;
     display: block;
     position: relative;
     align-content: center;
@@ -128,28 +131,51 @@ button.clearButton:active {
 }
 
 #srcPage:link {
-    color: aqua;
+    color: #BBE1FA;
 }
 
 #srcPage:visited {
-    color: aqua;
+    color: #BBE1FA;
 }
 
 #srcPage:hover {
-    color: yellow;
+    color: white;
 }
 
 #srcPage:active {
-    color: red;
+    color: orange;
+}
+
+.index {
+    margin: 0 auto;
+    width: 100%;
+    opacity: 1;
+    height: 100%;
+}
+
+.main-Template {
+    width: 1200px;
+    min-height: 95%;
+    margin: 0 auto;
+    background: #0F4C75;
+    opacity: 0.8;
 }
 
 .bottom-Template {
     line-height: 70%;
     height: 5%;
-    width: 800px;
+    width: 100%;
     margin: 0 auto;
-    background-color: #898989;
-    border-top: groove blue;
+    background-color:#1B262C;
+    border-top: groove #BBE1FA;
+}
+
+.header-Empty {
+    height:91px;
+    background: #0F4C75;
+    width: 1200px;
+    opacity: 0.8;
+    margin: 0 auto;
 }
 
 .util, #top {
@@ -181,13 +207,6 @@ button.clearButton:active {
 
 #hide, #show {
     cursor: pointer;
-}
-
-.index {
-    margin: 0 auto;
-    width: 800px;
-    opacity: 1;
-    height: 100%;
 }
 
 #tab {
@@ -247,9 +266,10 @@ li.menu {
 }
 
 .owl-carousel .item {
-    border-radius: 10px;
+    border-radius: 6px;
     width: 700px;
-    background: rgba(127, 255, 212, 0.6);
+    background: #3282B8;
+    opacity: 0.8;
     padding: 1rem;
 }
 
@@ -260,11 +280,11 @@ div.item, #test{
 .version {
     padding: 0 1rem;
     margin: 0;
-    color: #898989;
+    color: #BBE1FA;
 }
 
 .update-title {
-    color: #898989;
+    color: #BBE1FA;
 }
 
 #srcResLink {
@@ -272,17 +292,82 @@ div.item, #test{
 }
 
 #srcResLink:link {
-    color: #505050;
+    color: #BBE1FA;
 }
 
 #srcResLink:visited {
-    color: #505050;
+    color: #BBE1FA;
 }
 
 #srcResLink:hover {
-    color: turquoise;
+    color: white;
 }
 
 #srcResLink:active {
     color: orange;
+}
+
+.header {
+    width:100%;
+    height: auto;
+    position: fixed;
+    z-index:100;
+    background:url("https://www.themepark.com.cn/demo/wp-content/themes/Generalroller/images/blacks.png"); 
+    border-top:5px solid #363636;
+} 
+
+
+.header_in {
+    width:100%;
+    height: auto;
+    position:relative;
+    z-index:10;
+}
+
+.header_center { width:100%; max-width:1280px; min-width:1280px; margin:0 auto; height: auto; position:relative;}
+.logo { float:left; overflow:hidden; max-width:100%; max-height:100%;}
+#header_pic_nav {float: right;height:78px;width: auto;max-width:79%;position:relative;z-index:1;}
+#header_pic_nav  li { display:block; float:left; position:relative; z-index:10;-moz-transition:all 0.8s;-webkit-transition:all 0.8s;-o-transition:all 0.8s;}
+#header_pic_nav  li a {float:left;display:block;margin-bottom:1px;padding:20px 15px 10px 15px;width:auto;transition:all 0.8s;-moz-transition:all 0.8s;-webkit-transition:all 0.8s;-o-transition:all 0.8s;}
+#header_pic_nav li img{ float:left; display:block;   margin-top:5px;}
+#header_pic_nav li span{ display:block; float:left; margin-left:5px; padding-top:10px;}
+
+#header_pic_nav li div, #header_pic_nav li p {
+    display:block;
+    width:100%;
+}
+
+#header_pic_nav li div {
+    font-size:14px;
+    color:#BBE1FA;
+    font-weight:normal;
+    line-height:17px;
+    text-align:left;
+}
+
+#header_pic_nav li p {
+    font-size:8px;
+    color:#BBE1FA;
+    text-transform:uppercase;
+    text-align:left;
+}
+
+a:link {
+    color: #BBE1FA;
+}
+
+a:visited {
+    color: #BBE1FA;
+}
+
+a:hover {
+    color: #BBE1FA;
+}
+
+a:active {
+    color: orange;
+}
+
+a {
+    text-decoration:none;
 }

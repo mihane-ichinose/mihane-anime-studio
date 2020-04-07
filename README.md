@@ -6,6 +6,10 @@ To visit the webpage:
 
 [Mihane Anime Studio - MAS](http://mihane.cc/)
 ## New Features
+### Version 1.0.5
+#### 2020.04.08
+- Improved UI colouring.
+- Depreciate old menu and created a new navigation bar.
 ### Version 1.0.4
 #### 2020.04.07
 ##### Due to non-standard git format previously (no git init), all commits before this version has been forced wiped... Apologies.
