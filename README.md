@@ -27,5 +27,6 @@ To visit the webpage:
 ## Acknowledgements
 - [Sweet Alert](https://sweetalert.js.org/)
 - [Owl Carousel 2](https://owlcarousel2.github.io/OwlCarousel2/)
+- [Baidu Baike](https://baike.baidu.com/)
 ## Author
 - [Mihane Ichinose](https://space.bilibili.com/5049780?from=search&seid=7121011517825966874)
