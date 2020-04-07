@@ -5,7 +5,7 @@
 To visit the webpage:
 
 [Mihane Anime Studio - MAS](http://mihane.cc/)
-## Version Features
+## New Features
 ### Version 1.0.4
 #### 2020.04.07
 ##### Due to non-standard git format previously (no git init), all commits before this version has been forced wiped... Apologies.
