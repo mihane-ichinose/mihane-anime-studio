@@ -367,7 +367,7 @@
                         animeED = (dataGroup[9] != null ? ("「" + (dataGroup[9].f || dataGroup[9].v) + "」") : "未知") + 
                                   (dataGroup[10] != null ? ("「" + (dataGroup[10].f || dataGroup[10].v) + "」") : "");
                         animeED = animeED.replace(/#/g, "");
-                        html = "　　" + animeNum + ". " + animeNameCH + " (" + animeNameORI + ")，是" + animeYear + animeSeason + "番组。"
+                        html = "　　" + animeNum + ". " + "<a id='srcResLink' href='https://baike.baidu.com/item/" + animeNameCH + "' target='_blank'>" + animeNameCH + "</a>" + " (" + animeNameORI + ")，是" + animeYear + animeSeason + "番组。"
                         + "<br/>" + "　　" + animeStarOutput + "Mihane的个人推荐。"
                         + "<br/>" + "　　目前Mihane的观看状态是：" + animeStatus
                         + "<br/>" + "　　OP　" + animeOP

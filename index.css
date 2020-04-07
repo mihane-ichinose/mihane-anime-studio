@@ -266,3 +266,23 @@ div.item, #test{
 .update-title {
     color: #898989;
 }
+
+#srcResLink {
+    text-decoration: none;
+}
+
+#srcResLink:link {
+    color: #505050;
+}
+
+#srcResLink:visited {
+    color: #505050;
+}
+
+#srcResLink:hover {
+    color: turquoise;
+}
+
+#srcResLink:active {
+    color: orange;
+}
