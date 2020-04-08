@@ -287,23 +287,23 @@ div.item, #test{
     color: #BBE1FA;
 }
 
-#srcResLink {
+.srcResLink {
     text-decoration: none;
 }
 
-#srcResLink:link {
+.srcResLink:link {
     color: #BBE1FA;
 }
 
-#srcResLink:visited {
+.srcResLink:visited {
     color: #BBE1FA;
 }
 
-#srcResLink:hover {
+.srcResLink:hover {
     color: white;
 }
 
-#srcResLink:active {
+.srcResLink:active {
     color: orange;
 }
 

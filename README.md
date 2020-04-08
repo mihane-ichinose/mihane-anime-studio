@@ -6,6 +6,9 @@ To visit the webpage:
 
 [Mihane Anime Studio - MAS](http://mihane.cc/)
 ## New Features
+### Version 1.0.5a
+#### 2020.04.08
+- Added link to OP & EDs to the Netease Music seaching page.
 ### Version 1.0.5
 #### 2020.04.08
 - Improved UI colouring.
@@ -32,5 +35,6 @@ To visit the webpage:
 - [Sweet Alert](https://sweetalert.js.org/)
 - [Owl Carousel 2](https://owlcarousel2.github.io/OwlCarousel2/)
 - [Baidu Baike](https://baike.baidu.com/)
+- [Netease Music](https://music.163.com/)
 ## Author
 - [Mihane Ichinose](https://space.bilibili.com/5049780?from=search&seid=7121011517825966874)

@@ -164,6 +164,9 @@
             <!--更新日志-->
             <div id="update-log-Div" class="hide">
                 <p class="update-title">更新日志</p>
+                <h4 class="version">V1.0.5a</h4>
+                <h4 class="version">新增加了对OP和ED在网易云音乐的搜索链入功能。</h4>
+                <br/>
                 <h4 class="version">V1.0.5</h4>
                 <h4 class="version">更改原菜单至新导航栏。</h4>
                 <h4 class="version">优化了界面颜色。</h4>
@@ -190,7 +193,7 @@
         <a id="srcPage"
            href="https://docs.google.com/spreadsheets/d/1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70/edit?usp=sharing"
            target="_blank">Mihane Anime Studio - MAS</a>
-        <p class="end">Version 1.0.5</p>
+        <p class="end">Version 1.0.5a</p>
     </div>
 </div>
 <div class="toggle">
@@ -415,7 +418,8 @@
                         html = "", // Put these keys together using a string concatenation.
                         i, j, dataGroup, dataLength,
                         animeNum, animeNameCH, animeNameORI, animeStatus,
-                        animeStar, animeYear, animeSeason, animeOP, animeED; // These are all keys from the table in MAS.
+                        animeStar, animeYear, animeSeason, animeOP1, animeED1, animeOP1Raw, animeED1Raw,
+                        animeOP2, animeED2, animeOP2Raw, animeED2Raw; // These are all keys from the table in MAS.
 
                     for (i = 0; i < rowLength; i++) {
                         dataGroup = rowArray[i].c;
@@ -432,17 +436,40 @@
                         }
                         animeYear = dataGroup[5] != null ? ((dataGroup[5].f || dataGroup[5].v) + "年") : "未知年份";
                         animeSeason = dataGroup[6] != null ? ((dataGroup[6].f || dataGroup[6].v) + "季") : "未知季度";
-                        animeOP = (dataGroup[7] != null ? ("「" + (dataGroup[7].f || dataGroup[7].v) + "」") : "未知") + 
-                                  (dataGroup[8] != null ? ("「" + (dataGroup[8].f || dataGroup[8].v) + "」") : "");
-                        animeOP = animeOP.replace(/#/g, ""); // Delete '#' after OP& EDs if there is any.
-                        animeED = (dataGroup[9] != null ? ("「" + (dataGroup[9].f || dataGroup[9].v) + "」") : "未知") + 
-                                  (dataGroup[10] != null ? ("「" + (dataGroup[10].f || dataGroup[10].v) + "」") : "");
-                        animeED = animeED.replace(/#/g, "");
-                        html = "　　" + animeNum + ". " + "<a id='srcResLink' href='https://baike.baidu.com/item/" + animeNameCH + "' target='_blank'>" + animeNameCH + "</a>" + " (" + animeNameORI + ")，是" + animeYear + animeSeason + "番组。"
+
+                        animeOP1 = dataGroup[7] != null ? ("「" + (dataGroup[7].f || dataGroup[7].v) + "」") : "未知";                                   
+                        animeED1 = dataGroup[9] != null ? ("「" + (dataGroup[9].f || dataGroup[9].v) + "」") : "未知";
+                        animeOP2 = dataGroup[8] != null ? ("「" + (dataGroup[8].f || dataGroup[8].v) + "」") : "";
+                        animeED2 = dataGroup[10] != null ? ("「" + (dataGroup[10].f || dataGroup[10].v) + "」") : "";
+
+                        animeOP1 = animeOP1.replace(/#/g, ""); // Delete '#' after OP& EDs if there is any.
+                        animeED1 = animeED1.replace(/#/g, "");
+                        animeOP2 = animeOP2.replace(/#/g, "");
+                        animeED2 = animeED2.replace(/#/g, "");
+
+                        animeOP1Raw = animeOP1.replace(/[「」]/g, ""); // The raw name of OP & ED that can be put into Netease music search page.
+                        animeED1Raw = animeED1.replace(/[「」]/g, "");
+                        animeOP2Raw = animeOP2.replace(/[「」]/g, "");
+                        animeED2Raw = animeED2.replace(/[「」]/g, "");
+
+                        if (animeOP1 != "未知") {
+                            animeOP1 = "<a class='srcResLink' href='https://music.163.com/#/search/m/?s=" + animeOP1Raw + "&type=1' target='_blank'>" + animeOP1 + "</a>";
+                        }
+                        if (animeOP2 != "未知") {
+                            animeOP2 = "<a class='srcResLink' href='https://music.163.com/#/search/m/?s=" + animeOP2Raw + "&type=1' target='_blank'>" + animeOP2 + "</a>";
+                        }
+                        if (animeED1 != "未知") {
+                            animeED1 = "<a class='srcResLink' href='https://music.163.com/#/search/m/?s=" + animeED1Raw + "&type=1' target='_blank'>" + animeED1 + "</a>";
+                        }
+                        if (animeED2 != "未知") {
+                            animeED2 = "<a class='srcResLink' href='https://music.163.com/#/search/m/?s=" + animeED2Raw + "&type=1' target='_blank'>" + animeED2 + "</a>";
+                        }
+
+                        html = "　　" + animeNum + ". " + "<a class='srcResLink' href='https://baike.baidu.com/item/" + animeNameCH + "' target='_blank'>" + animeNameCH + "</a>" + " (" + animeNameORI + ")，是" + animeYear + animeSeason + "番组。"
                         + "<br/>" + "　　" + animeStarOutput + "Mihane的个人推荐。"
                         + "<br/>" + "　　目前Mihane的观看状态是：" + animeStatus
-                        + "<br/>" + "　　OP　" + animeOP
-                        + "<br/>" + "　　ED　" + animeED;
+                        + "<br/>" + "　　OP　" + animeOP1 + animeOP2
+                        + "<br/>" + "　　ED　" + animeED1 + animeED2;
                         // if (dataLength > 6) {
                         //     dataLength = 6;
                         // }
