@@ -312,7 +312,8 @@ div.item, #test{
     height: auto;
     position: fixed;
     z-index:100;
-    background:url("https://www.themepark.com.cn/demo/wp-content/themes/Generalroller/images/blacks.png"); 
+    background:#1B262C;
+    opacity: 0.9;
     border-top:5px solid #363636;
 } 
 
