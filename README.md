@@ -6,6 +6,10 @@ To visit the webpage:
 
 [Mihane Anime Studio - MAS](http://mihane.cc/)
 ## New Features
+### Version 1.0.5b
+#### 2020.04.12
+- Change the background of top banner without quoting other websites.
+- Fixed a bug when non-url coding exists in some Bangumi names, OPs and EDs.
 ### Version 1.0.5a
 #### 2020.04.08
 - Added link to OP & EDs to the Netease Music seaching page.

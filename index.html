@@ -164,6 +164,10 @@
             <!--更新日志-->
             <div id="update-log-Div" class="hide">
                 <p class="update-title">更新日志</p>
+                <h4 class="version">V1.0.5b</h4>
+                <h4 class="version">去除原本顶部导航栏的引用其他链接图片的背景。改用半透明颜色填充。</h4>
+                <h4 class="version">修复了因番组名以及OP、ED在含有特殊字符的情况下无法跳转链接的bug。使用了URL转码匹配。</h4>
+                <br/>
                 <h4 class="version">V1.0.5a</h4>
                 <h4 class="version">新增加了对OP和ED在网易云音乐的搜索链入功能。</h4>
                 <br/>
@@ -193,7 +197,7 @@
         <a id="srcPage"
            href="https://docs.google.com/spreadsheets/d/1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70/edit?usp=sharing"
            target="_blank">Mihane Anime Studio - MAS</a>
-        <p class="end">Version 1.0.5a</p>
+        <p class="end">Version 1.0.5b</p>
     </div>
 </div>
 <div class="toggle">
@@ -447,10 +451,10 @@
                         animeOP2 = animeOP2.replace(/#/g, "");
                         animeED2 = animeED2.replace(/#/g, "");
 
-                        animeOP1Raw = animeOP1.replace(/[「」]/g, ""); // The raw name of OP & ED that can be put into Netease music search page.
-                        animeED1Raw = animeED1.replace(/[「」]/g, "");
-                        animeOP2Raw = animeOP2.replace(/[「」]/g, "");
-                        animeED2Raw = animeED2.replace(/[「」]/g, "");
+                        animeOP1Raw = encodeURIComponent(animeOP1.replace(/[「」]/g, "")); // The raw name of OP & ED that can be put into Netease music search page.
+                        animeED1Raw = encodeURIComponent(animeED1.replace(/[「」]/g, ""));
+                        animeOP2Raw = encodeURIComponent(animeOP2.replace(/[「」]/g, ""));
+                        animeED2Raw = encodeURIComponent(animeED2.replace(/[「」]/g, ""));
 
                         if (animeOP1 != "未知") {
                             animeOP1 = "<a class='srcResLink' href='https://music.163.com/#/search/m/?s=" + animeOP1Raw + "&type=1' target='_blank'>" + animeOP1 + "</a>";
@@ -465,7 +469,7 @@
                             animeED2 = "<a class='srcResLink' href='https://music.163.com/#/search/m/?s=" + animeED2Raw + "&type=1' target='_blank'>" + animeED2 + "</a>";
                         }
 
-                        html = "　　" + animeNum + ". " + "<a class='srcResLink' href='https://baike.baidu.com/item/" + animeNameCH + "' target='_blank'>" + animeNameCH + "</a>" + " (" + animeNameORI + ")，是" + animeYear + animeSeason + "番组。"
+                        html = "　　" + animeNum + ". " + "<a class='srcResLink' href='https://baike.baidu.com/item/" + encodeURIComponent(animeNameCH) + "' target='_blank'>" + animeNameCH + "</a>" + " (" + animeNameORI + ")，是" + animeYear + animeSeason + "番组。"
                         + "<br/>" + "　　" + animeStarOutput + "Mihane的个人推荐。"
                         + "<br/>" + "　　目前Mihane的观看状态是：" + animeStatus
                         + "<br/>" + "　　OP　" + animeOP1 + animeOP2
