@@ -5,14 +5,6 @@ html, body {
 !important;
 }
 
-table {
-  table-layout: fixed ;
-  width: 100% ;
-}
-td {
-  width: 50% ;
-}
-
 hr{
     height: 12px;
     border: 0;
