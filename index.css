@@ -5,6 +5,20 @@ html, body {
 !important;
 }
 
+table {
+  table-layout: fixed ;
+  width: 100% ;
+}
+td {
+  width: 50% ;
+}
+
+hr{
+    height: 12px;
+    border: 0;
+    box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);
+}
+
 #main-Div.show, iframe {
     display: block;
     background: url("images/loading.gif") center center no-repeat;
@@ -12,11 +26,11 @@ html, body {
     text-align: center;
     margin: 0 auto;
     width: 430px;
-    height: 310px;
+    height: 320px;
     border: none;
 }
 
-#search-Div.show, #test {
+#search-Div.show, #test, #test-all {
     display: block;
     align-content: left;
     text-align: left;
@@ -32,7 +46,7 @@ h1, p {
     font-weight: bold;
 }
 
-button.search, button.clearButton, .result {
+button.search, button.clearButton, .result, .result-all {
     display: block;
     align-content: center;
     text-align: center;
@@ -41,7 +55,7 @@ button.search, button.clearButton, .result {
     font-weight: bold;
 }
 
-#test {
+#test, #test-all {
     display: block;
     background: #3282B8;
     opacity: 0.8;
@@ -61,18 +75,20 @@ h3 {
 button.search, button.clearButton {
     text-decoration: none;
     width: 100px;
-    height: 50px;
-    background: linear-gradient(to bottom, cyan 0%, turquoise 100%);
+    height: 28px;
+    background: #BBE1FA;
+    color: #0F4C75;
     border: solid #BBE1FA 1px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
     box-shadow: none;
     text-shadow: none;
-    font-size: 25px;
+    font-size: 18px;
     cursor: pointer;
     transition: all 2s ease;
-
+    float:left;
+    margin: auto 20px;
 }
 
 button.search:hover, button.clearButton:hover {
@@ -86,29 +102,31 @@ button.search:hover, button.clearButton:hover {
 }
 
 button.search:active {
-    background: linear-gradient(to bottom, turquoise 0%, cyan 100%);
+    background: white;
 }
 
 button.clearButton {
-    background: linear-gradient(to bottom, gold 0%, orange 100%);
+    background: gold;
 }
 
 button.clearButton:active {
-    background: linear-gradient(to bottom, orange 0%, gold 100%);
+    background: orange;
 }
 
-#searchID, #searchName {
+input {
     border-radius: 8px;
     text-align: center;
     width: 200px;
-    height: 40px;
-    font-size: 26px;
+    height: 30px;
+    font-size: 20px;
     color: #1B262C;
     position: center;
     line-height: 8px;
+    background: #BBE1FA;
+    border-color: transparent;
 }
 
-#owl-box, #test {
+#owl-box, #test, #test-all {
     font-size: 24px;
     color: #1B262C;
     font-weight: bold;
@@ -116,6 +134,19 @@ button.clearButton:active {
 
 #searchName {
     width: 400px;
+}
+
+#searchYear {
+    height: 23px;
+    font-size: 18px;
+    width: 80px;
+}
+
+#searchYearButton, #clearYearButton {
+    height: 28px;
+    font-size: 18px;
+    margin: auto 20px;
+    float: left;
 }
 
 #srcPage, .end {
@@ -215,7 +246,7 @@ button.clearButton:active {
     margin: 0 auto;
 }
 
-#tab ul.menu {
+ul.season {
     margin: 0 auto;
     list-style: none;
     display: block;
@@ -223,11 +254,11 @@ button.clearButton:active {
     border: none;
 }
 
-#tab ul.menu li.menu {
+ul.season li.season {
     display: block;
-    color: #898989;
+    color: #BBE1FA;
     font-weight: bold;
-    background: linear-gradient(to bottom right, cyan 0%, silver 51%, white 100%);
+    background: #0F4C75;
     border-radius: 8px;
     float: left;
     list-style: none;
@@ -237,26 +268,30 @@ button.clearButton:active {
     border: none;
 }
 
-li.menu.off {
+li.season.off, li.menu.off {
     cursor: pointer;
 }
 
-li.menu.on {
-    cursor: default;
+li.season.on, li.menu.on {
+    cursor: pointer;
 }
 
 li.menu {
     margin: 0 30px;
 }
 
-#tab ul.menu li.menu.on {
-    color: white;
-    background: linear-gradient(to bottom right, blue 0%, purple 51%, #898989 100%);
+li.season {
+    margin: 0 10px;
+}
+
+ul.season li.season.on {
+    color: #0F4C75;
+    background: #BBE1FA;
     transition: 0.5s;
     border: none;
 }
 
-#tab ul.menu li.menu:hover li.menu.on:hover {
+ul.season li.season:hover li.season.on:hover {
     background-position: left center;
     border: none;
 }

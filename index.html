@@ -31,7 +31,7 @@
             
         
            <span> <div style="top: 0px;">开始页面</div><p>Home Page</p></span>
-           
+        
             </li>
             
              <li class="menu-item menu off">
@@ -97,24 +97,22 @@
             <hr>
             <div id="main-Div" class="show">
                 <iframe src="https://spreadsheets.google.com/tq?tqx=out:html&tq=select H, I limit 10 offset 6&key=1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70&gid=1890606978"
-                        here></iframe>
+                        here allowfullscreen sandbox></iframe>
             </div>
             <div id="search-Div" class="hide">
                 <form name="searchForm">
                     <br>
-                    <p>请输入要查找的番组序号：
-                        <br>
-                        <br>
+                    <h4 class="version">请输入要查找的番组序号：
                         <input id="searchID" oninput="if(value.length>4)value=value.slice(0,4)" type="number"
                                name="searchInput" value="">
-                    </p>
+                    </h4>
                 </form>
                 <br>
                 <button class="search" id="searchIDButton" name="search"
                         onclick="queryName(searchForm.searchInput.value, 'A')">查找
                 </button>
-                <br>
                 <button class="clearButton" name="clear" onclick="clearInput()">清空</button>
+                <br>
                 <br>
                 <div id="test" class="result">
 
@@ -123,19 +121,17 @@
             <div id="search-name-Div" class="hide">
                 <form name="searchFormName">
                     <br>
-                    <p>请输入要查找的番组名称 - 中文：
-                        <br>
-                        <br>
-                        <input id="searchName" maxlength="20" type="text" name="searchInput" value="">
-                    </p>
+                    <h4 class="version">请输入要查找的番组名称 - 中文：
+                        <input id="searchName" type="text" name="searchInput" value="">
+                    </h4>
                 </form>
                 <br>
                 <button class="search" id="searchNameButton" name="search"
                         onclick="queryName(searchFormName.searchInput.value, 'B')">
                     查找
                 </button>
-                <br>
                 <button class="clearButton" name="clear" onclick="clearInput()">清空</button>
+                <br>
                 <br>
                 <!--<div id="testName" class="result"></div>-->
 
@@ -157,13 +153,40 @@
                 </div>
             </div>
             <div id="all-bangumi-Div" class="hide">
-                <p>筛选番组功能：页面开发中...</p>
+                <!-- <button class="search" onclick="ajaxSearch()">搜索</button> -->
+                <form name="searchYearForm">
+                    <br>
+                <h4 class="version">番组年份：
+                    <input id="searchYear" oninput="if(value.length>4)value=value.slice(0,4)" type="number" name="searchInput" value="">
+                    </h4>
+                    </form>
+                    <br>
+                    <ul class="season">
+                    <li class="season off">冬</li>
+                    <li class="season off">春</li>
+                    <li class="season off">夏</li>
+                    <li class="season off">秋</li>
+                    </ul>
+                    <br>
+                    <button class="search" id="searchYearButton" name="search"
+                        onclick="queryName(searchYearForm.searchInput.value, 'F')">
+                    筛选
+                </button>
+                <button class="clearButton" id="clearYearButton" name="clear" onclick="clearInput()">清空</button>
                 <br>
-                <button class="search" onclick="ajaxSearch()">搜索</button>
+                
+                <br>
+                <!-- <button class="clearButton" name="clear" onclick="clearInput()">清空</button>
+                <br> -->
+                <div id="test-all" class="result-all"></div>
             </div>
             <!--更新日志-->
             <div id="update-log-Div" class="hide">
                 <p class="update-title">更新日志</p>
+                <h4 class="version">V1.1.0</h4>
+                <h4 class="version">完成了“番组大全”的开发页面，支持年份、季度的筛选。</h4>
+                <h4 class="version">优化界面显示效果。</h4>
+                <br/>
                 <h4 class="version">V1.0.5b</h4>
                 <h4 class="version">去除原本顶部导航栏的引用其他链接图片的背景。改用半透明颜色填充。</h4>
                 <h4 class="version">修复了因番组名以及OP、ED在含有特殊字符的情况下无法跳转链接的bug。使用了URL转码匹配。</h4>
@@ -179,8 +202,11 @@
                 <h4 class="version">改善了搜索结果的显示格式。</h4>
                 <h4 class="version">创建了更新日志页面。</h4>
                 <br/>
-                <h4 class="version">V1.0.3及以下</h4>
+                <h4 class="version">V1.0.3及更早</h4>
                 <h4 class="version">--</h4>
+                <br/>
+                <p class="update-title">待定事项</p>
+                <h4 class="version">计划取消首页的iframe并改为使用query获取数据以设置表格样式。</h4>
             </div>
             <div id="author-Div" class="hide">
             <p class="update-title">Mihane Ichinose</p>
@@ -197,7 +223,7 @@
         <a id="srcPage"
            href="https://docs.google.com/spreadsheets/d/1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70/edit?usp=sharing"
            target="_blank">Mihane Anime Studio - MAS</a>
-        <p class="end">Version 1.0.5b</p>
+        <p class="end">Version 1.1.0</p>
     </div>
 </div>
 <div class="toggle">
@@ -205,55 +231,57 @@
     <img src="images/show.png" id="show" onclick="hidePage()" title="显示页面" style="display: none;">
 </div>
 <script>
+    var spring = false,
+    summer = false,
+    autumn = false,
+    winter = false;
+    // function ajaxSearch() {
+    //     swal({
+    //         text: 'Search for a movie. e.g. "La La Land".',
+    //         content: "input",
+    //         button: {
+    //             text: "Search!",
+    //             closeModal: false,
+    //         },
+    //     })
+    //         .then(name => {
+    //             if (!name) throw null;
+    //             return fetch('https://itunes.apple.com/search?term=${name}&entity=movie');
+    //         })
+    //         .then(results => {
+    //             return results.json();
+    //         })
+    //         .then(json => {
+    //             const movie = json.results[0];
 
+    //             if (!movie) {
+    //                 return swal("No movie was found!");
+    //             }
 
-    function ajaxSearch() {
-        swal({
-            text: 'Search for a movie. e.g. "La La Land".',
-            content: "input",
-            button: {
-                text: "Search!",
-                closeModal: false,
-            },
-        })
-            .then(name => {
-                if (!name) throw null;
-                return fetch('https://itunes.apple.com/search?term=${name}&entity=movie');
-            })
-            .then(results => {
-                return results.json();
-            })
-            .then(json => {
-                const movie = json.results[0];
+    //             const name = movie.trackName;
+    //             const imageURL = movie.artworkUrl100;
 
-                if (!movie) {
-                    return swal("No movie was found!");
-                }
-
-                const name = movie.trackName;
-                const imageURL = movie.artworkUrl100;
-
-                swal({
-                    title: "Top result:",
-                    text: name,
-                    icon: imageURL,
-                });
-            })
-            .catch(err => {
-                if (err) {
-                    swal("Oh noes!", "The AJAX request failed!", "error");
-                } else {
-                    swal.stopLoading();
-                    swal.close();
-                }
-            });
-    }
+    //             swal({
+    //                 title: "Top result:",
+    //                 text: name,
+    //                 icon: imageURL,
+    //             });
+    //         })
+    //         .catch(err => {
+    //             if (err) {
+    //                 swal("Oh noes!", "The AJAX request failed!", "error");
+    //             } else {
+    //                 swal.stopLoading();
+    //                 swal.close();
+    //             }
+    //         });
+    // }
 
     function clearInput() {
         document.getElementById("searchID").value = "";
         document.getElementById("searchName").value = "";
         $("#test").html("");
-        //c$("#testName").html("");
+        $("#test-all").html("");
         for (k = 0; k < 10; k++) {
             $("#o" + k).html("");
         }
@@ -307,6 +335,54 @@
         });
 
         // JS实现选项卡切换
+        // Season tab of page 'All bangumi'.
+        var myTab2 = document.getElementById("all-bangumi-Div");    //整个div
+        var myUl2 = myTab2.getElementsByTagName("ul")[0];//一个节点
+        var myLi2 = myUl2.getElementsByTagName("li");    //数组 //.getElementsByTagName("div");
+        var var_season = "";
+        
+
+        for (var i = 0; i < myLi2.length; i++) {
+            myLi2[i].index = i;
+            myLi2[i].onclick = function () {
+                if (this.className == "season off"){
+                    this.className = "season on";
+                    switch(this) {
+                        case myLi2[0]:
+                            winter = true;
+                            break;
+                        case myLi2[1]:
+                            spring = true;
+                            break;
+                        case myLi2[2]:
+                            summer = true;
+                            break;
+                        case myLi2[3]:
+                            autumn = true;
+                            break;
+                    }
+                } else {
+                    this.className = "season off";
+                    switch(this) {
+                        case myLi2[0]:
+                            winter = false;
+                            break;
+                        case myLi2[1]:
+                            spring = false;
+                            break;
+                        case myLi2[2]:
+                            summer = false;
+                            break;
+                        case myLi2[3]:
+                            autumn = false;
+                            break;
+                    }
+                }
+                
+            }
+        }
+
+        // Main tab on the top.
         var myTab = document.getElementById("header_pic_menu tab");    //整个div
         var myUl = myTab.getElementsByTagName("ul")[0];//一个节点
         var myLi = myUl.getElementsByTagName("li");    //数组
@@ -316,8 +392,42 @@
         for (var i = 0; i < myLi.length; i++) {
             myLi[i].index = i;
             myLi[i].onclick = function () {
+                document.getElementById("searchYear").value = new Date().getFullYear();
+                // Auto detect which season is it now.
+                var month = new Date().getMonth() + 1;
+
+                if (month >= 1 && month <= 3) {
+                    for (var j = 0; j < myLi2.length; j++) {
+                            myLi2[j].className = "season off";
+                            winter = false;
+                        }
+                        myLi2[0].className = "season on";
+                        winter = true;
+                } else if (month >= 4 && month <= 6) {
+                    for (var j = 0; j < myLi2.length; j++) {
+                            myLi2[j].className = "season off";
+                            spring = false;
+                        }
+                        myLi2[1].className = "season on";
+                        spring = true;
+                } else if (month >= 7 && month <= 9) {
+                    for (var j = 0; j < myLi2.length; j++) {
+                            myLi2[j].className = "season off";
+                            summer = false;
+                        }
+                        myLi2[2].className = "season on";
+                        summer = true;
+                } else if (month >= 10 && month <= 12) {
+                    for (var j = 0; j < myLi2.length; j++) {
+                            myLi2[j].className = "season off";
+                            autumn = false;
+                        }
+                        myLi2[3].className = "season on";
+                        autumn = true;
+                }
+
                 $("#test").html("");
-                //$("#testName").html("");
+                $("#test-all").html("");
                 for (k = 0; k < 10; k++) {
                     $("#o" + k).html("");
                 }
@@ -332,6 +442,8 @@
                 myDiv[this.index].className = "show";
             }
         }
+
+        
     };
 
     window.onscroll = function () {
@@ -371,15 +483,43 @@
                     callback = "callback"; // 回呼函数名称
                     //list = ["", ". ", " (", "), 是", "星标", "年的番。"];
 
+                var not_spring_text = "+and+G+%3C%3E+" + encodeURIComponent("'春'"),
+                not_summer_text = "+and+G+%3C%3E+" + encodeURIComponent("'夏'"),
+                not_autumn_text = "+and+G+%3C%3E+" + encodeURIComponent("'秋'"),
+                not_winter_text = "+and+G+%3C%3E+" + encodeURIComponent("'冬'");
+
                 //Query字符串要加引号
                 if (column === 'A') {
-                    sql = "select+%2A+where+" + column + "+%3D+" + encodeURIComponent(input)
+                    sql = "select+%2A+where+" + column + "+%3D+" + encodeURIComponent(input);
                 } else if (column === 'B') {
-                    sql = "select+%2A+where+" + column + "+like+'%25" + encodeURIComponent(input) + "%25'"
+                    sql = "select+%2A+where+" + column + "+like+'%25" + encodeURIComponent(input) + "%25'";
+                } else if (column === 'F') {
+                    sql = "select+%2A+where+" + column + "+%3D+" + encodeURIComponent(input);
+                }
+                // else if (column === 'All') {
+                //     sql = "select+%2A";
+                // }
+                // Caused too much lag to load up. Dipreciated.
+
+                if(column === 'F') {
+                    if(!spring) {
+                        sql += not_spring_text;
+                    }
+                    if (!summer) {
+                        sql += not_summer_text;
+                    }
+                    if (!autumn) {
+                        sql += not_autumn_text;
+                    }
+                    if (!winter) {
+                        sql += not_winter_text;
+                    }
                 }
 
-                $.getScript("https://spreadsheets.google.com/tq?tqx=responseHandler:" + callback + "&tq=" + sql + "&key=" + sheetID + "&gid=" + gid);
+                
 
+                $.getScript("https://spreadsheets.google.com/tq?tqx=responseHandler:" + callback + "&tq=" + sql + "&key=" + sheetID + "&gid=" + gid);
+                //https://spreadsheets.google.com/tq?tqx=responseHandler:callback&tq=[sql]&key=1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70&gid=0
                 window[callback] = function (json) {
                     //$("#owl-box").empty();
                     // jQuery('<div/>', {
@@ -423,7 +563,8 @@
                         i, j, dataGroup, dataLength,
                         animeNum, animeNameCH, animeNameORI, animeStatus,
                         animeStar, animeYear, animeSeason, animeOP1, animeED1, animeOP1Raw, animeED1Raw,
-                        animeOP2, animeED2, animeOP2Raw, animeED2Raw; // These are all keys from the table in MAS.
+                        animeOP2, animeED2, animeOP2Raw, animeED2Raw,
+                        whole_html = ''; // These are all keys from the table in MAS.
 
                     for (i = 0; i < rowLength; i++) {
                         dataGroup = rowArray[i].c;
@@ -474,6 +615,7 @@
                         + "<br/>" + "　　目前Mihane的观看状态是：" + animeStatus
                         + "<br/>" + "　　OP　" + animeOP1 + animeOP2
                         + "<br/>" + "　　ED　" + animeED1 + animeED2;
+                        whole_html += html + '<br/><br/>';
                         // if (dataLength > 6) {
                         //     dataLength = 6;
                         // }
@@ -509,6 +651,7 @@
                         // }).appendTo('.owl-dots');
                         // jQuery('<span/>', {}).appendTo('#od' + i);
                         $("#o" + i).html(html);
+                        $("#test-all").html(whole_html);
                         $("#owl-box").fadeIn(1000);
                         if (rowLength < 10) {
                             for (k = rowLength; k < 10; k++) {

@@ -6,6 +6,10 @@ To visit the webpage:
 
 [Mihane Anime Studio - MAS](http://mihane.cc/)
 ## New Features
+### Version 1.1.0
+#### 2020.04.21
+- Finished the development of 'All Bangumi' page, the feature of filtering year and season of bangumi is now possible!
+- Improved user interface.
 ### Version 1.0.5b
 #### 2020.04.12
 - Change the background of top banner without quoting other websites.
