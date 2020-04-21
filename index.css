@@ -187,10 +187,25 @@ input {
 .bottom-Template {
     line-height: 70%;
     height: 5%;
-    width: 100%;
+    width: 1200px;
     margin: 0 auto;
     background-color:#1B262C;
-    border-top: groove #BBE1FA;
+}
+
+.gradientback{
+    bottom:0px;
+    left:0px;
+    margin: 0 auto;
+    width:1200px;
+    height:20px;
+    background: -moz-linear-gradient(top,  rgba(15, 76, 117, 0.8) 0%, rgba(27, 38, 44, 1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(15, 76, 117, 0.8)), color-stop(100%,rgba(27, 38, 44, 1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(15, 76, 117, 0.8) 0%,rgba(27, 38, 44, 1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(15, 76, 117, 0.8) 0%,rgba(27, 38, 44, 1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(15, 76, 117, 0.8) 0%,rgba(27, 38, 44, 1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(15, 76, 117, 0.8) 0%,rgba(27, 38, 44, 1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0089fff1', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+
 }
 
 .header-Empty {
