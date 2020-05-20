@@ -64,6 +64,11 @@ h3 {
     margin-left: 10px;
 }
 
+#time {
+    padding-left: 30px;
+    color: #73C2FB;
+}
+
 button.search, button.clearButton {
     text-decoration: none;
     width: 100px;
