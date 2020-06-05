@@ -101,8 +101,47 @@
 
             <hr>
             <div id="main-Div" class="show">
-                <iframe src="https://spreadsheets.google.com/tq?tqx=out:html&tq=select H, I limit 10 offset 6&key=1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70&gid=1890606978"
-                        here allowfullscreen sandbox="allow-scripts"></iframe>
+                    <div class="container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan = "2">统计栏</th>                                                                 
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="menu0">正在获取电波...</td>
+                                    <td id="menu1">&gt;_&lt;</td>
+                                </tr>
+                                <tr>
+                                    <td id="menu2">正在获取电波...</td>
+                                    <td id="menu3">&gt;_&lt;</td>
+                                </tr>
+                                <tr>
+                                    <td id="menu4">正在获取电波...</td>
+                                    <td id="menu5">&gt;_&lt;</td>
+                                </tr>
+                                <tr>
+                                    <td id="menu6">正在获取电波...</td>
+                                    <td id="menu7">&gt;_&lt;</td>
+                                </tr>
+                                <tr>
+                                    <td id="menu8">正在获取电波...</td>
+                                    <td id="menu9">&gt;_&lt;</td>
+                                </tr>
+                                <tr>
+                                    <td id="menu10">正在获取电波...</td>
+                                    <td id="menu11">&gt;_&lt;</td>
+                                </tr>
+                                <tr>
+                                    <td id="menu12">正在获取电波...</td>
+                                    <td id="menu13">&gt;_&lt;</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                <!-- <iframe src="https://spreadsheets.google.com/tq?tqx=out:html&tq=select H, I limit 10 offset 6&key=1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70&gid=1890606978"
+                        here allowfullscreen sandbox="allow-scripts"></iframe> --><!-- iframe method is depreciated. -->
             </div>
             <div id="search-Div" class="hide">
                 <form name="searchForm">
@@ -188,7 +227,9 @@
             <!--更新日志-->
             <div id="update-log-Div" class="hide">
                 <p class="update-title">更新日志</p>
-
+                <h4 class="version">V1.2.0</h4>
+                <h4 class="version">取消了首页的iframe表格引用并改为使用jQuery获取数据，优化了表格样式。</h4>
+                <br/>
                 <h4 class="version">V1.1.0a</h4>
                 <h4 class="version">简化了系统时钟显示。</h4>
                 <br/>
@@ -212,10 +253,10 @@
                 <h4 class="version">创建了更新日志页面。</h4>
                 <br/>
                 <h4 class="version">V1.0.3及更早</h4>
-                <h4 class="version">--</h4>
+                <h4 class="version">==</h4>
                 <br/>
                 <p class="update-title">待定事项</p>
-                <h4 class="version">计划取消首页的iframe并改为使用query获取数据以设置表格样式。</h4>
+                <h4 class="version">==暂无==</h4>
             </div>
             <div id="author-Div" class="hide">
             <p class="update-title">Mihane Ichinose</p>
@@ -234,7 +275,7 @@
         <a id="srcPage"
            href="https://docs.google.com/spreadsheets/d/1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70/edit?usp=sharing"
            target="_blank">Mihane Anime Studio - MAS</a>
-        <p class="end">Version 1.1.0a</p>
+        <p class="end">Version 1.2.0</p>
     </div>
 </div>
 <div class="toggle">
@@ -454,6 +495,23 @@
             }
         }
 
+        $.getScript("https://spreadsheets.google.com/tq?tqx=responseHandler:callback&tq=select H, I limit 7 offset 7&key=1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70&gid=1890606978");
+
+        window["callback"] = function (json) {
+
+                    var rowArray = json.table.rows,
+                        rowLength = rowArray.length,                
+                        i;
+                
+                    for (i = 0; i < rowLength * 2; i+=2) {
+                        dataGroup = rowArray[i/2].c;
+                        dataLength = dataGroup.length;
+                        title = dataGroup[0] != null ? (dataGroup[0].f || dataGroup[0].v) : "";
+                        value = dataGroup[1] != null ? (dataGroup[1].f || dataGroup[1].v) : "";
+                        $("#menu" + i).html(title);
+                        $("#menu" + (i + 1)).html(value);
+                    }
+        }
         
     };
 

@@ -6,6 +6,9 @@ To visit the webpage:
 
 [Mihane Anime Studio - MAS](http://mihane.cc/)
 ## New Features
+### Version 1.2.0
+#### 2020.06.05
+- Abandoned the iframe quotage at the index page, changed to jQuery method to improve the table view to fit best theme.
 ### Version 1.1.0a
 #### 2020.05.20
 - Improved system clock viewing.
