@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="m.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="images/icon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="images/icon.ico" type="image/x-icon">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <!--New feature sweetalert has been imported!-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="m.js" type="text/javascript"></script>
+    <title>MAS - Mihane Anime Studio - Mobile</title>
+</head>
+<body>
+
+
+
+<div class="header">
+   
+         <div class="header_in">
+               <div class="header_center">
+                   <div id="header_pic_nav" class="hide_icon">
+
+                        <div id="header_pic_menu tab" class="header_menu_ul ">
+                        <li class="menu-item menu on" >
+                  <h1 class="logo"><img src="images/icon.ico" alt="Mihane Anime Studio" id="headerLogo" onclick="offNav()" style="width:auto;height:70px;"></h1>     </li>        
+               <div class="topnav">
+               <a class="active"> <h4 class="version">MAS 查询系统</h4>
+            </a>
+               <div id="myLinks"><ul>
+               
+             <li class="menu-item menu off">
+            
+    
+           <a onclick="topNav()"><span> <div style="top: 0px;">序号搜索</div><p>Search by Order</p></span></a>
+            
+            
+            </li>
+   
+             <li class="menu-item menu off">
+            
+            
+            <a onclick="topNav()"><span><div style="top: 0px;">名称搜索</div><p>Search by Name</p></span></a>
+            
+            </li>
+            
+               <li class="menu-item menu off">
+            
+            
+           <a onclick="topNav()"><span> <div style="top: 0px;">番组大全</div><p>All Bangumi</p></span></a>
+            
+            </li>
+            
+              <li class="menu-item menu off">
+           
+         
+        <a onclick="topNav()"><span>   <div style="top: 0px;">更新日志</div><p>Update Log</p></span></a>
+            </li>
+            
+          <li class="menu-item menu off">
+            
+    
+           <a onclick="topNav()"><span> <div style="top: 0px;">关于作者</div><p>About Author</p></span></a>
+            
+            </li></ul>
+  </div>
+  <a href="javascript:void(0);" class="icon" onclick="topNav()">
+    <i class="fa fa-bars"></i>
+  </a></div>
+               
+                </div>
+
+            </div>
+        
+        </div>    
+        </div>
+       </div>
+
+    <div class="index" id="index">
+    <div class="header-Empty"></div>
+    <div class="main-Template">
+
+        <div id="main-tab">
+
+            
+            <div id="main-Div" class="show">
+                    <div class="container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan = "2">统计栏</th>                                                                 
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="menu0">正在获取电波...</td>
+                                    <td id="menu1">&gt;_&lt;</td>
+                                </tr>
+                                <tr>
+                                    <td id="menu2">正在获取电波...</td>
+                                    <td id="menu3">&gt;_&lt;</td>
+                                </tr>
+                                <tr>
+                                    <td id="menu4">正在获取电波...</td>
+                                    <td id="menu5">&gt;_&lt;</td>
+                                </tr>
+                                <tr>
+                                    <td id="menu6">正在获取电波...</td>
+                                    <td id="menu7">&gt;_&lt;</td>
+                                </tr>
+                                <tr>
+                                    <td id="menu8">正在获取电波...</td>
+                                    <td id="menu9">&gt;_&lt;</td>
+                                </tr>
+                                <tr>
+                                    <td id="menu10">正在获取电波...</td>
+                                    <td id="menu11">&gt;_&lt;</td>
+                                </tr>
+                                <tr>
+                                    <td id="menu12">正在获取电波...</td>
+                                    <td id="menu13">&gt;_&lt;</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+            </div>
+            <div id="search-Div" class="hide">
+                <form name="searchForm">
+                    <br>
+                    <h4 class="version">请输入要查找的番组序号：
+                        <input id="searchID" oninput="if(value.length>4)value=value.slice(0,4)" type="number"
+                               name="searchInput" value="">
+                    </h4>
+                </form>
+                <br>
+                <button class="search" id="searchIDButton" name="search"
+                        onclick="queryName(searchForm.searchInput.value, 'A')">查找
+                </button>
+                <button class="clearButton" name="clear" onclick="clearInput()">清空</button>
+                <br>
+                <br>
+                <div id="test" class="result">
+
+                </div>
+            </div>
+            <div id="search-name-Div" class="hide">
+                <form name="searchFormName">
+                    <br>
+                    <h4 class="version">请输入要查找的番组名称 - 中文：
+                        <input id="searchName" type="text" name="searchInput" value="">
+                    </h4>
+                </form>
+                <br>
+                <button class="search" id="searchNameButton" name="search"
+                        onclick="queryName(searchFormName.searchInput.value, 'B')">
+                    查找
+                </button>
+                <button class="clearButton" name="clear" onclick="clearInput()">清空</button>
+                <br>
+                <br>
+                <div id="test-all-search" class="result-all"></div>
+                
+            </div>
+            <div id="all-bangumi-Div" class="hide">
+                <!-- <button class="search" onclick="ajaxSearch()">搜索</button> -->
+                <form name="searchYearForm">
+                    <br>
+                <h4 class="version">番组年份：
+                    <input id="searchYear" oninput="if(value.length>4)value=value.slice(0,4)" type="number" name="searchInput" value="">
+                    </h4>
+                    </form>
+                    <br>
+                    <ul class="season">
+                    <li class="season off">冬</li>
+                    <li class="season off">春</li>
+                    <li class="season off">夏</li>
+                    <li class="season off">秋</li>
+                    </ul>
+                    <br>
+                    <button class="search" id="searchYearButton" name="search"
+                        onclick="queryName(searchYearForm.searchInput.value, 'F')">
+                    筛选
+                </button>
+                <button class="clearButton" id="clearYearButton" name="clear" onclick="clearInput()">清空</button>
+                <br>
+                
+                <br>
+                <div id="test-all" class="result-all"></div>
+            </div>
+            <!--更新日志-->
+            <div id="update-log-Div" class="hide">
+                <p class="update-title">更新日志</p>
+                <h4 class="version">V1.0.1m</h4>
+                <h4 class="version">新建移动端页面，查看更方便。</h4>
+                <h4 class="version">取消了水平滑动界面处理，改用默认文本框显示搜索结果。</h4>
+                <br/>
+                <p class="update-title">待定事项</p>
+                <h4 class="version">==暂无==</h4>
+            </div>
+            <div id="author-Div" class="hide">
+            <p class="update-title">Mihane Ichinose</p>
+            <p class="update-title"><a href="https://space.bilibili.com/5049780" target="_blank">Bilibili个人主页>>></a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="util">
+        <img src="images/back_to_top.png" id="top" onclick="backToTop()" title="回顶部">
+    </div>
+    <div class="gradientback"></div>
+    <div class="bottom-Template">
+        <br>
+        <p class="end">Copyright JST Auto 2019-2020.</p>
+        <a id="srcPage"
+           href="https://docs.google.com/spreadsheets/d/1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70/edit?usp=sharing"
+           target="_blank">Mihane Anime Studio - MAS</a>
+        <p class="end">Version 1.0.1m</p>
+    </div>
+</div>
+<div class="toggle">
+    <img src="images/hide.png" id="hide" onclick="hidePage()" title="隐藏页面">
+    <img src="images/show.png" id="show" onclick="hidePage()" title="显示页面" style="display: none;">
+</div>
+<script>
+    var spring = false,
+    summer = false,
+    autumn = false,
+    winter = false;
+
+    function clearInput() {
+        document.getElementById("searchID").value = "";
+        document.getElementById("searchName").value = "";
+        $("#test").html("");
+        $("#test-all").html("");
+        $("#test-all-search").html("");
+    }
+
+    window.onload = function () {
+
+        // JS实现选项卡切换
+        // Season tab of page 'All bangumi'.
+        var myTab2 = document.getElementById("all-bangumi-Div");    //整个div
+        var myUl2 = myTab2.getElementsByTagName("ul")[0];//一个节点
+        var myLi2 = myUl2.getElementsByTagName("li");    //数组 //.getElementsByTagName("div");
+        var var_season = "";
+        
+
+        for (var i = 0; i < myLi2.length; i++) {
+            myLi2[i].index = i;
+            myLi2[i].onclick = function () {
+                if (this.className == "season off"){
+                    this.className = "season on";
+                    switch(this) {
+                        case myLi2[0]:
+                            winter = true;
+                            break;
+                        case myLi2[1]:
+                            spring = true;
+                            break;
+                        case myLi2[2]:
+                            summer = true;
+                            break;
+                        case myLi2[3]:
+                            autumn = true;
+                            break;
+                    }
+                } else {
+                    this.className = "season off";
+                    switch(this) {
+                        case myLi2[0]:
+                            winter = false;
+                            break;
+                        case myLi2[1]:
+                            spring = false;
+                            break;
+                        case myLi2[2]:
+                            summer = false;
+                            break;
+                        case myLi2[3]:
+                            autumn = false;
+                            break;
+                    }
+                }
+                
+            }
+        }
+
+        // Main tab on the top.
+        var myTab = document.getElementById("header_pic_menu tab");    //整个div
+        //var myUl = myTab.getElementsByTagName("ul")[0];//一个节点
+        var myLi = myTab.getElementsByTagName("li");    //数组
+        var myTab = document.getElementById("main-tab");
+        var myDiv = $(myTab).children('div').get(); //.getElementsByTagName("div"); //数组
+
+        for (var i = 0; i < myLi.length; i++) {
+            myLi[i].index = i;
+            myLi[i].onclick = function () {
+                document.getElementById("searchYear").value = new Date().getFullYear();
+                // Auto detect which season is it now.
+                var month = new Date().getMonth() + 1;
+
+                if (month >= 1 && month <= 3) {
+                    for (var j = 0; j < myLi2.length; j++) {
+                            myLi2[j].className = "season off";
+                            winter = false;
+                        }
+                        myLi2[0].className = "season on";
+                        winter = true;
+                } else if (month >= 4 && month <= 6) {
+                    for (var j = 0; j < myLi2.length; j++) {
+                            myLi2[j].className = "season off";
+                            spring = false;
+                        }
+                        myLi2[1].className = "season on";
+                        spring = true;
+                } else if (month >= 7 && month <= 9) {
+                    for (var j = 0; j < myLi2.length; j++) {
+                            myLi2[j].className = "season off";
+                            summer = false;
+                        }
+                        myLi2[2].className = "season on";
+                        summer = true;
+                } else if (month >= 10 && month <= 12) {
+                    for (var j = 0; j < myLi2.length; j++) {
+                            myLi2[j].className = "season off";
+                            autumn = false;
+                        }
+                        myLi2[3].className = "season on";
+                        autumn = true;
+                }
+
+                $("#test").html("");
+                $("#test-all").html("");
+                $("#test-all-search").html("");
+                document.getElementById("searchID").value = "";
+                document.getElementById("searchName").value = "";
+                for (var j = 0; j < myLi.length; j++) {
+                    myLi[j].className = "menu-item menu off";
+                    myDiv[j].className = "hide";
+                }
+                this.className = "menu-item menu on";
+                myDiv[this.index].className = "show";
+            }
+        }
+
+        $.getScript("https://spreadsheets.google.com/tq?tqx=responseHandler:callback&tq=select H, I limit 7 offset 7&key=1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70&gid=1890606978");
+
+        window["callback"] = function (json) {
+
+                    var rowArray = json.table.rows,
+                        rowLength = rowArray.length,                
+                        i;
+                
+                    for (i = 0; i < rowLength * 2; i+=2) {
+                        dataGroup = rowArray[i/2].c;
+                        dataLength = dataGroup.length;
+                        title = dataGroup[0] != null ? (dataGroup[0].f || dataGroup[0].v) : "";
+                        value = dataGroup[1] != null ? (dataGroup[1].f || dataGroup[1].v) : "";
+                        $("#menu" + i).html(title);
+                        $("#menu" + (i + 1)).html(value);
+                    }
+        }
+        
+    };
+
+    window.onscroll = function () {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            $("#top").fadeIn(1000);
+        } else {
+            $("#top").fadeOut(400);
+        }
+    }
+
+    function hidePage() {
+        $(".header").fadeToggle(1000);
+        $(".index").fadeToggle(1000);
+        $(".toggle").find('img').toggle();
+    }
+
+    function queryName(input, column) {
+        (function query(window, $) {
+            if (input === "") {
+                swal({
+                    title: "???",
+                    text: "查找内容为空！请重新输入！",
+                    icon: "warning",
+                    button: "了解了"
+                });
+            } else {
+                var sheetID = "1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70", // 表格代号
+                    gid = "0", // 工作表代号
+                    // * = %2A
+                    // = = %3D
+                    sql, // SQL 语法
+                    callback = "callback"; // 回呼函数名称
+                    //list = ["", ". ", " (", "), 是", "星标", "年的番。"];
+
+                var not_spring_text = "+and+G+%3C%3E+" + encodeURIComponent("'春'"),
+                not_summer_text = "+and+G+%3C%3E+" + encodeURIComponent("'夏'"),
+                not_autumn_text = "+and+G+%3C%3E+" + encodeURIComponent("'秋'"),
+                not_winter_text = "+and+G+%3C%3E+" + encodeURIComponent("'冬'");
+
+                //Query字符串要加引号
+                if (column === 'A') {
+                    sql = "select+%2A+where+" + column + "+%3D+" + encodeURIComponent(input);
+                } else if (column === 'B') {
+                    sql = "select+%2A+where+" + column + "+like+'%25" + encodeURIComponent(input) + "%25'";
+                } else if (column === 'F') {
+                    sql = "select+%2A+where+" + column + "+%3D+" + encodeURIComponent(input);
+                }
+                // else if (column === 'All') {
+                //     sql = "select+%2A";
+                // }
+                // Caused too much lag to load up. Dipreciated.
+
+                if(column === 'F') {
+                    if(!spring) {
+                        sql += not_spring_text;
+                    }
+                    if (!summer) {
+                        sql += not_summer_text;
+                    }
+                    if (!autumn) {
+                        sql += not_autumn_text;
+                    }
+                    if (!winter) {
+                        sql += not_winter_text;
+                    }
+                }
+
+                
+
+                $.getScript("https://spreadsheets.google.com/tq?tqx=responseHandler:" + callback + "&tq=" + sql + "&key=" + sheetID + "&gid=" + gid);
+                //https://spreadsheets.google.com/tq?tqx=responseHandler:callback&tq=[sql]&key=1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70&gid=0
+                window[callback] = function (json) {
+                    
+                    var rowArray = json.table.rows,
+                        rowLength = rowArray.length,
+                        html = "", // Put these keys together using a string concatenation.
+                        i, j, dataGroup, dataLength,
+                        animeNum, animeNameCH, animeNameORI, animeStatus,
+                        animeStar, animeYear, animeSeason, animeOP1, animeED1, animeOP1Raw, animeED1Raw,
+                        animeOP2, animeED2, animeOP2Raw, animeED2Raw, // These are all keys from the table in MAS.
+                        whole_html = "<br/>";
+
+                    for (i = 0; i < rowLength; i++) {
+                        dataGroup = rowArray[i].c;
+                        dataLength = dataGroup.length;
+                        animeNum = dataGroup[0] != null ? dataGroup[0].f || dataGroup[0].v : "";
+                        animeNameCH = dataGroup[1] != null ? dataGroup[1].f || dataGroup[1].v : "待补全";
+                        animeNameORI = dataGroup[2] != null ? dataGroup[2].f || dataGroup[2].v : "未知";
+                        animeStatus = dataGroup[3] != null ? dataGroup[3].f || dataGroup[3].v : "未知";
+                        animeStar = dataGroup[4] != null ? dataGroup[4].f || dataGroup[4].v : "";
+                        if(animeStar == "☆") {
+                            animeStarOutput = "加入了";
+                        } else {
+                            animeStarOutput = "并未加入";
+                        }
+                        animeYear = dataGroup[5] != null ? ((dataGroup[5].f || dataGroup[5].v) + "年") : "未知年份";
+                        animeSeason = dataGroup[6] != null ? ((dataGroup[6].f || dataGroup[6].v) + "季") : "未知季度";
+
+                        animeOP1 = dataGroup[7] != null ? ("「" + (dataGroup[7].f || dataGroup[7].v) + "」") : "未知";                                   
+                        animeED1 = dataGroup[9] != null ? ("「" + (dataGroup[9].f || dataGroup[9].v) + "」") : "未知";
+                        animeOP2 = dataGroup[8] != null ? ("「" + (dataGroup[8].f || dataGroup[8].v) + "」") : "";
+                        animeED2 = dataGroup[10] != null ? ("「" + (dataGroup[10].f || dataGroup[10].v) + "」") : "";
+
+                        animeOP1 = animeOP1.replace(/#/g, ""); // Delete '#' after OP& EDs if there is any.
+                        animeED1 = animeED1.replace(/#/g, "");
+                        animeOP2 = animeOP2.replace(/#/g, "");
+                        animeED2 = animeED2.replace(/#/g, "");
+
+                        animeOP1Raw = encodeURIComponent(animeOP1.replace(/[「」]/g, "")); // The raw name of OP & ED that can be put into Netease music search page.
+                        animeED1Raw = encodeURIComponent(animeED1.replace(/[「」]/g, ""));
+                        animeOP2Raw = encodeURIComponent(animeOP2.replace(/[「」]/g, ""));
+                        animeED2Raw = encodeURIComponent(animeED2.replace(/[「」]/g, ""));
+
+                        if (animeOP1 != "未知") {
+                            animeOP1 = "<a class='srcResLink' href='https://music.163.com/#/search/m/?s=" + animeOP1Raw + "&type=1' target='_blank'>" + animeOP1 + "</a>";
+                        }
+                        if (animeOP2 != "未知") {
+                            animeOP2 = "<a class='srcResLink' href='https://music.163.com/#/search/m/?s=" + animeOP2Raw + "&type=1' target='_blank'>" + animeOP2 + "</a>";
+                        }
+                        if (animeED1 != "未知") {
+                            animeED1 = "<a class='srcResLink' href='https://music.163.com/#/search/m/?s=" + animeED1Raw + "&type=1' target='_blank'>" + animeED1 + "</a>";
+                        }
+                        if (animeED2 != "未知") {
+                            animeED2 = "<a class='srcResLink' href='https://music.163.com/#/search/m/?s=" + animeED2Raw + "&type=1' target='_blank'>" + animeED2 + "</a>";
+                        }
+
+                        html = "　　" + animeNum + ". " + "<a class='srcResLink' href='https://baike.baidu.com/item/" + encodeURIComponent(animeNameCH) + "' target='_blank'>" + animeNameCH + "</a>" + " (" + animeNameORI + ")，是" + animeYear + animeSeason + "番组。"
+                        + "<br/>" + "　　" + animeStarOutput + "Mihane的个人推荐。"
+                        + "<br/>" + "　　目前Mihane的观看状态是：" + animeStatus
+                        + "<br/>" + "　　OP　" + animeOP1 + animeOP2
+                        + "<br/>" + "　　ED　" + animeED1 + animeED2;
+                        whole_html += html + '<br/><br/>';
+                        $("#test-all").html(whole_html);
+                        $("#test-all-search").html(whole_html);
+                        if (rowLength < 10) {
+                            for (k = rowLength; k < 10; k++) {
+                                $("#o" + k).hide();
+                            }
+                        }
+                        if (column === 'B' && i !== rowLength - 1) {
+                            html = "";
+                        }
+                    }
+
+                    if (html === "") {
+                        swal({
+                            title: "emmm...",
+                            text: "未搜索到结果！请重新输入！",
+                            icon: "warning",
+                            button: "了解了"
+                        });
+                    }
+                    $("#test").html(html);
+                };
+            }
+        })(window, jQuery);
+    }
+</script>
+</body>
+</html>
