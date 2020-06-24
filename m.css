@@ -500,3 +500,12 @@ tbody td {
   background-color: #1B262C;
   color: black;
 }
+
+.wall {
+    height:50px;
+    width:auto;
+}
+
+div.wall{
+    padding-left: 10px;
+}
