@@ -8,7 +8,7 @@ To visit the webpage:
 # New Features
 ## Mobile Version
 ### Version 1.0.1m
-###2020.06.24
+#### 2020.06.24
 - New mobile version webpage has been released! Now all mobile devices will redirect to this webpage by default.
 - Cancelled the import from Owl Carousel in mobile page version.
 ## PC Version
