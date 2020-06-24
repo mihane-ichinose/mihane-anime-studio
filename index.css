@@ -1,7 +1,8 @@
 html, body {
-    height: 1000px;
+    height: 110%;
     background: #898989 url("images/MAS_Logo2.png") center center no-repeat fixed;
     margin: 0;
+    font-size:16px;
 !important;
 }
 

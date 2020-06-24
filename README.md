@@ -5,7 +5,16 @@
 To visit the webpage:
 
 [Mihane Anime Studio - MAS](http://mihane.cc/)
-## New Features
+# New Features
+## Mobile Version
+### Version 1.0.1m
+###2020.06.24
+- New mobile version webpage has been released! Now all mobile devices will redirect to this webpage by default.
+- Cancelled the import from Owl Carousel in mobile page version.
+## PC Version
+### Version 1.2.1
+#### 2020.06.24
+- Entrance to mobile version added.
 ### Version 1.2.0
 #### 2020.06.05
 - Abandoned the iframe quotage at the index page, changed to jQuery method to improve the table view to fit best theme.
