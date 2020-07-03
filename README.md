@@ -7,11 +7,20 @@ To visit the webpage:
 [Mihane Anime Studio - MAS](http://mihane.cc/)
 # New Features
 ## Mobile Version
+### Version 1.0.2m
+#### 2020.07.03
+- Fixed a bug where non-decided season bangumi would occur in every filtering result.
+- Added new filtering for non-decided season bangumi.
 ### Version 1.0.1m
 #### 2020.06.24
 - New mobile version webpage has been released! Now all mobile devices will redirect to this webpage by default.
 - Cancelled the import from Owl Carousel in mobile page version.
 ## PC Version
+### Version 1.2.2
+#### 2020.07.03
+- Imported jQuery Mousewheel Plugin for smooth sliding experience in owl carousel.
+- Fixed a bug where non-decided season bangumi would occur in every filtering result.
+- Added new filtering for non-decided season bangumi.
 ### Version 1.2.1
 #### 2020.06.24
 - Entrance to mobile version added.
@@ -54,9 +63,11 @@ To visit the webpage:
   - Issue found: Body cannot dynamically change its height when the list is relatively long.
 ## Built With
 - [IntelliJ IDEA](https://www.jetbrains.com/idea/) - The web framework used
+- [Sublime Text 3](https://www.sublimetext.com/3) - Alternative develop tool
 ## Acknowledgements
 - [Sweet Alert](https://sweetalert.js.org/)
 - [Owl Carousel 2](https://owlcarousel2.github.io/OwlCarousel2/)
+- [jQuery-Mousewheel](https://github.com/jquery/jquery-mousewheel/)
 - [Baidu Baike](https://baike.baidu.com/)
 - [Netease Music](https://music.163.com/)
 ## Author

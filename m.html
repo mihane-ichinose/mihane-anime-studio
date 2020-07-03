@@ -177,6 +177,7 @@
                     <li class="season off">春</li>
                     <li class="season off">夏</li>
                     <li class="season off">秋</li>
+                    <li class="season off">未定</li>
                     </ul>
                     <br>
                     <button class="search" id="searchYearButton" name="search"
@@ -192,6 +193,10 @@
             <!--更新日志-->
             <div id="update-log-Div" class="hide">
                 <p class="update-title">更新日志</p>
+                <h4 class="version">V1.0.2m</h4>
+                <h4 class="version">修复了未定季度的番组会被统计入所有筛选结果的bug。</h4>
+                <h4 class="version">新增未定季度分类筛选。</h4>
+                <br/>
                 <h4 class="version">V1.0.1m</h4>
                 <h4 class="version">新建移动端页面，查看更方便。</h4>
                 <h4 class="version">取消了水平滑动界面处理，改用默认文本框显示搜索结果。</h4>
@@ -220,7 +225,7 @@
         <a id="srcPage"
            href="https://docs.google.com/spreadsheets/d/1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70/edit?usp=sharing"
            target="_blank">Mihane Anime Studio - MAS</a>
-        <p class="end">Version 1.0.1m</p>
+        <p class="end">Version 1.0.2m</p>
     </div>
 </div>
 <div class="toggle">
@@ -269,6 +274,9 @@
                         case myLi2[3]:
                             autumn = true;
                             break;
+                        case myLi2[4]:
+                            unknown = true;
+                            break;
                     }
                 } else {
                     this.className = "season off";
@@ -284,6 +292,9 @@
                             break;
                         case myLi2[3]:
                             autumn = false;
+                            break;
+                        case myLi2[4]:
+                            unknown = false;
                             break;
                     }
                 }
@@ -334,6 +345,8 @@
                         myLi2[3].className = "season on";
                         autumn = true;
                 }
+                myLi2[4].className = "season off";
+                unknown = false;
 
                 $("#test").html("");
                 $("#test-all").html("");
@@ -408,7 +421,8 @@
                 var not_spring_text = "+and+G+%3C%3E+" + encodeURIComponent("'春'"),
                 not_summer_text = "+and+G+%3C%3E+" + encodeURIComponent("'夏'"),
                 not_autumn_text = "+and+G+%3C%3E+" + encodeURIComponent("'秋'"),
-                not_winter_text = "+and+G+%3C%3E+" + encodeURIComponent("'冬'");
+                not_winter_text = "+and+G+%3C%3E+" + encodeURIComponent("'冬'"),
+                not_unknown_text = "+and+G+%3C%3E+" + encodeURIComponent("'未定'");
 
                 //Query字符串要加引号
                 if (column === 'A') {
@@ -435,6 +449,9 @@
                     }
                     if (!winter) {
                         sql += not_winter_text;
+                    }
+                    if (!unknown) {
+                        sql += not_unknown_text;
                     }
                 }
 
@@ -468,6 +485,9 @@
                         }
                         animeYear = dataGroup[5] != null ? ((dataGroup[5].f || dataGroup[5].v) + "年") : "未知年份";
                         animeSeason = dataGroup[6] != null ? ((dataGroup[6].f || dataGroup[6].v) + "季") : "未知季度";
+                        if (dataGroup[6].f || dataGroup[6].v === "未定") {
+                            animeSeason = "未定";
+                        }
 
                         animeOP1 = dataGroup[7] != null ? ("「" + (dataGroup[7].f || dataGroup[7].v) + "」") : "未知";                                   
                         animeED1 = dataGroup[9] != null ? ("「" + (dataGroup[9].f || dataGroup[9].v) + "」") : "未知";
@@ -497,7 +517,7 @@
                             animeED2 = "<a class='srcResLink' href='https://music.163.com/#/search/m/?s=" + animeED2Raw + "&type=1' target='_blank'>" + animeED2 + "</a>";
                         }
 
-                        html = "　　" + animeNum + ". " + "<a class='srcResLink' href='https://baike.baidu.com/item/" + encodeURIComponent(animeNameCH) + "' target='_blank'>" + animeNameCH + "</a>" + " (" + animeNameORI + ")，是" + animeYear + animeSeason + "番组。"
+                        html = "　　" + animeNum + ". " + "<a class='srcResLink' href='https://www.baidu.com/s?wd=" + encodeURIComponent(animeNameCH) + "' target='_blank'>" + animeNameCH + "</a>" + " (" + animeNameORI + ")，是" + animeYear + animeSeason + "番组。"
                         + "<br/>" + "　　" + animeStarOutput + "Mihane的个人推荐。"
                         + "<br/>" + "　　目前Mihane的观看状态是：" + animeStatus
                         + "<br/>" + "　　OP　" + animeOP1 + animeOP2
