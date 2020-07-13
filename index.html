@@ -152,18 +152,19 @@
             </div>
             
             <div id="search-Div" class="hide">
-                <form name="searchForm">
+                <form name="searchForm" onsubmit="false">
                     <br>
                     <h4 class="version">请输入要查找的番组序号：
                         <input id="searchID" oninput="if(value.length>4)value=value.slice(0,4)" type="number"
-                               name="searchInput" value="">
+                               name="searchInput" value="" onkeydown='if(event.keyCode==13){$("#searchIDButton").click()}'>
+                        <input id="hiddenText" type="text" style="display:none" />
                     </h4>
                 </form>
                 <br>
                 <button class="search" id="searchIDButton" name="search"
                         onclick="queryName(searchForm.searchInput.value, 'A')">查找
                 </button>
-                <button class="clearButton" name="clear" onclick="clearInput()">清空</button>
+                <button class="clearButton" name="clear" onclick="clearInput('A')">清空</button>
                 <br>
                 <br>
                 <div id="test" class="result">
@@ -171,10 +172,11 @@
                 </div>
             </div>
             <div id="search-name-Div" class="hide">
-                <form name="searchFormName">
+                <form name="searchFormName" onsubmit="false">
                     <br>
                     <h4 class="version">请输入要查找的番组名称 - 中文：
-                        <input id="searchName" type="text" name="searchInput" value="">
+                        <input id="searchName" type="text" name="searchInput" value="" onkeydown='if(event.keyCode==13){$("#searchNameButton").click()}'>
+                        <input id="hiddenText" type="text" style="display:none" />
                     </h4>
                 </form>
                 <br>
@@ -182,7 +184,7 @@
                         onclick="queryName(searchFormName.searchInput.value, 'B')">
                     查找
                 </button>
-                <button class="clearButton" name="clear" onclick="clearInput()">清空</button>
+                <button class="clearButton" name="clear" onclick="clearInput('B')">清空</button>
                 <br>
                 <br>
                 <!--<div id="testName" class="result"></div>-->
@@ -208,10 +210,11 @@
             </div>
             <div id="all-bangumi-Div" class="hide">
                 <!-- <button class="search" onclick="ajaxSearch()">搜索</button> -->
-                <form name="searchYearForm">
+                <form name="searchYearForm" onsubmit="false">
                     <br>
                 <h4 class="version">番组年份：
-                    <input id="searchYear" oninput="if(value.length>4)value=value.slice(0,4)" type="number" name="searchInput" value="">
+                    <input id="searchYear" oninput="if(value.length>4)value=value.slice(0,4)" type="number" name="searchInput" value="" onkeydown='if(event.keyCode==13){$("#searchYearButton").click()}'>
+                    <input id="hiddenText" type="text" style="display:none" />
                     </h4>
                     </form>
                     <br>
@@ -227,7 +230,7 @@
                         onclick="queryName(searchYearForm.searchInput.value, 'F')">
                     筛选
                 </button>
-                <button class="clearButton" id="clearYearButton" name="clear" onclick="clearInput()">清空</button>
+                <button class="clearButton" id="clearYearButton" name="clear" onclick="clearInput('F')">清空</button>
                 <br>
                 
                 <br>
@@ -238,6 +241,10 @@
             <!--更新日志-->
             <div id="update-log-Div" class="hide">
                 <p class="update-title">更新日志</p>
+                <h4 class="version">V1.2.3</h4>
+                <h4 class="version">修复了搜索结果时回车键会刷新页面的bug。</h4>
+                <h4 class="version">优化了搜索体验，回车即可搜索。</h4>
+                <br/>
                 <h4 class="version">V1.2.2</h4>
                 <h4 class="version">修复了横排搜索结果的滑动bug，导入了jQuery Mousewheel库。</h4>
                 <h4 class="version">修复了未定季度的番组会被统计入所有筛选结果的bug。</h4>
@@ -298,7 +305,7 @@
         <a id="srcPage"
            href="https://docs.google.com/spreadsheets/d/1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70/edit?usp=sharing"
            target="_blank">Mihane Anime Studio - MAS</a>
-        <p class="end">Version 1.2.2</p>
+        <p class="end" id="getVersion">Version 1.2.3</p>
     </div>
 </div>
 <div class="toggle">
@@ -306,6 +313,7 @@
     <img src="images/show.png" id="show" onclick="hidePage()" title="显示页面" style="display: none;">
 </div>
 <script>
+
     var spring = false,
     summer = false,
     autumn = false,
@@ -352,7 +360,7 @@
     //         });
     // }
 
-    function clearInput() {
+    function clearInput(column) {
         document.getElementById("searchID").value = "";
         document.getElementById("searchName").value = "";
         $("#test").html("");
@@ -361,9 +369,17 @@
             $("#o" + k).html("");
         }
         $("#owl-box").fadeOut(1000);
+        if (column === 'A') {
+            document.getElementById("searchID").focus()
+        } else if (column === 'B') {
+            document.getElementById("searchName").focus()
+        } else if (column === 'F') {
+            document.getElementById("searchYear").focus()
+        }
     }
 
     window.onload = function () {
+
         // // Execute a function when the user releases a key on the keyboard
         // inputID.addEventListener("keyup", function(event) {
         //     // Number 13 is the "Enter" key on the keyboard
@@ -777,6 +793,14 @@
                             text: "未搜索到结果！请重新输入！",
                             icon: "warning",
                             button: "了解了"
+                        }).then(function(){
+                            if (column === 'A') {
+                                document.getElementById("searchID").focus()
+                            } else if (column === 'B') {
+                                document.getElementById("searchName").focus()
+                            } else if (column === 'F') {
+                                document.getElementById("searchYear").focus()
+                            }
                         });
                     }
                     $("#test").html(html);
@@ -784,6 +808,13 @@
                 };
             }
         })(window, jQuery);
+        if (column === 'A') {
+            document.getElementById("searchID").focus()
+        } else if (column === 'B') {
+            document.getElementById("searchName").focus()
+        }  else if (column === 'F') {
+            document.getElementById("searchYear").focus()
+        }
     }
 </script>
 </body>

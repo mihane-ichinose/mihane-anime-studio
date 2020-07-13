@@ -16,6 +16,10 @@ To visit the webpage:
 - New mobile version webpage has been released! Now all mobile devices will redirect to this webpage by default.
 - Cancelled the import from Owl Carousel in mobile page version.
 ## PC Version
+### Version 1.2.3
+#### 2020.07.13
+- Fixed a bug where using Enter when searching would refresh the webpage.
+- Improved user performance on searching including Enter shortcut.
 ### Version 1.2.2
 #### 2020.07.03
 - Imported jQuery Mousewheel Plugin for smooth sliding experience in owl carousel.
