@@ -7,6 +7,9 @@ To visit the webpage:
 [Mihane Anime Studio - MAS](http://mihane.cc/)
 # New Features
 ## Mobile Version
+### Version 1.0.3m
+#### 2021.04.13
+- Added new filtering for starred bangumi to show current trending.
 ### Version 1.0.2m
 #### 2020.07.03
 - Fixed a bug where non-decided season bangumi would occur in every filtering result.
@@ -16,6 +19,9 @@ To visit the webpage:
 - New mobile version webpage has been released! Now all mobile devices will redirect to this webpage by default.
 - Cancelled the import from Owl Carousel in mobile page version.
 ## PC Version
+### Version 1.2.4
+#### 2021.04.13
+- Added new filtering for starred bangumi to show current trending.
 ### Version 1.2.3
 #### 2020.07.13
 - Fixed a bug where using Enter when searching would refresh the webpage.

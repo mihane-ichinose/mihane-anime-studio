@@ -178,8 +178,18 @@
                     <li class="season off">夏</li>
                     <li class="season off">秋</li>
                     <li class="season off">未定</li>
-                    </ul>
+                    
                     <br>
+                    <br>
+                    
+                    <li class="season off">仅推荐</li>
+                    <li class="season off">全部</li>
+                    </ul>
+
+                    <br>
+                    <br>
+                    <br>
+
                     <button class="search" id="searchYearButton" name="search"
                         onclick="queryName(searchYearForm.searchInput.value, 'F')">
                     筛选
@@ -193,6 +203,9 @@
             <!--更新日志-->
             <div id="update-log-Div" class="hide">
                 <p class="update-title">更新日志</p>
+                <h4 class="version">V1.0.3m</h4>
+                <h4 class="version">番组大全中新增筛选仅推荐选项。</h4>
+                <br/>
                 <h4 class="version">V1.0.2m</h4>
                 <h4 class="version">修复了未定季度的番组会被统计入所有筛选结果的bug。</h4>
                 <h4 class="version">新增未定季度分类筛选。</h4>
@@ -221,11 +234,11 @@
     <div class="gradientback"></div>
     <div class="bottom-Template">
         <br>
-        <p class="end">Copyright JST Auto 2019-2020.</p>
+        <p class="end">Copyright JST Auto 2019-2021.</p>
         <a id="srcPage"
            href="https://docs.google.com/spreadsheets/d/1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70/edit?usp=sharing"
            target="_blank">Mihane Anime Studio - MAS</a>
-        <p class="end">Version 1.0.2m</p>
+        <p class="end">Version 1.0.3m</p>
     </div>
 </div>
 <div class="toggle">
@@ -236,7 +249,9 @@
     var spring = false,
     summer = false,
     autumn = false,
-    winter = false;
+    winter = false,
+    unknown = false,
+    liked = false;
 
     function clearInput() {
         document.getElementById("searchID").value = "";
@@ -277,6 +292,14 @@
                         case myLi2[4]:
                             unknown = true;
                             break;
+                        case myLi2[5]:
+                            liked = true;
+                            myLi2[6].className = "season off";
+                            break;
+                        case myLi2[6]:
+                            liked = false;
+                            myLi2[5].className = "season off";
+                            break;
                     }
                 } else {
                     this.className = "season off";
@@ -295,6 +318,14 @@
                             break;
                         case myLi2[4]:
                             unknown = false;
+                            break;
+                        case myLi2[5]:
+                            liked = false;
+                            myLi2[6].className = "season on";
+                            break;
+                        case myLi2[6]:
+                            liked = true;
+                            myLi2[5].className = "season on";
                             break;
                     }
                 }
@@ -347,6 +378,8 @@
                 }
                 myLi2[4].className = "season off";
                 unknown = false;
+                myLi2[5].className = "season on";
+                liked = true;
 
                 $("#test").html("");
                 $("#test-all").html("");
@@ -422,7 +455,8 @@
                 not_summer_text = "+and+G+%3C%3E+" + encodeURIComponent("'夏'"),
                 not_autumn_text = "+and+G+%3C%3E+" + encodeURIComponent("'秋'"),
                 not_winter_text = "+and+G+%3C%3E+" + encodeURIComponent("'冬'"),
-                not_unknown_text = "+and+G+%3C%3E+" + encodeURIComponent("'未定'");
+                not_unknown_text = "+and+G+%3C%3E+" + encodeURIComponent("'未定'"),
+                liked_text = "+and+E+%3D+" + encodeURIComponent("'☆'");
 
                 //Query字符串要加引号
                 if (column === 'A') {
@@ -452,6 +486,9 @@
                     }
                     if (!unknown) {
                         sql += not_unknown_text;
+                    }
+                    if (liked) {
+                        sql += liked_text;
                     }
                 }
 
