@@ -10,8 +10,8 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
-version = "1.2.4"
-m_version = "1.0.3m"
+version = "2.0"
+m_version = "2.0"
 year = time.strftime("%Y", time.localtime())
 
 @app.route('/', methods = ['POST', 'GET'])
