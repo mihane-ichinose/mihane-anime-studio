@@ -6,6 +6,11 @@ To visit the webpage:
 
 [Mihane Anime Studio - MAS](http://mihane.cc/)
 # New Features
+## Universal
+### Version 2.0
+#### 2022.07.20
+- This new universal version release has changed the website structure completely. The website no longer runs on GitHub server. New features need Python script to run with Flask framework and deployed onto Heroku as web app.
+- Added anime list with [BiliBili](https://www.bilibili.com/) styling and fetches info from [AGE Anime](https://www.agemys.cc/). The anime list is updated every time when user visit the page.
 ## Mobile Version
 ### Version 1.0.3m
 #### 2021.04.13
