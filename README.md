@@ -10,7 +10,7 @@ To visit the webpage:
 ### Version 2.0
 #### 2022.07.20
 - This new universal version release has changed the website structure completely. The website no longer runs on GitHub server. New features need Python script to run with Flask framework and deployed onto Heroku as web app.
-- Added anime list with [BiliBili](https://www.bilibili.com/) styling and fetches info from [AGE Anime](https://www.agemys.cc/). The anime list is updated every time when user visit the page.
+- Added anime list with BiliBili styling and fetches info from AGE Anime. The anime list is updated every time when user visit the page.
 ## Mobile Version
 ### Version 1.0.3m
 #### 2021.04.13
@@ -85,5 +85,7 @@ To visit the webpage:
 - [jQuery-Mousewheel](https://github.com/jquery/jquery-mousewheel/)
 - [Baidu Baike](https://baike.baidu.com/)
 - [Netease Music](https://music.163.com/)
+- [BiliBili](https://www.bilibili.com/)
+- [AGE Anime](https://www.agemys.cc/)
 ## Author
 - [Mihane Ichinose](https://space.bilibili.com/5049780?from=search&seid=7121011517825966874)
