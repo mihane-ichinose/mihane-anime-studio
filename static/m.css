@@ -4,7 +4,6 @@ html, body {
     margin: 0;
     font-size:100%;
     width: 100%;
-!important;
 }
 
 hr{
@@ -132,7 +131,7 @@ input {
     border-color: transparent;
 }
 
-#test, #test-all. #test-all-search {
+#test, #test-all, #test-all-search {
     font-size: 100%;
     color: #1B262C;
     font-weight: bold;
