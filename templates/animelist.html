@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="static/m.css">
+    <link rel="stylesheet" href="static/owlcarousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="static/owlcarousel/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="static/imgs/icon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="static/imgs/icon.ico" type="image/x-icon">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="static/owlcarousel/owl.carousel.min.js" type="text/javascript"></script>
+    <script src="static/m.js" type="text/javascript"></script>
+    <script src="static/jquery-mousewheel-3.1.13/jquery.mousewheel.js" type="text/javascript"></script>
+    <title>MAS - Mihane Anime Studio - Anime List</title>
+</head>
+<body>
+    <div class="header">
+       <div class="header_in">
+            <div class="header_center">
+                <div id="header_pic_nav" class="hide_icon">
+                    <div id="header_pic_menu tab" class="header_menu_ul ">
+                        <li class="menu-item menu on" >
+                            <h1 class="logo"><img src="static/imgs/icon.ico" alt="Mihane Anime Studio" id="headerLogo" onclick="history.back()" style="width:auto;height:70px;"></h1>
+                        </li>        
+                        <div class="topnav">
+                            <a class="active">
+                                <h4 class="version">MAS 每周放送列表</h4>
+                                <h4 class="version">数据更新时间：{{ update_time }}</h4>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </div>
+
+    <div class="index" id="index">
+        <div class="header-Empty"></div>
+        <div class="main-Template" style="text-align: center;">
+            <div class="timeline-container">
+                <div class="owl-carousel owl-theme" id="owl-box">
+                    <div class="item" id="o1">
+                        <div class="timeline-col">
+                            <div class="timeline-header">
+                                <div class="tl-weeks">
+                                    <ul class="tl-head-list">
+                                        <div class="tl-head">
+                                            <div class="tl-day">
+                                                <span class="indicator"></span>
+                                                <div class="day-of-week week-1"></div>
+                                                <span class="t-date day-1">&gt;_&lt;</span>
+                                                <span class="t-week">周一</span>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="timeline-wrapper clearfix">
+                                <div class="tl-body-list clearfix">
+                                    <div class="season-timeline">
+                                        <!-- Split the on air time and episode, if only episode presents then just episode. -->
+                                        {% for a in anime_list %}
+                                            {% if a[1].split()|length == 2 %}
+                                                {% set on_time = a[1].split()[0] %}
+                                                {% set on_episode = a[1].split()[1] %}
+                                            {% else %}
+                                                {% set on_time = 'N/A' %}
+                                                {% set on_episode = a[1] %}
+                                            {% endif %}
+                                            {% if a[3] == '星期一' %}
+                                                <div class="season-group is-published">
+                                                    <div class="group-time">{{on_time}}</div>
+                                                    <ul class="season-list">
+                                                        <li class="season-item">
+                                                            <a href="https://www.agemys.cc/detail/{{a[2]}}" target="_blank" title="{{a[0]}}">
+                                                            </a>
+                                                            <div class="season-body">
+                                                                <a href="https://www.agemys.cc/detail/{{a[2]}}" target="_blank" title="{{a[0]}}">
+                                                                    <div title="{{a[0]}}" class="season-title">{{a[0]}}</div>
+                                                                </a>
+                                                                <a href="https://www.agemys.cc/detail/{{a[2]}}" target="_blank">
+                                                                    <div class="season-desc published">{{on_episode}}</div>
+                                                                </a>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item" id="o2">
+                        <div class="timeline-col">
+                            <div class="timeline-header">
+                                <div class="tl-weeks">
+                                    <ul class="tl-head-list">
+                                        <div class="tl-head">
+                                            <div class="tl-day">
+                                                <span class="indicator"></span>
+                                                <div class="day-of-week week-2"></div>
+                                                <span class="t-date day-2">&gt;_&lt;</span>
+                                                <span class="t-week">周二</span>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="timeline-wrapper clearfix">
+                                <div class="tl-body-list clearfix">
+                                    <div class="season-timeline">
+                                        {% for a in anime_list %}
+                                            {% if a[1].split()|length == 2 %}
+                                                {% set on_time = a[1].split()[0] %}
+                                                {% set on_episode = a[1].split()[1] %}
+                                            {% else %}
+                                                {% set on_time = 'N/A' %}
+                                                {% set on_episode = a[1] %}
+                                            {% endif %}
+                                            {% if a[3] == '星期二' %}
+                                                <div class="season-group is-published">
+                                                    <div class="group-time">{{on_time}}</div>
+                                                    <ul class="season-list">
+                                                        <li class="season-item">
+                                                            <a href="https://www.agemys.cc/detail/{{a[2]}}" target="_blank" title="{{a[0]}}">
+                                                            </a>
+                                                            <div class="season-body">
+                                                                <a href="https://www.agemys.cc/detail/{{a[2]}}" target="_blank" title="{{a[0]}}">
+                                                                    <div title="{{a[0]}}" class="season-title">{{a[0]}}</div>
+                                                                </a>
+                                                                <a href="https://www.agemys.cc/detail/{{a[2]}}" target="_blank">
+                                                                    <div class="season-desc published">{{on_episode}}</div>
+                                                                </a>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item" id="o3">
+                        <div class="timeline-col">
+                            <div class="timeline-header">
+                                <div class="tl-weeks">
+                                    <ul class="tl-head-list">
+                                        <div class="tl-head">
+                                            <div class="tl-day">
+                                                <span class="indicator"></span>
+                                                <div class="day-of-week week-3"></div>
+                                                <span class="t-date day-3">&gt;_&lt;</span>
+                                                <span class="t-week">周三</span>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="timeline-wrapper clearfix">
+                                <div class="tl-body-list clearfix">
+                                    <div class="season-timeline">
+                                        {% for a in anime_list %}
+                                            {% if a[1].split()|length == 2 %}
+                                                {% set on_time = a[1].split()[0] %}
+                                                {% set on_episode = a[1].split()[1] %}
+                                            {% else %}
+                                                {% set on_time = 'N/A' %}
+                                                {% set on_episode = a[1] %}
+                                            {% endif %}
+                                            {% if a[3] == '星期三' %}
+                                                <div class="season-group is-published">
+                                                    <div class="group-time">{{on_time}}</div>
+                                                    <ul class="season-list">
+                                                        <li class="season-item">
+                                                            <a href="https://www.agemys.cc/detail/{{a[2]}}" target="_blank" title="{{a[0]}}">
+                                                            </a>
+                                                            <div class="season-body">
+                                                                <a href="https://www.agemys.cc/detail/{{a[2]}}" target="_blank" title="{{a[0]}}">
+                                                                    <div title="{{a[0]}}" class="season-title">{{a[0]}}</div>
+                                                                </a>
+                                                                <a href="https://www.agemys.cc/detail/{{a[2]}}" target="_blank">
+                                                                    <div class="season-desc published">{{on_episode}}</div>
+                                                                </a>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item" id="o4">
+                        <div class="timeline-col">
+                            <div class="timeline-header">
+                                <div class="tl-weeks">
+                                    <ul class="tl-head-list">
+                                        <div class="tl-head">
+                                            <div class="tl-day">
+                                                <span class="indicator"></span>
+                                                <div class="day-of-week week-4"></div>
+                                                <span class="t-date day-4">&gt;_&lt;</span>
+                                                <span class="t-week">周四</span>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="timeline-wrapper clearfix">
+                                <div class="tl-body-list clearfix">
+                                    <div class="season-timeline">
+                                        {% for a in anime_list %}
+                                            {% if a[1].split()|length == 2 %}
+                                                {% set on_time = a[1].split()[0] %}
+                                                {% set on_episode = a[1].split()[1] %}
+                                            {% else %}
+                                                {% set on_time = 'N/A' %}
+                                                {% set on_episode = a[1] %}
+                                            {% endif %}
+                                            {% if a[3] == '星期四' %}
+                                                <div class="season-group is-published">
+                                                    <div class="group-time">{{on_time}}</div>
+                                                    <ul class="season-list">
+                                                        <li class="season-item">
+                                                            <a href="https://www.agemys.cc/detail/{{a[2]}}" target="_blank" title="{{a[0]}}">
+                                                            </a>
+                                                            <div class="season-body">
+                                                                <a href="https://www.agemys.cc/detail/{{a[2]}}" target="_blank" title="{{a[0]}}">
+                                                                    <div title="{{a[0]}}" class="season-title">{{a[0]}}</div>
+                                                                </a>
+                                                                <a href="https://www.agemys.cc/detail/{{a[2]}}" target="_blank">
+                                                                    <div class="season-desc published">{{on_episode}}</div>
+                                                                </a>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item" id="o5">
+                        <div class="timeline-col">
+                            <div class="timeline-header">
+                                <div class="tl-weeks">
+                                    <ul class="tl-head-list">
+                                        <div class="tl-head">
+                                            <div class="tl-day">
+                                                <span class="indicator"></span>
+                                                <div class="day-of-week week-5"></div>
+                                                <span class="t-date day-5">&gt;_&lt;</span>
+                                                <span class="t-week">周五</span>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="timeline-wrapper clearfix">
+                                <div class="tl-body-list clearfix">
+                                    <div class="season-timeline">
+                                        {% for a in anime_list %}
+                                            {% if a[1].split()|length == 2 %}
+                                                {% set on_time = a[1].split()[0] %}
+                                                {% set on_episode = a[1].split()[1] %}
+                                            {% else %}
+                                                {% set on_time = 'N/A' %}
+                                                {% set on_episode = a[1] %}
+                                            {% endif %}
+                                            {% if a[3] == '星期五' %}
+                                                <div class="season-group is-published">
+                                                    <div class="group-time">{{on_time}}</div>
+                                                    <ul class="season-list">
+                                                        <li class="season-item">
+                                                            <a href="https://www.agemys.cc/detail/{{a[2]}}" target="_blank" title="{{a[0]}}">
+                                                            </a>
+                                                            <div class="season-body">
+                                                                <a href="https://www.agemys.cc/detail/{{a[2]}}" target="_blank" title="{{a[0]}}">
+                                                                    <div title="{{a[0]}}" class="season-title">{{a[0]}}</div>
+                                                                </a>
+                                                                <a href="https://www.agemys.cc/detail/{{a[2]}}" target="_blank">
+                                                                    <div class="season-desc published">{{on_episode}}</div>
+                                                                </a>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item" id="o6">
+                        <div class="timeline-col">
+                            <div class="timeline-header">
+                                <div class="tl-weeks">
+                                    <ul class="tl-head-list">
+                                        <div class="tl-head">
+                                            <div class="tl-day">
+                                                <span class="indicator"></span>
+                                                <div class="day-of-week week-6"></div>
+                                                <span class="t-date day-6">&gt;_&lt;</span>
+                                                <span class="t-week">周六</span>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="timeline-wrapper clearfix">
+                                <div class="tl-body-list clearfix">
+                                    <div class="season-timeline">
+                                        {% for a in anime_list %}
+                                            {% if a[1].split()|length == 2 %}
+                                                {% set on_time = a[1].split()[0] %}
+                                                {% set on_episode = a[1].split()[1] %}
+                                            {% else %}
+                                                {% set on_time = 'N/A' %}
+                                                {% set on_episode = a[1] %}
+                                            {% endif %}
+                                            {% if a[3] == '星期六' %}
+                                                <div class="season-group is-published">
+                                                    <div class="group-time">{{on_time}}</div>
+                                                    <ul class="season-list">
+                                                        <li class="season-item">
+                                                            <a href="https://www.agemys.cc/detail/{{a[2]}}" target="_blank" title="{{a[0]}}">
+                                                            </a>
+                                                            <div class="season-body">
+                                                                <a href="https://www.agemys.cc/detail/{{a[2]}}" target="_blank" title="{{a[0]}}">
+                                                                    <div title="{{a[0]}}" class="season-title">{{a[0]}}</div>
+                                                                </a>
+                                                                <a href="https://www.agemys.cc/detail/{{a[2]}}" target="_blank">
+                                                                    <div class="season-desc published">{{on_episode}}</div>
+                                                                </a>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item" id="o0">
+                        <div class="timeline-col">
+                            <div class="timeline-header">
+                                <div class="tl-weeks">
+                                    <ul class="tl-head-list">
+                                        <div class="tl-head">
+                                            <div class="tl-day">
+                                                <span class="indicator"></span>
+                                                <div class="day-of-week week-0"></div>
+                                                <span class="t-date day-0">&gt;_&lt;</span>
+                                                <span class="t-week">周日</span>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="timeline-wrapper clearfix">
+                                <div class="tl-body-list clearfix">
+                                    <div class="season-timeline">
+                                        {% for a in anime_list %}
+                                            {% if a[1].split()|length == 2 %}
+                                                {% set on_time = a[1].split()[0] %}
+                                                {% set on_episode = a[1].split()[1] %}
+                                            {% else %}
+                                                {% set on_time = 'N/A' %}
+                                                {% set on_episode = a[1] %}
+                                            {% endif %}
+                                            {% if a[3] == '星期日' %}
+                                                <div class="season-group is-published">
+                                                    <div class="group-time">{{on_time}}</div>
+                                                    <ul class="season-list">
+                                                        <li class="season-item">
+                                                            <a href="https://www.agemys.cc/detail/{{a[2]}}" target="_blank" title="{{a[0]}}">
+                                                            </a>
+                                                            <div class="season-body">
+                                                                <a href="https://www.agemys.cc/detail/{{a[2]}}" target="_blank" title="{{a[0]}}">
+                                                                    <div title="{{a[0]}}" class="season-title">{{a[0]}}</div>
+                                                                </a>
+                                                                <a href="https://www.agemys.cc/detail/{{a[2]}}" target="_blank">
+                                                                    <div class="season-desc published">{{on_episode}}</div>
+                                                                </a>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <div class="util">
+            <img src="static/imgs/back_to_top.png" id="top" onclick="backToTop()" title="回顶部">
+        </div>
+        <div class="gradientback"></div>
+        <div class="bottom-Template">
+            <br>
+            <p class="end">Copyright JST Auto 2019-{{year}}.</p>
+            <a id="srcPage"
+               href="https://docs.google.com/spreadsheets/d/1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70/edit?usp=sharing"
+               target="_blank">Mihane Anime Studio - MAS</a>
+            <p class="end">Version {{version}}</p>
+            <p class="end">Mobile Version {{m_version}}</p>
+        </div>
+    </div>
+    <div class="toggle">
+        <img src="static/imgs/hide.png" id="hide" onclick="hidePage()" title="隐藏页面">
+        <img src="static/imgs/show.png" id="show" onclick="hidePage()" title="显示页面" style="display: none;">
+    </div>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $(".owl-carousel").owlCarousel({
+                loop: true,
+                center: true,
+                margin: 0,
+                nav: true,
+                autoWidth: true,
+                items: 7,
+                responsiveClass:true,
+                responsive:{
+                    0:{
+                        items:1,
+                    },
+                    600:{
+                        items:3,
+                    },
+                    1000:{
+                        items:5,
+                    }
+                },
+                startPosition: new Date().getDay()
+            });
+        });
+
+        // Mousewheel Support For Owl Carousel.
+        // var owl = $('.owl-carousel');
+        // owl.on('mousewheel', '.owl-stage', function (e) {
+        //     if (e.deltaY<0) {
+        //         owl.trigger('next.owl');
+        //     } else {
+        //         owl.trigger('prev.owl');
+        //     }
+        //     e.preventDefault();
+        // });
+
+        window.onscroll = function () {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                $("#top").fadeIn(1000);
+            } else {
+                $("#top").fadeOut(400);
+            }
+        }
+
+        function hidePage() {
+            $(".header").fadeToggle(1000);
+            $(".index").fadeToggle(1000);
+            $(".toggle").find('img').toggle();
+        }
+
+        window.onload = function () {
+            // Auto detect which year and season is it now.
+            const today = new Date();
+            var year = today.getFullYear();
+            var month = today.getMonth() + 1;
+            var day = today.getDay();
+            var date = today.getDate();
+
+            if (month >= 1 && month <= 3) {
+                var monthCN = "冬";
+            } else if (month >= 4 && month <= 6) {
+                var monthCN = "春";
+            } else if (month >= 7 && month <= 9) {
+                var monthCN = "夏";
+            } else if (month >= 10 && month <= 12) {
+                var monthCN = "秋";
+            }
+
+            $.getScript("https://spreadsheets.google.com/tq?tqx=responseHandler:callback&tq=select+%2A+where+F+%3D+" + 
+                year + "+and+G+%3D+"+ encodeURIComponent("'"+monthCN+"'") +"+&key=1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70&gid=0");
+            //https://spreadsheets.google.com/tq?tqx=responseHandler:callback&tq=[sql]&key=1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70&gid=0
+
+            window['callback'] = function (json) {
+ 
+                var rowArray = json.table.rows,
+                    rowLength = rowArray.length,
+                    i, j, dataGroup, dataLength,
+                    animeNameCH,
+                    newAnimeList = [];
+
+                for (i = 0; i < rowLength; i++) {
+                        dataGroup = rowArray[i].c;
+                        dataLength = dataGroup.length;
+                        animeNameCH = dataGroup[1] != null ? dataGroup[1].f || dataGroup[1].v : "待补全";
+                        newAnimeList.push(animeNameCH);
+                }
+                // alert(newAnimeList);
+            }
+
+            // Highlight the corresponding day header of today.
+            $(".week-"+day).parent().addClass("today");
+            $(".day-"+day).text(month+"-"+date);
+            for(i = 1; i < 7; i++) {
+                var newDay = new Date();
+                newDay.setDate(today.getDate()+i);
+                var newMonth = newDay.getMonth() + 1;
+                var newDate = newDay.getDate();
+                $(".day-"+((day+i)%7)).text(newMonth+"-"+newDate);
+            }
+
+            // Get index of each column.
+            // var timelineIndex = day - 1;
+            // if (timelineIndex < 0) {
+            //     timelineIndex = 6;
+            // }
+            $('body').find('[id=o'+day+']').find(".season-group, .is-published").addClass("today");
+            $('body').find('[id=o'+day+']').find(".tl-weeks").addClass("today");
+        }
+    </script>
+</body>
+</html>

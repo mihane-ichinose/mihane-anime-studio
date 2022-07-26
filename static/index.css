@@ -1,6 +1,6 @@
 html, body {
     height: 110%;
-    background: #898989 url("images/MAS_Logo2.png") center center no-repeat fixed;
+    background: #898989 url("imgs/MAS_Logo2.png") center center no-repeat fixed;
     margin: 0;
     font-size:16px;
 !important;
@@ -14,7 +14,7 @@ hr{
 
 #main-Div.show, iframe {
     display: block;
-    /*background: url("images/loading.gif") center center no-repeat;*/
+    /*background: url("imgs/loading.gif") center center no-repeat;*/
     align-content: center;
     text-align: center;
     margin: 0 auto;
@@ -146,6 +146,11 @@ input {
     font-size: 18px;
     margin: auto 20px;
     float: left;
+}
+
+#animeListButton {
+    width: 200px;
+    height: 40px;
 }
 
 #srcPage, .end {

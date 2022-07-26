@@ -3,105 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="owlcarousel/owl.carousel.min.css">
-    <link rel="stylesheet" href="owlcarousel/owl.theme.default.min.css">
-    <link rel="icon" href="images/icon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="images/icon.ico" type="image/x-icon">
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js' type="text/javascript"></script>
-    <script src="owlcarousel/owl.carousel.min.js" type="text/javascript"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" type="text/javascript"></script>
-    <script src="index.js" type="text/javascript"></script>
-    <!--New feature jquery-mousewheel plugin has been imported!-->
-    <script src="jquery-mousewheel-3.1.13/jquery.mousewheel.js" type="text/javascript"></script>
-    <title>MAS - Mihane Anime Studio</title>
+    <link rel="stylesheet" href="static/m.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="static/imgs/icon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="static/imgs/icon.ico" type="image/x-icon">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <!--New feature sweetalert has been imported!-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="static/m.js" type="text/javascript"></script>
+    <title>MAS - Mihane Anime Studio - Mobile</title>
 </head>
 <body>
 
 
 
-<div class="header">
-   
-         <div class="header_in">
-               <div class="header_center">
-                  <h1 class="logo"><img src="images/icon.ico" alt="Mihane Anime Studio" id="headerLogo" style="width:auto;height:78px;"></h1>             
-                   <div id="header_pic_nav" class="hide_icon">
-
-                        <div id="header_pic_menu tab" class="header_menu_ul ">
-               <ul>
-            <li class="menu-item menu on">
-            
-        
-           <span> <div style="top: 0px;">开始页面</div><p>Home Page</p></span>
-        
-            </li>
-            
-             <li class="menu-item menu off">
-            
-    
-           <span> <div style="top: 0px;">序号搜索</div><p>Search by Order</p></span>
-            
-            
-            </li>
-   
-             <li class="menu-item menu off">
-            
-            
-            <span><div style="top: 0px;">名称搜索</div><p>Search by Name</p></span>
-            
-            </li>
-            
-               <li class="menu-item menu off">
-            
-            
-           <span> <div style="top: 0px;">番组大全</div><p>All Bangumi</p></span>
-            
-            </li>
-            
-              <li class="menu-item menu off">
-           
-         
-         <span>   <div style="top: 0px;">更新日志</div><p>Update Log</p></span>
-            </li>
-            
-          <li class="menu-item menu off">
-            
-    
-           <span> <div style="top: 0px;">关于作者</div><p>About Author</p></span>
-            
-            </li>
-            </ul>
-               
+    <div class="header">
+       <div class="header_in">
+            <div class="header_center">
+                <div id="header_pic_nav" class="hide_icon">
+                    <div id="header_pic_menu tab" class="header_menu_ul ">
+                        <li class="menu-item menu on" >
+                            <h1 class="logo"><img src="static/imgs/icon.ico" alt="Mihane Anime Studio" id="headerLogo" onclick="offNav()" style="width:auto;height:70px;"></h1>
+                        </li>        
+                        <div class="topnav">
+                            <a class="active"> <h4 class="version">MAS 查询系统</h4>
+                            </a>
+                        <div id="myLinks">
+                            <ul>
+                                <li class="menu-item menu off">
+                                    <a onclick="topNav()"><span><div style="top: 0px;">序号搜索</div><p>Search by Order</p></span></a>
+                                </li>
+                                <li class="menu-item menu off">
+                                    <a onclick="topNav()"><span><div style="top: 0px;">名称搜索</div><p>Search by Name</p></span></a>
+                                </li>
+                                <li class="menu-item menu off">
+                                    <a onclick="topNav()"><span><div style="top: 0px;">番组大全</div><p>All Bangumi</p></span></a>
+                                </li>
+                                <li class="menu-item menu off">
+                                    <a onclick="topNav()"><span><div style="top: 0px;">更新日志</div><p>Update Log</p></span></a>
+                                </li>
+                                <li class="menu-item menu off">
+                                    <a onclick="topNav()"><span> <div style="top: 0px;">关于作者</div><p>About Author</p></span></a>
+                                </li></ul>
+                            </div>
+                            <a href="javascript:void(0);" class="icon" onclick="topNav()">
+                                <i class="fa fa-bars"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-
-            </div>
-            <h3>
-            <!-- Show time -->
-            <text id="time"></text>
-        </h3>
-        </div>    
+            </div>    
         </div>
-       </div>
+    </div>
 
     <div class="index" id="index">
     <div class="header-Empty"></div>
     <div class="main-Template">
-        <br>
-        <br>
-        <h1>欢迎使用MAS在线查询系统！</h1>
-        <br>
-        
 
         <div id="main-tab">
-            <!--<ul class="menu">
-                <li class="menu on">开始页面</li>
-                <li class="menu off">搜索序号</li>
-                <li class="menu off">搜索名称</li>
-                <li class="menu off">番组大全</li>
-                <li class="menu off">更新日志</li>
-            </ul> Depreciated menu-->
 
-            <hr>
+            
             <div id="main-Div" class="show">
                     <div class="container">
                         <table>
@@ -139,32 +100,23 @@
                                     <td id="menu12">正在获取电波...</td>
                                     <td id="menu13">&gt;_&lt;</td>
                                 </tr>
-                                <tr>
-                                    <td>移动设备未正常跳转？&gt;&gt;</td>
-                                    <td><a href="m.html"><image src="images/phone.png" style="width:auto;height:30px;"></a></td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
-
-                <!-- <iframe src="https://spreadsheets.google.com/tq?tqx=out:html&tq=select H, I limit 10 offset 6&key=1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70&gid=1890606978"
-                        here allowfullscreen sandbox="allow-scripts"></iframe> --><!-- iframe method is depreciated. -->
             </div>
-            
             <div id="search-Div" class="hide">
-                <form name="searchForm" onsubmit="false">
+                <form name="searchForm">
                     <br>
                     <h4 class="version">请输入要查找的番组序号：
                         <input id="searchID" oninput="if(value.length>4)value=value.slice(0,4)" type="number"
-                               name="searchInput" value="" onkeydown='if(event.keyCode==13){$("#searchIDButton").click()}'>
-                        <input id="hiddenText" type="text" style="display:none" />
+                               name="searchInput" value="">
                     </h4>
                 </form>
                 <br>
                 <button class="search" id="searchIDButton" name="search"
                         onclick="queryName(searchForm.searchInput.value, 'A')">查找
                 </button>
-                <button class="clearButton" name="clear" onclick="clearInput('A')">清空</button>
+                <button class="clearButton" name="clear" onclick="clearInput()">清空</button>
                 <br>
                 <br>
                 <div id="test" class="result">
@@ -172,11 +124,10 @@
                 </div>
             </div>
             <div id="search-name-Div" class="hide">
-                <form name="searchFormName" onsubmit="false">
+                <form name="searchFormName">
                     <br>
                     <h4 class="version">请输入要查找的番组名称 - 中文：
-                        <input id="searchName" type="text" name="searchInput" value="" onkeydown='if(event.keyCode==13){$("#searchNameButton").click()}'>
-                        <input id="hiddenText" type="text" style="display:none" />
+                        <input id="searchName" type="text" name="searchInput" value="">
                     </h4>
                 </form>
                 <br>
@@ -184,37 +135,18 @@
                         onclick="queryName(searchFormName.searchInput.value, 'B')">
                     查找
                 </button>
-                <button class="clearButton" name="clear" onclick="clearInput('B')">清空</button>
+                <button class="clearButton" name="clear" onclick="clearInput()">清空</button>
                 <br>
                 <br>
-                <!--<div id="testName" class="result"></div>-->
-
-                <div class="owl-carousel owl-theme" id="owl-box" style="display: none;">
-                    <div class="item" id="o0"></div>
-                    <div class="item" id="o1"></div>
-                    <div class="item" id="o2"></div>
-                    <div class="item" id="o3"></div>
-                    <div class="item" id="o4"></div>
-                    <div class="item" id="o5"></div>
-                    <div class="item" id="o6"></div>
-                    <div class="item" id="o7"></div>
-                    <div class="item" id="o8"></div>
-                    <div class="item" id="o9"></div>
-                    <div class="item" id="o10"></div>
-                    <div class="item" id="o11"></div>
-                    <div class="item" id="o12"></div>
-                    <div class="item" id="o13"></div>
-                    <div class="item" id="o14"></div>
-                    <!--支持到15个结果-->
-                </div>
+                <div id="test-all-search" class="result-all"></div>
+                
             </div>
             <div id="all-bangumi-Div" class="hide">
                 <!-- <button class="search" onclick="ajaxSearch()">搜索</button> -->
-                <form name="searchYearForm" onsubmit="false">
+                <form name="searchYearForm">
                     <br>
                 <h4 class="version">番组年份：
-                    <input id="searchYear" oninput="if(value.length>4)value=value.slice(0,4)" type="number" name="searchInput" value="" onkeydown='if(event.keyCode==13){$("#searchYearButton").click()}'>
-                    <input id="hiddenText" type="text" style="display:none" />
+                    <input id="searchYear" oninput="if(value.length>4)value=value.slice(0,4)" type="number" name="searchInput" value="">
                     </h4>
                     </form>
                     <br>
@@ -240,65 +172,35 @@
                         onclick="queryName(searchYearForm.searchInput.value, 'F')">
                     筛选
                 </button>
-                <button class="clearButton" id="clearYearButton" name="clear" onclick="clearInput('F')">清空</button>
+                <button class="clearButton" id="clearYearButton" name="clear" onclick="clearInput()">清空</button>
                 <br>
-                
                 <br>
-                <!-- <button class="clearButton" name="clear" onclick="clearInput()">清空</button>
-                <br> -->
+                <br>
+                <form action="/animelist" method="POST">
+                    <button class="search" id="animeListButton" type="submit">每周放送列表&#187;</button>
+                </form>
+                <br>
                 <div id="test-all" class="result-all"></div>
             </div>
             <!--更新日志-->
             <div id="update-log-Div" class="hide">
                 <p class="update-title">更新日志</p>
-                <h4 class="version">V1.2.4</h4>
+                <h4 class="version">V1.0.3m</h4>
                 <h4 class="version">番组大全中新增筛选仅推荐选项。</h4>
                 <br/>
-                <h4 class="version">V1.2.3</h4>
-                <h4 class="version">修复了搜索结果时回车键会刷新页面的bug。</h4>
-                <h4 class="version">优化了搜索体验，回车即可搜索。</h4>
-                <br/>
-                <h4 class="version">V1.2.2</h4>
-                <h4 class="version">修复了横排搜索结果的滑动bug，导入了jQuery Mousewheel库。</h4>
+                <h4 class="version">V1.0.2m</h4>
                 <h4 class="version">修复了未定季度的番组会被统计入所有筛选结果的bug。</h4>
                 <h4 class="version">新增未定季度分类筛选。</h4>
                 <br/>
-                <h4 class="version">V1.2.1</h4>
-                <h4 class="version">新增移动版入口。</h4>
-                <br/>
-                <h4 class="version">V1.2.0</h4>
-                <h4 class="version">取消了首页的iframe表格引用并改为使用jQuery获取数据，优化了表格样式。</h4>
-                <br/>
-                <h4 class="version">V1.1.0a</h4>
-                <h4 class="version">简化了系统时钟显示。</h4>
-                <br/>
-                <h4 class="version">V1.1.0</h4>
-                <h4 class="version">完成了“番组大全”的开发页面，支持年份、季度的筛选。</h4>
-                <h4 class="version">优化界面显示效果。</h4>
-                <br/>
-                <h4 class="version">V1.0.5b</h4>
-                <h4 class="version">去除原本顶部导航栏的引用其他链接图片的背景。改用半透明颜色填充。</h4>
-                <h4 class="version">修复了因番组名以及OP、ED在含有特殊字符的情况下无法跳转链接的bug。使用了URL转码匹配。</h4>
-                <br/>
-                <h4 class="version">V1.0.5a</h4>
-                <h4 class="version">新增加了对OP和ED在网易云音乐的搜索链入功能。</h4>
-                <br/>
-                <h4 class="version">V1.0.5</h4>
-                <h4 class="version">更改原菜单至新导航栏。</h4>
-                <h4 class="version">优化了界面颜色。</h4>
-                <br/>
-                <h4 class="version">V1.0.4</h4>
-                <h4 class="version">改善了搜索结果的显示格式。</h4>
-                <h4 class="version">创建了更新日志页面。</h4>
-                <br/>
-                <h4 class="version">V1.0.3及更早</h4>
-                <h4 class="version">==</h4>
+                <h4 class="version">V1.0.1m</h4>
+                <h4 class="version">新建移动端页面，查看更方便。</h4>
+                <h4 class="version">取消了水平滑动界面处理，改用默认文本框显示搜索结果。</h4>
                 <br/>
                 <p class="update-title">待定事项</p>
                 <h4 class="version">==暂无==</h4>
                 <br/>
                 <div class="wall">
-                <image src="images/wall.jpg" class="wall">
+                <image src="static/imgs/wall.jpg" class="wall"></image>
                 </div>
             </div>
             <div id="author-Div" class="hide">
@@ -309,137 +211,39 @@
     </div>
 
     <div class="util">
-        <img src="images/back_to_top.png" id="top" onclick="backToTop()" title="回顶部">
+        <img src="static/imgs/back_to_top.png" id="top" onclick="backToTop()" title="回顶部">
     </div>
     <div class="gradientback"></div>
     <div class="bottom-Template">
         <br>
-        <p class="end">Copyright JST Auto 2019-2021.</p>
+        <p class="end">Copyright JST Auto 2019-{{year}}.</p>
         <a id="srcPage"
            href="https://docs.google.com/spreadsheets/d/1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70/edit?usp=sharing"
            target="_blank">Mihane Anime Studio - MAS</a>
-        <p class="end" id="getVersion">Version 1.2.4</p>
+        <p class="end">Version {{m_version}}</p>
     </div>
 </div>
 <div class="toggle">
-    <img src="images/hide.png" id="hide" onclick="hidePage()" title="隐藏页面">
-    <img src="images/show.png" id="show" onclick="hidePage()" title="显示页面" style="display: none;">
+    <img src="static/imgs/hide.png" id="hide" onclick="hidePage()" title="隐藏页面">
+    <img src="static/imgs/show.png" id="show" onclick="hidePage()" title="显示页面" style="display: none;">
 </div>
 <script>
-
     var spring = false,
     summer = false,
     autumn = false,
     winter = false,
     unknown = false,
     liked = false;
-    // function ajaxSearch() {
-    //     swal({
-    //         text: 'Search for a movie. e.g. "La La Land".',
-    //         content: "input",
-    //         button: {
-    //             text: "Search!",
-    //             closeModal: false,
-    //         },
-    //     })
-    //         .then(name => {
-    //             if (!name) throw null;
-    //             return fetch('https://itunes.apple.com/search?term=${name}&entity=movie');
-    //         })
-    //         .then(results => {
-    //             return results.json();
-    //         })
-    //         .then(json => {
-    //             const movie = json.results[0];
 
-    //             if (!movie) {
-    //                 return swal("No movie was found!");
-    //             }
-
-    //             const name = movie.trackName;
-    //             const imageURL = movie.artworkUrl100;
-
-    //             swal({
-    //                 title: "Top result:",
-    //                 text: name,
-    //                 icon: imageURL,
-    //             });
-    //         })
-    //         .catch(err => {
-    //             if (err) {
-    //                 swal("Oh noes!", "The AJAX request failed!", "error");
-    //             } else {
-    //                 swal.stopLoading();
-    //                 swal.close();
-    //             }
-    //         });
-    // }
-
-    function clearInput(column) {
+    function clearInput() {
         document.getElementById("searchID").value = "";
         document.getElementById("searchName").value = "";
         $("#test").html("");
         $("#test-all").html("");
-        for (k = 0; k < 15; k++) {
-            $("#o" + k).html("");
-        }
-        $("#owl-box").fadeOut(1000);
-        if (column === 'A') {
-            document.getElementById("searchID").focus()
-        } else if (column === 'B') {
-            document.getElementById("searchName").focus()
-        } else if (column === 'F') {
-            document.getElementById("searchYear").focus()
-        }
+        $("#test-all-search").html("");
     }
 
     window.onload = function () {
-
-        // // Execute a function when the user releases a key on the keyboard
-        // inputID.addEventListener("keyup", function(event) {
-        //     // Number 13 is the "Enter" key on the keyboard
-        //     if (event.keyCode === 13) {
-        //         // Cancel the default action, if needed
-        //         event.preventDefault();
-        //         // Trigger the button element with a click
-        //         document.getElementById("searchIDButton").click();
-        //     }
-        // });
-        //
-        // inputName.addEventListener("keyup", function(event) {
-        //     // Number 13 is the "Enter" key on the keyboard
-        //     if (event.keyCode === 13) {
-        //         // Cancel the default action, if needed
-        //         event.preventDefault();
-        //         // Trigger the button element with a click
-        //         document.getElementById("searchNameButton").click();
-        //     }
-        // });
-        // Bug needs to fix.
-
-        startTime();
-
-        $(document).ready(function () {
-            $(".owl-carousel").owlCarousel({
-                loop: false,
-                center: true,
-                margin: 50,
-                nav: true,
-                autoWidth: true,
-                singleItem: true
-            });
-        });
-
-        // Mousewheel Support For Owl Carousel.
-        var owl = $('.owl-carousel');
-        owl.on('mousewheel', '.owl-stage', function (e) {
-            if (e.deltaY<0) {
-                owl.trigger('next.owl');
-            } else {
-                owl.trigger('prev.owl');
-            }
-            e.preventDefault();
-        });
 
         // JS实现选项卡切换
         // Season tab of page 'All bangumi'.
@@ -513,8 +317,8 @@
 
         // Main tab on the top.
         var myTab = document.getElementById("header_pic_menu tab");    //整个div
-        var myUl = myTab.getElementsByTagName("ul")[0];//一个节点
-        var myLi = myUl.getElementsByTagName("li");    //数组
+        //var myUl = myTab.getElementsByTagName("ul")[0];//一个节点
+        var myLi = myTab.getElementsByTagName("li");    //数组
         var myTab = document.getElementById("main-tab");
         var myDiv = $(myTab).children('div').get(); //.getElementsByTagName("div"); //数组
 
@@ -561,10 +365,7 @@
 
                 $("#test").html("");
                 $("#test-all").html("");
-                for (k = 0; k < 15; k++) {
-                    $("#o" + k).html("");
-                }
-                $("#owl-box").hide();
+                $("#test-all-search").html("");
                 document.getElementById("searchID").value = "";
                 document.getElementById("searchName").value = "";
                 for (var j = 0; j < myLi.length; j++) {
@@ -615,7 +416,6 @@
     }
 
     function queryName(input, column) {
-        $("#owl-box").hide();
         (function query(window, $) {
             if (input === "") {
                 swal({
@@ -651,7 +451,7 @@
                 // else if (column === 'All') {
                 //     sql = "select+%2A";
                 // }
-                // Caused too much lag to load up. Dipreciated.
+                // Caused too much lag to load up. Depreciated.
 
                 if(column === 'F') {
                     if(!spring) {
@@ -679,42 +479,7 @@
                 $.getScript("https://spreadsheets.google.com/tq?tqx=responseHandler:" + callback + "&tq=" + sql + "&key=" + sheetID + "&gid=" + gid);
                 //https://spreadsheets.google.com/tq?tqx=responseHandler:callback&tq=[sql]&key=1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70&gid=0
                 window[callback] = function (json) {
-                    //$("#owl-box").empty();
-                    // jQuery('<div/>', {
-                    //     "class": 'owl-stage-outer'
-                    // }).appendTo('#owl-box');
-                    // jQuery('<div/>', {
-                    //     "class": 'owl-nav'
-                    // }).appendTo('#owl-box');
-                    // jQuery('<button/>', {
-                    //     "type": 'button',
-                    //     "class": 'owl-prev',
-                    //     "role": 'presentation'
-                    // }).appendTo('.owl-nav');
-                    // jQuery('<button/>', {
-                    //     "type": 'button',
-                    //     "class": 'owl-next',
-                    //     "role": 'presentation'
-                    // }).appendTo('.owl-nav');
-                    // jQuery('<span/>', {
-                    //     "aria-label": 'Previous'
-                    // }).appendTo('.owl-prev');
-                    // jQuery('<span/>', {
-                    //     "aria-label": 'Next'
-                    // }).appendTo('.owl-next');
-                    // jQuery('<div/>', {
-                    //     "class": 'owl-dots'
-                    // }).appendTo('#owl-box');
-                    // jQuery('<div/>', {
-                    //     "class": 'owl-stage',
-                    //     "style": 'transition: all 1.5s ease 0s; width: 7566px; transform: translate3d(134px, 0px, 0px);'
-                    // }).appendTo('.owl-stage-outer');
-
-                    for (k = 0; k < 15; k++) {
-                        $("#o" + k).html("");
-                        $("#o" + k).show();
-                    }
-
+                    
                     var rowArray = json.table.rows,
                         rowLength = rowArray.length,
                         html = "", // Put these keys together using a string concatenation.
@@ -777,45 +542,10 @@
                         + "<br/>" + "　　OP　" + animeOP1 + animeOP2
                         + "<br/>" + "　　ED　" + animeED1 + animeED2;
                         whole_html += html + '<br/><br/>';
-                        // if (dataLength > 6) {
-                        //     dataLength = 6;
-                        // }
-                        // for (j = 0; j < dataLength; j++) {
-                        //     // 跳过一个项目，星标
-                        //     if (j === 4 && dataGroup[5] != null) {
-                        //         html += list[5];
-                        //         html += (dataGroup[5].f || dataGroup[5].v || "") + " ";
-                        //         html += "<br/>";
-                        //     }
-                        //     if (!dataGroup[j] || j === 4) {
-                        //         continue;
-                        //     }
-                        //     html += list[j];
-                        //     html += (dataGroup[j].f || dataGroup[j].v || "") + " ";
-                            //html += "<br/>";
-                        //}
-
-                        // The old method has been depreciated.
-
-                        // jQuery('<div/>', {
-                        //     id: 'oi' + i,
-                        //     "class": 'owl-item'
-                        // }).appendTo('.owl-stage');
-                        // jQuery('<div/>', {
-                        //     id: 'o' + i,
-                        //     "class": 'item'
-                        // }).appendTo('#oi' + i);
-                        // jQuery('<button/>', {
-                        //     id: 'od' + i,
-                        //     "role": 'button',
-                        //     "class": 'owl-dot'
-                        // }).appendTo('.owl-dots');
-                        // jQuery('<span/>', {}).appendTo('#od' + i);
-                        $("#o" + i).html(html);
                         $("#test-all").html(whole_html);
-                        $("#owl-box").fadeIn(1000);
-                        if (rowLength < 15) {
-                            for (k = rowLength; k < 15; k++) {
+                        $("#test-all-search").html(whole_html);
+                        if (rowLength < 10) {
+                            for (k = rowLength; k < 10; k++) {
                                 $("#o" + k).hide();
                             }
                         }
@@ -830,28 +560,12 @@
                             text: "未搜索到结果！请重新输入！",
                             icon: "warning",
                             button: "了解了"
-                        }).then(function(){
-                            if (column === 'A') {
-                                document.getElementById("searchID").focus()
-                            } else if (column === 'B') {
-                                document.getElementById("searchName").focus()
-                            } else if (column === 'F') {
-                                document.getElementById("searchYear").focus()
-                            }
                         });
                     }
                     $("#test").html(html);
-                    //$("#testName").html(html);
                 };
             }
         })(window, jQuery);
-        if (column === 'A') {
-            document.getElementById("searchID").focus()
-        } else if (column === 'B') {
-            document.getElementById("searchName").focus()
-        }  else if (column === 'F') {
-            document.getElementById("searchYear").focus()
-        }
     }
 </script>
 </body>
