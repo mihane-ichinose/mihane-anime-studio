@@ -332,9 +332,9 @@ ul.season li.season:hover li.season.on:hover {
     padding: 1rem;
 }
 
-div.item, #test{
-    /*word-break: break-all;*/
-}
+/* div.item, #test{
+    word-break: break-all;
+} */
 
 .version {
     padding: 0 1rem;
@@ -387,7 +387,7 @@ div.item, #test{
 .header_center { width:100%; max-width:100%; min-width:100%; margin:0 auto; height: auto; position:relative;}
 .logo { float:left; overflow:hidden; max-width:100%; max-height:100%;}
 #header_pic_nav {height:100%;width: auto;position:relative;z-index:1;}
-#header_pic_nav  li { display:block; float:left; position:relative; z-index:10;-moz-transition:all 0.8s;-webkit-transition:all 0.8s;-o-transition:all 0.8s;}
+#header_pic_nav  li { display:block; float:left; position:relative; z-index:10; transition:all 0.8s; -moz-transition:all 0.8s;-webkit-transition:all 0.8s;-o-transition:all 0.8s;}
 #header_pic_nav  li a {float:left;display:block;margin-bottom:1px;padding:5px 50px;width:auto;transition:all 0.8s;-moz-transition:all 0.8s;-webkit-transition:all 0.8s;-o-transition:all 0.8s;}
 #header_pic_nav li img{ float:left; display:block;   margin-top:5px;}
 #header_pic_nav li span{ display:block; float:left; margin-left:5px; padding-top:10px;}
@@ -571,7 +571,7 @@ div.wall{
     margin:0 10px;
     background:transparent;
     -webkit-box-shadow:0 10px 10px transparent;box-shadow:0 10px 10px transparent;z-index:10;-webkit-transition:height .3s;-o-transition:height .3s;transition:height .3s}
-@media screen and (max-width:600px){.timeline-header{width:600px}}
+@media screen and (max-width:10px){.timeline-header{width:10px}}
 .timeline-header.fixed{position:fixed;top:0;left:50%;height:72px;margin-left:-580px}
 @media screen and (max-width:1400px){.timeline-header.fixed{margin-left:-490px}}
 .timeline-header .arrow-left{
@@ -596,7 +596,14 @@ li.season-item.delay{opacity:.4}
 li.season-item img{width:72px;height:72px;border-radius:4px;float:left;cursor:pointer;background:hsla(0,0%,47.1%,.1)}
 li.season-item .season-body{padding-left:20px}
 li.season-item .season-body .season-title{text-align: left;font-size:16px;cursor:pointer;display:-webkit-box;line-height:18px;
-    -webkit-box-orient:vertical;-webkit-line-clamp:2;vertical-align:middle}
+    -webkit-box-orient:vertical;-webkit-line-clamp:2;vertical-align:middle;}
+
+@media only screen and (max-width: 600px) {
+  li.season-item .season-body .season-title {
+    width: 60vw;
+  }
+}
+
 li.season-item .season-body .season-title:hover{color:#fff}
 li.season-item .season-body .season-title span.follow{width:40px;height:18px;display:inline-block;
     margin-right:4px;margin-top:-2px;background:transparent url(imgs/icons.png) no-repeat -145px -606px;
@@ -606,9 +613,9 @@ li.season-item .season-body .season-desc{position:relative;bottom:0;font-size:12
 li.season-item .season-body .season-desc.published{color:#fb7299; text-align: left; padding-top: 20px;}
 .season-timeline{float:left;-webkit-animation:appear-from-left 1s linear;
     animation:appear-from-left 1s linear;-webkit-animation-fill-mode:both;animation-fill-mode:both}
-@media screen and (max-width:600px){.season-timeline{width:600px}}
+@media screen and (max-width:10px){.season-timeline{width:10px}}
 .season-timeline .season-group{position:relative;left:26px;padding-right:26px;border-left:1px dashed #fff}
-@media screen and (max-width:600px){.season-timeline .season-group{left:46px;padding-right:46px}}
+@media screen and (max-width:10px){.season-timeline .season-group{left:46px;padding-right:46px}}
 .season-timeline .season-group.is-published{border-left:1px solid #fff}
 .season-timeline .season-group.is-published .group-time{color:#fff}
 .season-timeline .season-group.is-published .group-time:before{border-color:#fff;background:#fff}
@@ -628,12 +635,11 @@ li.season-item .season-body .season-desc.published{color:#fb7299; text-align: le
     margin:0 10px;
     background:transparent;-webkit-box-shadow:inset 0 -33px 22px 12px transparent;
     box-shadow:inset 0 -33px 22px 12px transparent;-webkit-transition:all .6s;-o-transition:all .6s;transition:all .6s}
-@media screen and (max-width:600px){.timeline-wrapper{width:600px}}
+@media screen and (max-width:10px){.timeline-wrapper{width:10px}}
 .timeline-wrapper .tl-body-list{-webkit-transition:all .6s ease;-o-transition:all .6s ease;transition:all .6s ease}
 *{margin:0;padding:0;font-family:Microsoft Yahei,Tahoma,Helvetica,Arial,"\5B8B\4F53",sans-serif}
 .clearfix:after{content:"";display:block;width:0;height:0;clear:both}
 .no-wrap{white-space:nowrap}
-.no-scroll{}
 .fade-enter-active,.fade-leave-active{opacity:1;-webkit-transition:opacity .3s linear;-o-transition:opacity .3s linear;transition:opacity .3s linear}
 .fade-enter,.fade-leave-active{opacity:0}
 .rightin-enter-active,.rightin-leave-active{-webkit-transition:-webkit-transform .2s linear;
@@ -643,7 +649,7 @@ li.season-item .season-body .season-desc.published{color:#fb7299; text-align: le
 .rightin-enter,.rightin-leave-active{-webkit-transform:translateX(100%)!important;-ms-transform:translateX(100%)!important;transform:translateX(100%)!important}
 .delay-enter-active,.delay-leave-active{-webkit-transition:all .2s linear;-o-transition:all .2s linear;transition:all .2s linear}
 .pre-loading{position:absolute;width:100%;top:40%;font-size:24px;text-align:center}
-[class*=" icon-"],[class*=" icon-"] *,[class^=icon-],[class^=icon-] *{font-family:icomoon!important;speak:none;font-style:normal;font-weight:400;-webkit-font-feature-settings:normal;
+[class*=" icon-"],[class*=" icon-"] *,[class^=icon-],[class^=icon-] *{font-family:icomoon!important;/*speak:none;*/font-style:normal;font-weight:400;-webkit-font-feature-settings:normal;
     font-feature-settings:normal;font-variant:normal;text-transform:none;line-height:1;
     -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 .icon-unliked:before{content:"\E903";color:#00a1d6}
