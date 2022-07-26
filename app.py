@@ -23,7 +23,7 @@ def animelist():
 
 # create = True #修改此变量，是否新建html
 
-    update_time = time.strftime("%Y-%m-%d %H:%M", time.localtime())
+    update_time = time.strftime("%Y-%m-%d %H:%M UTC", time.localtime())
 
     # date = time.strftime("%Y-%m-%d", time.localtime()) #日期戳，用于区分文件名
     # html_head ="""

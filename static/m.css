@@ -671,3 +671,16 @@ li.season-item .season-body .season-desc.published{color:#fb7299; text-align: le
 #app .bread-crumb,#app .timeline-container{position:relative;width:1160px;margin:0 auto;-webkit-transition:all .6s;-o-transition:all .6s;transition:all .6s}
 @media screen and (max-width:1400px){#app .bread-crumb,#app .timeline-container{width:980px}}
 #app .timeline-container{padding-top:66px;padding-bottom:20px}
+
+#owl-box{
+  display: flex;
+  flex-direction: column;
+}
+
+.owl-dots {
+  order: 1;
+}
+
+.owl-stage-outer {
+  order: 2;
+}
