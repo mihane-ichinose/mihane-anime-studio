@@ -11,6 +11,9 @@ To visit the webpage:
 #### 2022.07.20
 - This new universal version release has changed the website structure completely. The website no longer runs on GitHub server. New features need Python script to run with Flask framework and deployed onto Heroku as web app.
 - Added anime list with BiliBili styling and fetches info from AGE Anime. The anime list is updated every time when user visit the page.
+#### 2022.07.26
+- Hotfix: Fit columns of anime list to some devices that has narrow width such as smartphones. Fixed the issue that date on top cannot be seen in the same page.
+- Added date and time when the info fetched on the top of the anime list.
 ## Mobile Version
 ### Version 1.0.3m
 #### 2021.04.13
