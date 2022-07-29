@@ -14,6 +14,8 @@ To visit the webpage:
 #### 2022.07.26
 - Hotfix: Fit columns of anime list to some devices that has narrow width such as smartphones. Fixed the issue that date on top cannot be seen in the same page.
 - Added date and time when the info fetched on the top of the anime list.
+#### 2022.07.30
+- Hotfix: Prevented resubmission confirmation to pop up when user refresh the anime list page to provide a flawless experience.
 ## Mobile Version
 ### Version 1.0.3m
 #### 2021.04.13

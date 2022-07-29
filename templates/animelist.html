@@ -541,6 +541,10 @@
             $('body').find('[id=o'+day+']').find(".season-group, .is-published").addClass("today");
             $('body').find('[id=o'+day+']').find(".tl-weeks").addClass("today");
         }
+
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
     </script>
 </body>
 </html>
