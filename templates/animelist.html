@@ -17,7 +17,7 @@
     <title>MAS - Mihane Anime Studio - Anime List</title>
 </head>
 <body>
-    <div class="header">
+    <div class="header div-fadein">
        <div class="header_in">
             <div class="header_center">
                 <div id="header_pic_nav" class="hide_icon">
@@ -41,7 +41,7 @@
         <div class="header-Empty"></div>
         <div class="main-Template" style="text-align: center;">
             <div class="timeline-container">
-                <div class="owl-carousel owl-theme" id="owl-box">
+                <div class="owl-carousel owl-theme div-fadein" id="owl-box">
                     <div class="item" id="o1">
                         <div class="timeline-col">
                             <div class="timeline-header">
@@ -484,6 +484,15 @@
         }
 
         window.onload = function () {
+            // A latency and fadein function.
+            var divFadeins = document.getElementsByClassName('div-fadein');
+            setTimeout(() => {
+                for (var i = 0; i < divFadeins.length; i++) {
+                    divFadeins[i].style.visibility = 'visible';
+                    divFadeins[i].style.opacity = 1;
+                }
+            }, 500);
+
             // Auto detect which year and season is it now.
             const today = new Date();
             var year = today.getFullYear();

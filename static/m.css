@@ -675,6 +675,7 @@ li.season-item .season-body .season-desc.published{color:#fb7299; text-align: le
 #owl-box{
   display: flex;
   flex-direction: column;
+  
 }
 
 .owl-dots {
@@ -683,4 +684,14 @@ li.season-item .season-body .season-desc.published{color:#fb7299; text-align: le
 
 .owl-stage-outer {
   order: 2;
+}
+
+.div-fadein {
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition:all 0.5s linear;
+  -moz-transition:all 0.5s linear;
+  -ms-transition:all 0.5s linear;
+  -o-transition:all 0.5s linear;
+  transition:all 0.5s linear;
 }
