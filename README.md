@@ -16,6 +16,7 @@ To visit the webpage:
 - Added date and time when the info fetched on the top of the anime list.
 #### 2022.07.30
 - Hotfix: Prevented resubmission confirmation to pop up when user refresh the anime list page to provide a flawless experience.
+- Add a fade in animation for the anime list page when load up to prevent latency of owl carousel loading up causing layout issues.
 ## Mobile Version
 ### Version 1.0.3m
 #### 2021.04.13
