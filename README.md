@@ -4,7 +4,7 @@
 **Mihane Anime Studio** (*abbrev. **MAS***) is a website based on a database file written in the form of Google Sheet. The website could check all contents in the database and give back the data from it.
 To visit the webpage:
 
-[Mihane Anime Studio - MAS](http://mihane.cc/)
+[Mihane Anime Studio - MAS](https://mihane.cc/)
 # New Features
 ## Universal
 ### Version 2.1
