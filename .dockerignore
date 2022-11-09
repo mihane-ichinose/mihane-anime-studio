@@ -1,0 +1,9 @@
+# flyctl launch added from .gitignore
+**\venv
+**\__pycache__
+
+# flyctl launch added from static\jquery-mousewheel-3.1.13\.gitignore
+static\jquery-mousewheel-3.1.13\**\.DS_Store
+static\jquery-mousewheel-3.1.13\npm-debug.log
+static\jquery-mousewheel-3.1.13\node_modules
+static\jquery-mousewheel-3.1.13\test\browserify\node_modules
