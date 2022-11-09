@@ -7,6 +7,11 @@ To visit the webpage:
 [Mihane Anime Studio - MAS](http://mihane.cc/)
 # New Features
 ## Universal
+### Version 2.1
+#### 2022.11.10
+- Unfortunately, our original platform holder, Heroku will not offer free plans as of November 28, 2022.
+- Therefore the website is now moving on to our new platform supporter, Fly.io.
+- This release is an update of environment. No new feature added.
 ### Version 2.0
 #### 2022.07.20
 - This new universal version release has changed the website structure completely. The website no longer runs on GitHub server. New features need Python script to run with Flask framework and deployed onto Heroku as web app.
@@ -83,15 +88,21 @@ To visit the webpage:
 - Fuzzy search supported when search by Anime name.
   - Issue found: Body cannot dynamically change its height when the list is relatively long.
 ## Built With
-- [IntelliJ IDEA](https://www.jetbrains.com/idea/) - The web framework used
-- [Sublime Text 3](https://www.sublimetext.com/3) - Alternative develop tool
+- [Visual Studio Code](https://code.visualstudio.com/) - Development IDEs
+- [IntelliJ IDEA](https://www.jetbrains.com/idea/) - Development IDEs
+- [Sublime Text 3](https://www.sublimetext.com/3) - Development IDEs
+- [Flask](https://flask.palletsprojects.com/en/2.2.x/) - The web framework used for Python script
+- [Python](https://www.python.org/) - Script for spider in AnimeList section
+- ~~Heroku (depreciated)~~
 ## Acknowledgements
+- [Fly.io](https://fly.io/) - Webpage hosting platform
+- [GitHub](https://github.com/) - Home of repository
 - [Sweet Alert](https://sweetalert.js.org/)
 - [Owl Carousel 2](https://owlcarousel2.github.io/OwlCarousel2/)
 - [jQuery-Mousewheel](https://github.com/jquery/jquery-mousewheel/)
 - [Baidu Baike](https://baike.baidu.com/)
 - [Netease Music](https://music.163.com/)
 - [BiliBili](https://www.bilibili.com/)
-- [AGE Anime](https://www.agemys.cc/)
+- [AGE Anime](https://www.agemys.net/)
 ## Author
 - [Mihane Ichinose](https://space.bilibili.com/5049780?from=search&seid=7121011517825966874)
