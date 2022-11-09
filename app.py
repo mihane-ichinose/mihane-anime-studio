@@ -64,7 +64,7 @@ def animelist():
     url = 'https://agemys.com'
 
     print("欢迎使用针对AGE动漫首页每周放送列表（番表）的爬虫系统！版本V0.1")
-    print("正在获取数据...")
+    print("正在获取数据......")
 
     strhtml = requests.get(url=url, headers=headers) #Get方式获取网页数据
     soup = BeautifulSoup(strhtml.text, "lxml")
