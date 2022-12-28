@@ -433,7 +433,7 @@ a {
 }
 
 .container {
-  width:80%;
+  width: 90%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -443,8 +443,9 @@ a {
 }
 
 .index-slogan {
+  width: 100%;
   position: absolute;
-  top: 90%;
+  top: 100%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
