@@ -30,7 +30,7 @@ hr{
     border: none;
 }
 
-h1, p {
+h1, h2, p {
     display: block;
     align-content: center;
     text-align: center;
@@ -435,6 +435,16 @@ a {
           transform: translate(-50%, -50%);
   font-weight: bold;
 }
+
+.index-slogan {
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  font-weight: bold;
+}
+
 table {
   width: 600px;
   border-collapse: collapse;

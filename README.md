@@ -11,7 +11,7 @@ To visit the webpage:
 #### 2022.11.10
 - Unfortunately, our original platform holder, Heroku will not offer free plans as of November 28, 2022.
 - Therefore the website is now moving on to our new platform supporter, Fly.io.
-- This release is an update of environment. No new feature added.
+- Added 'Slogan of the Season' below index table. (Patched on 2022.12.28)
 ### Version 2.0
 #### 2022.07.20
 - This new universal version release has changed the website structure completely. The website no longer runs on GitHub server. New features need Python script to run with Flask framework and deployed onto Heroku as web app.

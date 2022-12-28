@@ -103,6 +103,9 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="index-slogan">
+                        <h2 id="slogan">“你所热爱的，就是你的生活。”</h2>
+                    </div>
             </div>
             <div id="search-Div" class="hide">
                 <form name="searchForm">
@@ -185,6 +188,10 @@
             <!--更新日志-->
             <div id="update-log-Div" class="hide">
                 <p class="update-title">更新日志</p>
+                <h4 class="version">V2.1</h4>
+                <h4 class="version">网站搬迁至Fly.io云平台。</h4>
+                <h4 class="version">首页上新增每季度标语。</h4>
+                <br/>
                 <h4 class="version">V2.0</h4>
                 <h4 class="version">大型更新，统一与移动端的版本号。网站架构变更为Heroku云平台。</h4>
                 <h4 class="version">新增番组放送列表，样式取自哔哩哔哩网页版番表，信息由AGE动漫提供。</h4>
@@ -385,18 +392,29 @@
 
         window["callback"] = function (json) {
 
-                    var rowArray = json.table.rows,
-                        rowLength = rowArray.length,                
-                        i;
-                
-                    for (i = 0; i < rowLength * 2; i+=2) {
-                        dataGroup = rowArray[i/2].c;
-                        dataLength = dataGroup.length;
-                        title = dataGroup[0] != null ? (dataGroup[0].f || dataGroup[0].v) : "";
-                        value = dataGroup[1] != null ? (dataGroup[1].f || dataGroup[1].v) : "";
-                        $("#menu" + i).html(title);
-                        $("#menu" + (i + 1)).html(value);
-                    }
+            var rowArray = json.table.rows,
+                rowLength = rowArray.length,                
+                i;
+        
+            for (i = 0; i < rowLength * 2; i+=2) {
+                dataGroup = rowArray[i/2].c;
+                dataLength = dataGroup.length;
+                title = dataGroup[0] != null ? (dataGroup[0].f || dataGroup[0].v) : "";
+                value = dataGroup[1] != null ? (dataGroup[1].f || dataGroup[1].v) : "";
+                $("#menu" + i).html(title);
+                $("#menu" + (i + 1)).html(value);
+            }
+        }
+
+        $.getScript("https://spreadsheets.google.com/tq?tqx=responseHandler:callback1&tq=select O limit 1 offset 22&key=1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70&gid=1890606978");
+
+        window["callback1"] = function (json) {
+
+            var rowArray = json.table.rows,
+                rowLength = rowArray.length;
+        
+            slogan = rowArray[0].c;
+            $("#slogan").html("“"+slogan[0].v+"”");
         }
         
     };

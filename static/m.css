@@ -31,7 +31,7 @@ hr{
     border: none;
 }
 
-h1, p, span {
+h1, h2, p, span {
     display: block;
     align-content: center;
     text-align: center;
@@ -433,16 +433,26 @@ a {
 }
 
 .container {
-  width:50%;
+  width:60%;
   position: absolute;
-  top: 60%;
-  left: 40%;
+  top: 50%;
+  left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   font-weight: bold;
 }
+
+.index-slogan {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  font-weight: bold;
+}
+
 table {
-  width: 150%;
+  width: 100%;
   border-collapse: collapse;
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
