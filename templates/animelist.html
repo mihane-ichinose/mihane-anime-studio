@@ -37,11 +37,20 @@
         </div>
     </div>
 
-    <div class="index" id="index">
+    <div class="index div-fadein" id="index">
         <div class="header-Empty"></div>
         <div class="main-Template" style="text-align: center;">
+            {% if method == '' or method is none %}
+            <form id="filterForm" action="/animelist" method="POST">
+                <input type="hidden" name="filterInput" id="filterInput" value="" />
+                <button class="search" id="filterButton" type="submit" style="margin:auto; float:none;">开启智能过滤</button>
+            </form>
+            {% endif %}
+            {% if method == 'filtered' %}
+            <p>已开启智能过滤</p>
+            {% endif %}
             <div class="timeline-container">
-                <div class="owl-carousel owl-theme div-fadein" id="owl-box">
+                <div class="owl-carousel owl-theme" id="owl-box">
                     <div class="item" id="o1">
                         <div class="timeline-col">
                             <div class="timeline-header">
@@ -510,27 +519,27 @@
                 var monthCN = "秋";
             }
 
-            $.getScript("https://spreadsheets.google.com/tq?tqx=responseHandler:callback&tq=select+%2A+where+F+%3D+" + 
-                year + "+and+G+%3D+"+ encodeURIComponent("'"+monthCN+"'") +"+&key=1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70&gid=0");
-            //https://spreadsheets.google.com/tq?tqx=responseHandler:callback&tq=[sql]&key=1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70&gid=0
+            // $.getScript("https://spreadsheets.google.com/tq?tqx=responseHandler:callback&tq=select+%2A+where+F+%3D+" + 
+            //     year + "+and+G+%3D+"+ encodeURIComponent("'"+monthCN+"'") +"+&key=1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70&gid=0");
+            // //https://spreadsheets.google.com/tq?tqx=responseHandler:callback&tq=[sql]&key=1hpbzk9-0ZrkqUZsH6ANXo0os7-SLr4LjUewkXKjnY70&gid=0
 
-            window['callback'] = function (json) {
+            // window['callback'] = function (json) {
  
-                var rowArray = json.table.rows,
-                    rowLength = rowArray.length,
-                    i, j, dataGroup, dataLength,
-                    animeNameCH,
-                    newAnimeList = [];
+            //     var rowArray = json.table.rows,
+            //         rowLength = rowArray.length,
+            //         i, j, dataGroup, dataLength,
+            //         animeNameCH,
+            //         newAnimeList = [];
 
-                for (i = 0; i < rowLength; i++) {
-                        dataGroup = rowArray[i].c;
-                        dataLength = dataGroup.length;
-                        animeNameCH = dataGroup[1] != null ? dataGroup[1].f || dataGroup[1].v : "待补全";
-                        newAnimeList.push(animeNameCH);
-                }
-                // alert(newAnimeList);
-            }
-
+            //     for (i = 0; i < rowLength; i++) {
+            //             dataGroup = rowArray[i].c;
+            //             dataLength = dataGroup.length;
+            //             animeNameCH = dataGroup[1] != null ? dataGroup[1].f || dataGroup[1].v : "待补全";
+            //             window.newAnimeList.push(animeNameCH);
+            //     }
+            //     // alert(window.newAnimeList);
+            // }
+            
             // Highlight the corresponding day header of today.
             $(".week-"+day).parent().addClass("today");
             $(".day-"+day).text(month+"-"+date);
@@ -549,6 +558,13 @@
             // }
             $('body').find('[id=o'+day+']').find(".season-group, .is-published").addClass("today");
             $('body').find('[id=o'+day+']').find(".tl-weeks").addClass("today");
+
+            var filterForm = document.getElementById("filterForm");
+            var filterInput = document.getElementById("filterInput");
+            filterForm.addEventListener('submit', function(e){
+                filterInput.value = "filtered";
+                filterForm.submit();
+            });
         }
 
         if (window.history.replaceState) {

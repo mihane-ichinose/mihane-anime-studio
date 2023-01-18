@@ -6,12 +6,12 @@ from bs4 import BeautifulSoup
 import time
 import cn2an
 import re, json
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-version = "2.1"
-m_version = "2.1"
+version = "2.1beta1"
+m_version = "2.1beta1"
 year = time.strftime("%Y", time.localtime())
 
 @app.route('/', methods = ['POST', 'GET'])
@@ -20,6 +20,9 @@ def index():
 
 @app.route('/animelist', methods = ['POST', 'GET'])
 def animelist():
+    method = request.form.get("filterInput")
+    if method == 'filtered':
+        print("智能过滤模式")
 
 # create = True #修改此变量，是否新建html
 
@@ -52,10 +55,10 @@ def animelist():
     #     f.write(html_head)
     #     f.close()
         
-    ##proxy = {
-    ##    'http': 'http://localhost:8099',
-    ##    'https': 'https://localhost:8099'
-    ##}
+    # proxy = {
+    #    'http': 'http://localhost:8080',
+    #    'https': 'https://localhost:8080'
+    # }
 
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.0; WOW64; rv:24.0) Gecko/20100101 Firefox/24.0'
@@ -82,14 +85,26 @@ def animelist():
     id_list = []
 
     for listing in new_anime_list_json:
-        title_list.append(listing.get("name"))
+        # 番组名称
+        title = listing.get("name")
+        # 集数
         ji = listing.get("namefornew")
+        # AGEFANS内部动画ID
+        id = listing.get("id")
+        # 日期
+        day = listing.get("wd")
+
+        #智能过滤：去除带完结且无更新时间的番剧
+        if method == 'filtered':
+            if "完结" in ji and len(ji.split()) == 1:
+                continue
+
+        title_list.append(title)
         if ji == "第集":
             ji_list.append("未更新")
         else:
             ji_list.append(ji)
-        id_list.append(listing.get("id"))
-        day = listing.get("wd")
+        id_list.append(id)
         if day == 0:
             day_list.append("星期日")
         else:
@@ -151,7 +166,8 @@ def animelist():
     update_time=update_time,
     version=version,
     m_version=m_version,
-    year=year)
+    year=year,
+    method=method)
 
 @app.route('/m', methods = ['POST', 'GET'])
 def m():
