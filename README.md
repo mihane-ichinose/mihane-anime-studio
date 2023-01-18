@@ -7,6 +7,10 @@ To visit the webpage:
 [Mihane Anime Studio - MAS](https://mihane.cc/)
 # New Features
 ## Universal
+### Version 2.1beta1
+#### 2023.01.18
+- Added support to smart filtering feature in anime list page.
+- Would consider to improve the filtering method by comparing to the seasonal Google Sheet data in the future.
 ### Version 2.1
 #### 2022.11.10
 - Unfortunately, our original platform holder, Heroku will not offer free plans as of November 28, 2022.
