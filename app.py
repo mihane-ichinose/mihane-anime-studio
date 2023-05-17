@@ -21,7 +21,7 @@ def get_db_connection():
                             port='5433',
                             database=os.environ.get('DBNAME'),
                             user=os.environ.get('DBUSER'),
-                            password=os.environ.get('DBADDR'))
+                            password=os.environ.get('DBPASS'))
     return conn
 
 @app.route('/', methods = ['POST', 'GET'])
