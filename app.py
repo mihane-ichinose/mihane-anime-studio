@@ -15,13 +15,15 @@ version = "2.1beta1"
 m_version = "2.1beta1"
 year = time.strftime("%Y", time.localtime())
 
+DBADDR = os.environ.get('DBADDR')
+DBPORT = os.environ.get('DBPORT')
+DBNAME = os.environ.get('DBNAME')
+DBUSER = os.environ.get('DBUSER')
+DBPASS = os.environ.get('DBPASS')
+
 def get_db_connection():
-    print('addr:',os.environ.get('DBADDR'))
-    conn = psycopg2.connect(host=os.environ.get('DBADDR'),
-                            port='5433',
-                            dbname=os.environ.get('DBNAME'),
-                            user=os.environ.get('DBUSER'),
-                            password=os.environ.get('DBPASS'))
+    print('addr:', DBADDR)
+    conn = psycopg2.connect(host=DBADDR, port=DBPORT, dbname=DBNAME, user=DBUSER, password=DBPASS)
     return conn
 
 @app.route('/', methods = ['POST', 'GET'])
