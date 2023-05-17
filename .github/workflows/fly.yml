@@ -5,11 +5,11 @@ on:
       - '*'
 env:
   FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-  DBADDR: ${{ python_flask.DBADDR }}
-  DBNAME: ${{ python_flask.DBNAME }}
-  DBPASS: ${{ python_flask.DBPASS }}
-  DBPORT: ${{ python_flask.DBPORT }}
-  DBUSER: ${{ python_flask.DBUSER }}
+  DBADDR: ${{ secrets.DBADDR }}
+  DBNAME: ${{ secrets.DBNAME }}
+  DBPASS: ${{ secrets.DBPASS }}
+  DBPORT: ${{ secrets.DBPORT }}
+  DBUSER: ${{ secrets.DBUSER }}
 jobs:
   deploy:
       name: Deploy app
