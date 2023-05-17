@@ -17,7 +17,7 @@ year = time.strftime("%Y", time.localtime())
 
 def get_db_connection():
     conn = psycopg2.connect(host=os.environ.get('DBADDR'),
-                            port=os.environ.get('DBPORT'),
+                            port='5433',
                             database=os.environ.get('DBNAME'),
                             user=os.environ.get('DBUSER'),
                             password=os.environ.get('DBADDR'))
