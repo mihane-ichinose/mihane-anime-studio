@@ -3,13 +3,7 @@ on:
   push:
     branches:
       - '*'
-env:
-  FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
-  DBADDR: ${{ secrets.DBADDR }}
-  DBNAME: ${{ secrets.DBNAME }}
-  DBPASS: ${{ secrets.DBPASS }}
-  DBPORT: ${{ secrets.DBPORT }}
-  DBUSER: ${{ secrets.DBUSER }}
+
 jobs:
   deploy:
       name: Deploy app
@@ -18,4 +12,10 @@ jobs:
         - uses: actions/checkout@v3
         - uses: superfly/flyctl-actions/setup-flyctl@master
         - run: flyctl deploy --remote-only
-          echo $DBADDR
+          env:
+            FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+            DBADDR: ${{ secrets.DBADDR }}
+            DBNAME: ${{ secrets.DBNAME }}
+            DBPASS: ${{ secrets.DBPASS }}
+            DBPORT: ${{ secrets.DBPORT }}
+            DBUSER: ${{ secrets.DBUSER }}
