@@ -160,43 +160,59 @@
             </div>
             
             <div id="search-Div" class="hide">
-                <form name="searchForm" onsubmit="false">
+                <form name="searchForm" onsubmit="false" method="POST" id="findAnimeById">
                     <br>
                     <h4 class="version">请输入要查找的番组序号：
                         <input id="searchID" oninput="if(value.length>4)value=value.slice(0,4)" type="number"
                                name="searchInput" value="" onkeydown='if(event.keyCode==13){$("#searchIDButton").click()}'>
                         <input id="hiddenText" type="text" style="display:none" />
                     </h4>
+                    <br>
+                    <button type="submit" class="search" id="findAnimeByIdBtn">sql查询</button>
+                    <button type="button" class="search" id="searchIDButton" name="search"
+                        onclick="queryName(searchForm.searchInput.value, 'A')">查找
+                    </button>
+                    <button type="button" class="clearButton" name="clear" onclick="clearInput('A')">清空</button>
                 </form>
                 <br>
-                <button class="search" id="searchIDButton" name="search"
-                        onclick="queryName(searchForm.searchInput.value, 'A')">查找
-                </button>
-                <button class="clearButton" name="clear" onclick="clearInput('A')">清空</button>
                 <br>
                 <br>
+                <p id="sqlTitleCN"></p>
+                <p id="sqlTitleJP"></p>
+                <p id="sqlSeason"></p>
                 <div id="test" class="result">
 
                 </div>
             </div>
             <div id="search-name-Div" class="hide">
-                <form name="searchFormName" onsubmit="false">
+                <form name="searchFormName" onsubmit="false" method="POST" id="findAnimeByName">
                     <br>
                     <h4 class="version">请输入要查找的番组名称 - 中文：
                         <input id="searchName" type="text" name="searchInput" value="" onkeydown='if(event.keyCode==13){$("#searchNameButton").click()}'>
                         <input id="hiddenText" type="text" style="display:none" />
                     </h4>
-                </form>
-                <br>
-                <button class="search" id="searchNameButton" name="search"
+                    <br>
+                    <button type="submit" class="search" id="findAnimeByNameBtn">sql查询</button>
+                    <button type="button" class="search" id="searchNameButton" name="search"
                         onclick="queryName(searchFormName.searchInput.value, 'B')">
                     查找
-                </button>
-                <button class="clearButton" name="clear" onclick="clearInput('B')">清空</button>
+                    </button>
+                    <button type="button" class="clearButton" name="clear" onclick="clearInput('B')">清空</button>
+                </form>
+                <br>
+                
                 <br>
                 <br>
                 <!--<div id="testName" class="result"></div>-->
-
+                <p id="sqlTitleCN0"></p>
+                <p id="sqlTitleJP0"></p>
+                <p id="sqlSeason0"></p>
+                <p id="sqlTitleCN1"></p>
+                <p id="sqlTitleJP1"></p>
+                <p id="sqlSeason1"></p>
+                <p id="sqlTitleCN2"></p>
+                <p id="sqlTitleJP2"></p>
+                <p id="sqlSeason2"></p>
                 <div class="owl-carousel owl-theme" id="owl-box" style="display: none;">
                     <div class="item" id="o0"></div>
                     <div class="item" id="o1"></div>
@@ -444,6 +460,8 @@
         startTime();
 
         $(document).ready(function () {
+
+
             $(".owl-carousel").owlCarousel({
                 loop: false,
                 center: true,
@@ -451,6 +469,37 @@
                 nav: true,
                 autoWidth: true,
                 singleItem: true
+            });
+
+            $('#findAnimeById').on('submit',function (e) {
+                $.ajax({
+                    type: 'post',
+                    url: '/findAnimeById',
+                    data: $('#findAnimeById').serialize(),
+                    success: function (anime_name_data) {
+                        document.getElementById("sqlTitleCN").innerHTML= anime_name_data.title_cn;
+                        document.getElementById("sqlTitleJP").innerHTML= anime_name_data.title_jp;
+                        document.getElementById("sqlSeason").innerHTML= anime_name_data.season;
+                    }
+                });
+                e.preventDefault();
+            });
+
+            $('#findAnimeByName').on('submit',function (e) {
+                $.ajax({
+                    type: 'post',
+                    url: '/findAnimeByName',
+                    data: $('#findAnimeByName').serialize(),
+                    success: function (anime_name_datum) {
+                        anime_name_datum_list = JSON.parse(JSON.stringify(anime_name_datum))
+                        for (var i = 0; i < anime_name_datum_list.length; i++) {
+                            document.getElementById("sqlTitleCN"+i).innerHTML= anime_name_datum_list[i].title_cn;
+                            document.getElementById("sqlTitleJP"+i).innerHTML= anime_name_datum_list[i].title_jp;
+                            document.getElementById("sqlSeason"+i).innerHTML= anime_name_datum_list[i].season;
+                        }
+                    }
+                });
+                e.preventDefault();
             });
         });
 
