@@ -16,8 +16,7 @@ m_version = "2.1beta1"
 year = time.strftime("%Y", time.localtime())
 
 def get_db_connection():
-    print('addr:')
-    print(os.environ.get('DBADDR'))
+    print('addr:',os.environ.get('DBADDR'))
     conn = psycopg2.connect(host=os.environ.get('DBADDR'),
                             port='5433',
                             database=os.environ.get('DBNAME'),
@@ -32,7 +31,6 @@ def index():
 @app.route('/findAnimeById', methods=['POST'])
 def findAnimeById():
     searchID = request.form['searchInput']
-    print('recv:', searchID)
     conn = get_db_connection()
     cur = conn.cursor()
     cur.execute('SELECT * FROM anime_name where index_no = '+searchID+';')
@@ -53,7 +51,6 @@ def findAnimeById():
 @app.route('/findAnimeByName', methods=['POST'])
 def findAnimeByName():
     searchName = request.form['searchInput']
-    print('recv:', searchName)
     conn = get_db_connection()
     cur = conn.cursor()
     cur.execute('SELECT * FROM anime_name where title_cn ilike \'%'+searchName+'%\';')
