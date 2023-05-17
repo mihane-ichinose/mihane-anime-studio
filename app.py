@@ -5,8 +5,9 @@ import requests
 from bs4 import BeautifulSoup
 import time
 import cn2an
-import re, json
-from flask import Flask, render_template, request
+import re, json, os
+import psycopg2
+from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
@@ -14,9 +15,63 @@ version = "2.1beta1"
 m_version = "2.1beta1"
 year = time.strftime("%Y", time.localtime())
 
+def get_db_connection():
+    conn = psycopg2.connect(host=os.environ['DBADDR'],
+                            port=os.environ['DBPORT'],
+                            database=os.environ['DBNAME'],
+                            user=os.environ['DBUSER'],
+                            password=os.environ['DBADDR'])
+    return conn
+
 @app.route('/', methods = ['POST', 'GET'])
 def index():
     return render_template('index.html', version=version, year=year)
+
+@app.route('/findAnimeById', methods=['POST'])
+def findAnimeById():
+    searchID = request.form['searchInput']
+    print('recv:', searchID)
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute('SELECT * FROM anime_name where index_no = '+searchID+';')
+    anime_name = list(cur.fetchall()[0])
+    cur.close()
+    conn.close()
+    anime_name_data = {
+        'index_no':anime_name[0],
+        'title_cn':anime_name[1],
+        'title_jp':anime_name[2],
+        'status':anime_name[3],
+        'recommend':anime_name[4],
+        'year':anime_name[5],
+        'season':anime_name[6]
+    }
+    return jsonify(anime_name_data)
+
+@app.route('/findAnimeByName', methods=['POST'])
+def findAnimeByName():
+    searchName = request.form['searchInput']
+    print('recv:', searchName)
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute('SELECT * FROM anime_name where title_cn ilike \'%'+searchName+'%\';')
+    anime_names = cur.fetchall()
+    cur.close()
+    conn.close()
+    anime_name_datum = []
+    for anime_name in anime_names:
+        anime_name_data = {
+            'index_no':anime_name[0],
+            'title_cn':anime_name[1],
+            'title_jp':anime_name[2],
+            'status':anime_name[3],
+            'recommend':anime_name[4],
+            'year':anime_name[5],
+            'season':anime_name[6]
+        }
+        anime_name_datum.append(anime_name_data)
+    print(anime_name_datum)
+    return jsonify(anime_name_datum)
 
 @app.route('/animelist', methods = ['POST', 'GET'])
 def animelist():
