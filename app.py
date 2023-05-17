@@ -16,7 +16,7 @@ m_version = "2.1beta1"
 year = time.strftime("%Y", time.localtime())
 
 def get_db_connection():
-    print(os.environ.get('DBADDR'))
+    print('addr:', os.environ.get('DBADDR'))
     conn = psycopg2.connect(host=os.environ.get('DBADDR'),
                             port='5433',
                             database=os.environ.get('DBNAME'),
