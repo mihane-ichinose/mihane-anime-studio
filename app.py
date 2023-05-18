@@ -22,8 +22,8 @@ DBUSER = os.environ.get('DBUSER')
 DBPASS = os.environ.get('DBPASS')
 
 def get_db_connection():
-    print('addr:', {DBADDR})
-    conn = psycopg2.connect(host={DBADDR}, port={DBPORT}, dbname={DBNAME}, user={DBUSER}, password={DBPASS})
+    print('addr:', DBADDR)
+    conn = psycopg2.connect(host=DBADDR, port=DBPORT, dbname=DBNAME, user=DBUSER, password=DBPASS)
     return conn
 
 @app.route('/', methods = ['POST', 'GET'])
