@@ -7,6 +7,9 @@ To visit the webpage:
 [Mihane Anime Studio - MAS](https://mihane.cc/)
 # New Features
 ## Universal
+### Version 2.2
+#### 2023.08.04
+- Emergency fix for animelist page, compatible to new layout from [AGE Anime](https://agemys.org).
 ### Version 2.1beta1
 #### 2023.01.18
 - Added support to smart filtering feature in anime list page.
@@ -107,6 +110,6 @@ To visit the webpage:
 - [Baidu Baike](https://baike.baidu.com/)
 - [Netease Music](https://music.163.com/)
 - [BiliBili](https://www.bilibili.com/)
-- [AGE Anime](https://www.agemys.net/)
+- [AGE Anime](https://www.agemys.org/)
 ## Author
 - [Mihane Ichinose](https://space.bilibili.com/5049780?from=search&seid=7121011517825966874)

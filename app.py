@@ -11,8 +11,8 @@ from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
-version = "2.1beta1"
-m_version = "2.1beta1"
+version = "2.2"
+m_version = "2.2"
 year = time.strftime("%Y", time.localtime())
 
 DBADDR = os.environ.get('DBADDR')
@@ -120,54 +120,80 @@ def animelist():
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.0; WOW64; rv:24.0) Gecko/20100101 Firefox/24.0'
     }
 
-    url = 'https://agemys.com'
+    url = 'https://agemys.org'
 
-    print("欢迎使用针对AGE动漫首页每周放送列表（番表）的爬虫系统！版本V0.1")
+    print("欢迎使用针对AGE动漫首页每周放送列表（番表）的爬虫系统！版本V0.2")
+    print("新版AGEMYS.ORG首页适配完毕，日期2023.8.4")
     print("正在获取数据......")
 
     strhtml = requests.get(url=url, headers=headers) #Get方式获取网页数据
     soup = BeautifulSoup(strhtml.text, "lxml")
 
-    blockcontent = soup.select("div[class*=blockcontent]")
-    script = blockcontent[0].find("script")
+    total_index = 7
 
-    pattern = re.compile(r"var new_anime_list = (.*?);", re.MULTILINE | re.DOTALL) #在对应javascript中获取变量
-    new_anime_list = pattern.search(script.string)
-    new_anime_list_json = json.loads(new_anime_list.groups()[0])
+    weekday_title_list = [[s for a in soup.select("#week-0-pane .pe-2 a") for s in a.stripped_strings],
+    [s for a in soup.select("#week-1-pane .pe-2 a") for s in a.stripped_strings],
+    [s for a in soup.select("#week-2-pane .pe-2 a") for s in a.stripped_strings],
+    [s for a in soup.select("#week-3-pane .pe-2 a") for s in a.stripped_strings],
+    [s for a in soup.select("#week-4-pane .pe-2 a") for s in a.stripped_strings],
+    [s for a in soup.select("#week-5-pane .pe-2 a") for s in a.stripped_strings],
+    [s for a in soup.select("#week-6-pane .pe-2 a") for s in a.stripped_strings]]
+
+    weekday_href_list = [[a['href'] for a in soup.select("#week-0-pane .pe-2 a")],
+    [a['href'] for a in soup.select("#week-1-pane .pe-2 a")],
+    [a['href'] for a in soup.select("#week-2-pane .pe-2 a")],
+    [a['href'] for a in soup.select("#week-3-pane .pe-2 a")],
+    [a['href'] for a in soup.select("#week-4-pane .pe-2 a")],
+    [a['href'] for a in soup.select("#week-5-pane .pe-2 a")],
+    [a['href'] for a in soup.select("#week-6-pane .pe-2 a")]]
+
+    weekday_ji_list = [[s for div in soup.select("#week-0-pane .title_sub") for s in div.stripped_strings],
+    [s for div in soup.select("#week-1-pane .title_sub") for s in div.stripped_strings],
+    [s for div in soup.select("#week-2-pane .title_sub") for s in div.stripped_strings],
+    [s for div in soup.select("#week-3-pane .title_sub") for s in div.stripped_strings],
+    [s for div in soup.select("#week-4-pane .title_sub") for s in div.stripped_strings],
+    [s for div in soup.select("#week-5-pane .title_sub") for s in div.stripped_strings],
+    [s for div in soup.select("#week-6-pane .title_sub") for s in div.stripped_strings]]
+
+    # print(weekday_ji_list)
+
+    # blockcontent = soup.select("div[class*=blockcontent]")
+    # script = blockcontent[0].find("script")
+
+    # pattern = re.compile(r"var new_anime_list = (.*?);", re.MULTILINE | re.DOTALL) #在对应javascript中获取变量
+    # new_anime_list = pattern.search(script.string)
+    # new_anime_list_json = json.loads(new_anime_list.groups()[0])
 
     title_list = []
     ji_list = []
     day_list = []
-    id_list = []
+    href_list = []
 
-    for listing in new_anime_list_json:
-        # 番组名称
-        title = listing.get("name")
-        # 集数
-        ji = listing.get("namefornew")
-        # AGEFANS内部动画ID
-        id = listing.get("id")
-        # 日期
-        day = listing.get("wd")
-
-        #智能过滤：去除带完结且无更新时间的番剧
-        if method == 'filtered':
-            if "完结" in ji and len(ji.split()) == 1:
-                continue
-
-        title_list.append(title)
-        if ji == "第集":
-            ji_list.append("未更新")
-        else:
-            ji_list.append(ji)
-        id_list.append(id)
-        if day == 0:
-            day_list.append("星期日")
-        else:
-            day_list.append("星期"+cn2an.an2cn(str(day)))
-        # print(listing.get("name"))
+    # 从0-6：周日到周六遍历列表
+    for day in range(total_index):
+        # 遍历每一天的列表（默认列表无空）
+        for i in range(len(weekday_title_list[day])):
+            # 集数
+            ji = weekday_ji_list[day][i]
+            # 智能过滤：去除带完结且无更新时间的番剧
+            if method == 'filtered':
+                if "完结" in ji and len(ji.split()) == 1:
+                    continue
+            if ji == "第集":
+                ji_list.append("未更新")
+            else:
+                ji_list.append(ji)
+            # 番组名称
+            title_list.append(weekday_title_list[day][i])
+            # AGEFANS内部动画链接列表
+            href_list.append(weekday_href_list[day][i])
+            if day == 0:
+                day_list.append("星期日")
+            else:
+                day_list.append("星期"+cn2an.an2cn(str(day)))
     
-    anime_list = list(zip(title_list, ji_list, id_list, day_list))
+    anime_list = list(zip(title_list, ji_list, href_list, day_list))
+    # print(anime_list)
 
     # try:
     #     title_list = soup.select("ul#new_anime_page a#one_new_anime_name") #中文番剧名称
