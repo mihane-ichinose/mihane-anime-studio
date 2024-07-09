@@ -19,4 +19,4 @@ soupsieve==2.3.2.post1
 urllib3==1.26.18
 Werkzeug==3.0.3
 zhconv==1.4.3
-zipp==3.8.1
+zipp==3.19.1
