@@ -165,19 +165,19 @@ input {
     font-weight: normal;
 }
 
-#srcPage:link {
+#srcPage:link, #mssLink:link {
     color: #BBE1FA;
 }
 
-#srcPage:visited {
+#srcPage:visited, #mssLink:visited {
     color: #BBE1FA;
 }
 
-#srcPage:hover {
+#srcPage:hover, #mssLink:hover {
     color: white;
 }
 
-#srcPage:active {
+#srcPage:active, #mssLink:active {
     color: orange;
 }
 
