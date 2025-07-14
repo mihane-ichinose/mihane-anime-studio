@@ -12,7 +12,7 @@ Jinja2==3.1.6
 lxml==4.9.1
 MarkupSafe==2.1.1
 proces==0.1.2
-requests==2.32.0
+requests==2.32.4
 ruamel.yaml==0.17.21
 ruamel.yaml.clib==0.2.6
 soupsieve==2.3.2.post1
