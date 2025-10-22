@@ -74,9 +74,6 @@ def animelist():
     strhtml = requests.get(url=url, headers=headers) #Get方式获取网页数据
     soup = BeautifulSoup(strhtml.text, "lxml")
 
-    strhtml = requests.get(url=url, headers=headers) #Get方式获取网页数据
-    soup = BeautifulSoup(strhtml.text, "lxml")
-
     total_index = 7
 
     weekday_title_list = [[s for a in soup.select("#week-0-pane .pe-2 a") for s in a.stripped_strings],
