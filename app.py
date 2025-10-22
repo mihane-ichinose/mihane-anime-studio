@@ -7,7 +7,6 @@ import time
 import cn2an
 import re, json
 from flask import Flask, render_template, request
-import cloudscraper
 
 app = Flask(__name__)
 
@@ -57,13 +56,13 @@ def animelist():
     #     f.close()
         
     # proxy = {
-    #    'http': 'http://localhost:8099',
-    #    'https': 'https://localhost:8099'
+    #    'http': 'http://localhost:8080',
+    #    'https': 'https://localhost:8080'
     # }
 
-    # headers = {
-    #     'User-Agent': 'Mozilla/5.0 (Windows NT 6.0; WOW64; rv:24.0) Gecko/20100101 Firefox/24.0'
-    # }
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 6.0; WOW64; rv:24.0) Gecko/20100101 Firefox/24.0'
+    }
 
     url = 'https://agedm.io'
 
@@ -72,31 +71,11 @@ def animelist():
     print("2025.10.22：更新域名至agedm.io")
     print("正在获取数据......")
 
-    scraper = cloudscraper.create_scraper(
-        debug=True,
-        browser={
-            "browser": "firefox",
-            "platform": "windows",
-            "mobile": False
-        },
-        captcha={
-            'provider': '2captcha',
-            'api_key': 'dcdfcabca933ce2bda4d40034d9ce178'
-        }
-    )
-    print(scraper)
+    strhtml = requests.get(url=url, headers=headers) #Get方式获取网页数据
+    soup = BeautifulSoup(strhtml.text, "lxml")
 
-    # headers = {
-    #     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36',
-    #     #'Connection': 'keep-alive'
-    # }
-
-    response = scraper.get(url)
-    #print(response.text)
-
-    #strhtml = scraper.get(url=url, headers=headers) #Get方式获取网页数据
-    soup = BeautifulSoup(response.content, "lxml")
-    print(soup)
+    strhtml = requests.get(url=url, headers=headers) #Get方式获取网页数据
+    soup = BeautifulSoup(strhtml.text, "lxml")
 
     total_index = 7
 
